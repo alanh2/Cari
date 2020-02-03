@@ -1,0 +1,839 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Astral by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Astral by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link href="assets/css/stylesheetMobile.css" rel="stylesheet" />
+
+    <script src="scripts/jquery-3.4.1.min.js"></script>
+    <script src="scripts/config.js"></script>
+
+    <style>
+        #mydiv {
+            position: absolute;
+            z-index: 9;
+            background-color: #000;
+            text-align: center;
+            border: 1px solid #d3d3d3;
+        }
+
+        #mydivheader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            background-color: #2196F3;
+            color: #fff;
+        }
+    </style>
+
+    <script>
+
+        var AllOrg;
+        var selectedCardId = -1;
+        var selectedCardVersion = -1;
+        var selectedPosition = -1;
+        
+        $(document).ready(function () {
+            LoadAllData();
+        });
+
+
+        function LoadAllData() {
+
+            var Name = 'OrgGetAll';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UISM.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'FldUserId,1'
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    AllOrg = JSON.parse(data.d).result_name;
+
+                    for (var i = 0; i < AllOrg.length; i++) {
+                        if (AllOrg[i].innerrLevel === 1)
+                            LoadOrg(0, AllOrg[i].FldParentId, AllOrg[i].FldOrgId);
+                    }
+
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+
+        function LoadOrg(level, ParentId, MainParentId) {
+            //debugger;
+            // If First  time create all Main Nodes
+            if (level === 0) {
+                AddDiv('DivAll', 'DivAll-' + MainParentId + '_' + ParentId, 'BRUnderLine', 'background-color: rgb(239, 239, 239)', '');
+                //AddDiv('DivAll-' + MainParentId + '_' + ParentId, 'DivAllS-' + MainParentId + '_' + ParentId, 'icon solid fa-minus-circle BRCollapse', '', '', 'ColCell(this);');
+                //AddDiv('DivAll-' + MainParentId + '_' + ParentId, 'DivAll-' + MainParentId + '_' + ParentId + 'Title', 'BRTitle', '', AllOrg[0].GroupName, '');
+            }
+
+            for (var i = 0; i < AllOrg.length; i++) {
+                if (AllOrg[i].FldParentId === ParentId)
+
+                    if (AllOrg[i].UIId == MainParentId + '_' + AllOrg[i].FldOrgId) {
+                        var color = 255 - (level + 1) * 16;
+                        var NewId = MainParentId + '_' + AllOrg[i].FldOrgId;
+                        var OrgId = AllOrg[i].FldOrgId;
+                        var Position = AllOrg[i].Position;
+                        var CardId = AllOrg[i].CardId;
+
+
+                        var ShowCollapseIcon;
+                        var DisplayName;
+                        var BlindTitleAction='';
+
+                        // If Blind
+                        if (AllOrg[i].fldOrgTypeId === 3) {
+                            ShowCollapseIcon = '';
+                        }
+                        else {
+                            ShowCollapseIcon = 'icon solid fa-minus-circle BRCollapse';
+                        }
+
+                        if (AllOrg[i].CardId !== null) {
+                            DisplayName = AllOrg[i].FldOrgDisplayName + '(' + AllOrg[i].WorkingMode + ')';
+                            BlindTitleAction = 'ShowBlind(' + AllOrg[i].CardId + ',' + AllOrg[i].FldVersion + ',' + AllOrg[i].Position +');';
+                        }
+                        else
+                        {
+                            DisplayName = AllOrg[i].FldOrgDisplayName;
+                        }
+
+
+                        AddDiv('DivAll-' + MainParentId + '_' + ParentId, 'DivAll-' + NewId, 'BRUnderLine', 'background-color: rgb(' + color + ', ' + color + ', ' + color + ')', '', '');
+                        AddDiv('DivAll-' + NewId, 'DivAllS-' + NewId,  ShowCollapseIcon, '', '', 'ColCell(this);');
+                        AddDiv('DivAll-' + NewId, 'DivAllT-' + NewId, 'BRTitle', '', DisplayName, BlindTitleAction);
+
+                        // If Status Active Add Action Buttons
+                        if (AllOrg[i].CardId !== null) {
+                            // draw window + buttons
+                            // Main Window Div
+                            AddDiv('DivAll-' + NewId, 'DivAllMainActionDiv-' + NewId, 'BRBlind2', '', '', '');
+
+                            // Button UP
+                            AddDiv('DivAllMainActionDiv-' + NewId, 'DivAllActionDivUp-' + NewId, 'icon solid fa-chevron-circle-up BRBlind2SmallDetailsIconUp', '', '', 'SmallBlindChangePosition(-10, ' + CardId+ ');');
+
+                            // Title
+                            AddDiv('DivAllMainActionDiv-' + NewId, 'DivAllMainActionDivWindow-' + NewId, 'BRTitlePos', '', '', '');
+
+                            // Windows Blind
+                            AddDiv('DivAllMainActionDivWindow-' + NewId, 'DivAllMainActionDivWindowShow-' + NewId, 'Blind2SmallShow', ' background: linear-gradient(#b488d8 ' + Position + '%, white ' + Position + '%);', '', '');
+
+                            // Blind Position
+                            AddDiv('DivAllMainActionDivWindow-' + NewId, 'DivAllMainActionDivWindowTitle-' + NewId, 'BRTitlePos', 'position:absolute', Position + '%', '');
+
+                            //ButtonDown
+                            AddDiv('DivAllMainActionDiv-' + NewId, 'DivAllActionDivDown-' + NewId, 'icon solid fa-chevron-circle-down BRBlind2SmallDetailsIconUp', '', '', 'SmallBlindChangePosition(10 , ' + CardId + ');');
+
+
+
+                            // If error Present Icon
+                            if (AllOrg[i].CardStatusId !== 2) {
+
+                                AddDiv('DivAll-' + NewId, 'DivAllActionError-' + NewId, 'icon solid fa-exclamation-triangle BRBlind2exclamation', 'font-size:17px;top:-20px', '', 'alert(\'' + AllOrg[i].CardStatusId.toString() + ' - תקלה תקשורת לכרטיס\');');
+
+                            }
+                        }
+
+
+
+
+
+                        LoadOrg(level + 1, AllOrg[i].FldOrgId, MainParentId);
+                    }
+            }
+        }
+
+
+
+        function UpdateData() {
+
+            var Name = 'OrgGetAll';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UISM.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'FldUserId,1'
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    AllOrg = JSON.parse(data.d).result_name;
+
+                    LoadOrgUpdateValues();
+
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+        function LoadOrgUpdateValues() {
+            for (var i = 0; i < AllOrg.length; i++) {
+                var NewId = AllOrg[i].UIId;
+                var CorrPosition = AllOrg[i].Position;
+                
+                // this line deletes the inner div so we need to add it again
+                if (AllOrg[i].CardId !== null) {
+                    document.getElementById('DivAllMainActionDivWindowTitle-' + NewId).innerText = CorrPosition + '%';
+                    document.getElementById('DivAllMainActionDivWindowShow-' + NewId).style.background = 'linear-gradient(#b488d8 ' + CorrPosition + '% , white ' + CorrPosition + '%)';
+                }
+            }
+        }
+
+        function ColCell(obj) {
+            //debugger;
+            if (obj.className === "icon solid fa-minus-circle BRCollapse") {
+                obj.className = "icon solid fa-plus-circle BRExpende";
+                for (var i = 2; i < obj.parentElement.children.length; i++)
+                    obj.parentElement.children[i].style.display = 'none';
+            }
+            else
+                if (obj.className === "icon solid fa-plus-circle BRExpende") {
+                    obj.className = "icon solid fa-minus-circle BRCollapse";
+                    for (var i = 2; i < obj.parentElement.children.length; i++)
+                        obj.parentElement.children[i].style.display = 'block';
+                }
+
+        }
+
+        function AddDiv(OldDivId, NewDivId, className, style, Title, onclicks) {
+            var NewDiv = document.createElement("div");
+
+            if (NewDivId != '')
+                NewDiv.setAttribute("Id", NewDivId);
+
+            if (className != '')
+                NewDiv.setAttribute("class", className);
+
+            if (style != '')
+                NewDiv.setAttribute("style", style);
+
+            if (Title != '')
+                NewDiv.innerText = Title;
+
+            if (onclicks != '')
+                NewDiv.setAttribute("onclick", onclicks);
+
+
+
+            document.getElementById(OldDivId).appendChild(NewDiv);
+        }
+
+
+
+
+        function FilterData() {
+            //alert(document.getElementById('TxtSearch').value);
+
+            // Hide All
+            HideAllDivToDown();
+
+            // If child is shown = show parents to top
+            var FilterText = document.getElementById('TxtSearch').value.toLowerCase();
+            for (var i = 0; i < AllOrg.length; i++) {
+                if (AllOrg[i].FldOrgDisplayName.toLowerCase().indexOf(FilterText) !== -1) {
+                    ShowDivsUp(document.getElementById('DivAll-' + AllOrg[i].UIId));
+                    ShowDivsDown(document.getElementById('DivAll-' + AllOrg[i].UIId));
+                }
+
+            }
+        }
+
+        function HideAllDivToDown() {
+            for (var i = 0; i < AllOrg.length; i++)
+                document.getElementById('DivAll-' + AllOrg[i].UIId).style.display = 'none';
+        }
+
+        function ShowDivsUp(MyDiv) {
+            MyDiv.style.display = 'block';
+            while (MyDiv.parentElement.id !== 'DivAll') {
+                MyDiv = MyDiv.parentElement;
+                MyDiv.style.display = 'block';
+            }
+        }
+
+        function ShowDivsDown(MyDiv) {
+            MyDiv.style.display = 'block';
+            for (var i = 0; i < MyDiv.children.length; i++) {
+                if (MyDiv.children[i].id.indexOf('DivAll-') !== -1)
+                    ShowDivsDown(MyDiv.children[i]);
+            }
+        }
+
+
+        function ShowBlind(Id, version, Position) {
+            //debugger;
+            selectedCardId = Id;
+            selectedCardVersion = version;
+            selectedPosition = Position;
+            var i = 0;
+            while (AllOrg[i].CardId !== Id)
+                i++;
+
+            document.getElementById('DivBlindDetailTitle').innerText = AllOrg[i].OrgFullPathName + '(' + AllOrg[i].WorkingMode + ')';
+            PresentBigBlindPosition(AllOrg[i].Position);
+            document.getElementById('BlindDetailsLink').click();
+
+            if (AllOrg[i].CardStatusId !== 2) {
+                document.getElementById('DivBlindDetailErrorContainer').style.display = 'block';
+                document.getElementById('DivBlindDetailErrorText').innerText = AllOrg[i].CardStatusDisplayName;
+            }
+            else {
+                document.getElementById('DivBlindDetailErrorContainer').style.display = 'none';
+
+
+            }
+                
+        }
+
+        function PresentBigBlindPosition(CurPer) {
+
+            if (CurPer > 100)
+                CurPer = 100;
+
+            if (CurPer < 0)
+                CurPer = 0;
+
+
+            document.getElementById("DivMyHeightBackground").style.height = ((CurPer * 195) / 100) + 'px';
+            document.getElementById("DivMyHeightShow").innerText = CurPer + '%';
+            document.getElementById("mydiv").style.top = 70+((CurPer*165)/100) + 'px';
+        }
+
+
+        function SmallBlindChangePosition(Move, CardId) {
+
+
+
+            var CorrPosition = -1;
+            // Find corrent positoin
+            for (var i = 0; i < AllOrg.length; i++)
+                if (AllOrg[i].CardId === CardId) {
+
+                    if (AllOrg[i].CardStatusId !== 2) {
+                        alert('לא ניתן לבצע פעולות בוילון זה עקב תקלה.');
+                        return;
+                    }
+
+
+                    CorrPosition = AllOrg[i].Position;
+                }
+            
+
+            // Set new Position
+            CorrPosition = CorrPosition + Move;
+            
+            if (CorrPosition > 100)
+                CorrPosition = 100;
+
+            if (CorrPosition < 0)
+                CorrPosition = 0;
+
+            var LastIndexId = -1;
+            // Update All windows + local object
+            for (var i = 0; i < AllOrg.length; i++)
+                if (AllOrg[i].CardId === CardId) 
+                {
+                    var NewId = AllOrg[i].UIId;
+                    // this line deletes the inner div so we need to add it again
+                    document.getElementById('DivAllMainActionDivWindowTitle-' + NewId).innerText = CorrPosition + '%';
+                    document.getElementById('DivAllMainActionDivWindowShow-' + NewId).style.background = 'linear-gradient(#b488d8 ' + CorrPosition + '% , white ' + CorrPosition + '%)'; 
+
+                    AllOrg[i].Position = CorrPosition;
+
+                    LastIndexId = i;
+                }
+
+            // Send Command
+            ActivateDevice(3, 4, AllOrg[LastIndexId].FldVersion, AllOrg[LastIndexId].CardId, ';FldBlindPositionUser,' + CorrPosition  );
+        }
+
+
+        function ActivateDevice(_OrgTypeId, FuncId, version, FldId, ExtraParam) {
+            ////////debugger;
+            var Name = 'TblZOrgType' + _OrgTypeId + 'F' + FuncId + 'V' + version + 'Activate';
+            //debugger;
+            var param = 'FldId,' + FldId + ExtraParam;
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': param
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    //GetTBL1();
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+
+        }
+
+        function ChangeBigBlindPosition(Val) {
+            //debugger;
+            selectedPosition = selectedPosition + Val;
+            if (selectedPosition < 0)
+                selectedPosition = 0;
+            if (selectedPosition > 100)
+                selectedPosition =100;
+
+            PresentBigBlindPosition(selectedPosition);
+
+            // Send Command
+            ActivateDevice(3, 4, selectedCardVersion, selectedCardId, ';FldBlindPositionUser,' + selectedPosition);
+        }
+
+    </script>
+
+</head>
+<body class="is-preload" dir="rtl">
+    <a href="#home2" id="BlindDetailsLink"></a>
+
+
+    <!-- Wrapper-->
+    <div id="wrapper" style="padding-top:5px;">
+
+        <!-- Nav -->
+        <nav id="nav">
+            <a href="#" class="icon solid fa-home"><span>בית</span></a>
+            <a href="#contact" class="icon solid fa-envelope"><span>הודעות</span></a>.
+            <a href="#Login" class="icon solid fa-user"><span>משתמש</span></a>
+            <a href="#Rules" class="icon solid fa-list-alt"><span>משתמש</span></a>
+        </nav>
+
+
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- home -->
+            <article id="home" class="panel intro" style="height:100%">
+
+                <div class="container" style="width:100%">
+
+                    <div id="DivSearch" style="display:flex">
+                        <div style="margin-right:20px;margin-left:10px;" class="icon solid fa-sync-alt " onclick="UpdateData();"></div>
+                        <div id="DivSearchBox" style=" display:flex; padding-right:10px;   height: 30px;    border: 1px solid;    border-radius: 10px;    padding-left: 10px;    margin-left: 5px;    margin-top: 3px;    margin-right: 5px;    background-color: #F5F5F5;">
+                            <div class="icon solid fa-search "></div>
+                            <div><input id="TxtSearch" onkeyup="FilterData();" style="border: 0;background: transparent;font-size: 20px;height:22px;margin-right:10px;width:200px;" type="text" /></div>
+
+                        </div>
+                    </div>
+                    <div id="DivAll"></div>
+
+                </div>
+            </article>
+
+            <!-- home2 -->
+            <article id="home2" class="panel intro" style="height:100%">
+                <div class="container" style="width:100% ; height:510px ; background-color:#EEEEEE; font-size:22px;padding:5px;">
+                    <h5 id="DivBlindDetailTitle" style="padding:5px;">גוגל -> חדר 1206 -> וילון (F11 (M</h5>
+
+
+                    <div id="BR0-1-" class="BRBlind2Details" style="padding-right:70px;padding-top:25px;">
+
+                        <div class="icon solid fa-angle-double-up BRBlind2DetailsIconUp" onclick="ChangeBigBlindPosition(-100); "></div>
+                        <div class="icon solid fa-angle-up BRBlind2DetailsIconUp" onclick="ChangeBigBlindPosition(-10); " ></div>
+
+                        <div id="DivMaxHeight" class="Blind2DetailsShow" style="width:70px; height:200px;">
+                            <div id="DivMyHeightBackground" style="position:absolute;background-color:#b488d8;height:50px;width:64px;"></div>
+                            <div id="DivMyHeightShow" style="position:absolute">50%</div>
+
+
+                            <div id="mydiv"  onmouse="alert(2);" class="icon solid fa-arrows-alt-v BRBlind2DetailsIconMiddle"> </div>
+
+                        </div>
+                        <div class="icon solid fa-angle-down BRBlind2DetailsIconUp"  onclick="ChangeBigBlindPosition(10); " ></div>
+                        <div class="icon solid fa-angle-double-down BRBlind2DetailsIconUp"  onclick="ChangeBigBlindPosition(100); " ></div>
+
+                    </div>
+                    <h4></h4>
+                    <h4></h4>
+
+                    <div id="container22">
+                        <div class="slide one"></div>
+                    </div>
+
+
+                    <div id="DivBlindDetailErrorContainer" style="margin-top:10px">
+                        <div id="DivBlindDetailError" class="icon solid fa-exclamation-triangle BRBlind2exclamation" style="font-size:17px;"></div>
+                        <div id="DivBlindDetailErrorText" style="display:inline-flex"></div>
+
+                            
+                        </div>
+                        <ul class="actions" style="padding-top:30px;display:none">
+
+                            <li><a href="#contactMe"> <input type="button" class="primary button123" value="דווח על תקלה" /></a></li>
+                            <li><input type="reset" class="primary button123" value="כייל וילון" /></li>
+
+                        </ul>
+                    </div>
+
+            </article>
+
+            <article id="work2" class="panel">
+                <header>
+                    <h1>Jane Doe</h1>
+                    <p>Senior Astral Projectionist</p>
+                </header>
+                <a href="#work" class="jumplink pic">
+                    <span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+                    <img src="images/me.jpg" alt="" />
+                </a>
+            </article>
+
+            <!-- Login -->
+            <article id="Login" class="panel">
+                <div class="container" style="height:450px ; font-size:22px; ">
+                    <h3>התחברות למערכת</h3>
+                    <form method="post" action="#">
+                        <div class="row gtr-uniform" style="display:block; margin:0px;">
+                            <div class="col-12 col-12-xsmall"><input type="text" name="name" id="name" placeholder="שם משתמש" style="font-size:22px; padding-top:3px; padding-bottom:3px;" /></div>
+                            <div class="col-12 col-12-xsmall"><input type="email" name="email" id="email" placeholder="סיסמה" style="font-size:22px; padding-top:3px; padding-bottom:3px;" /></div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="button" class="primary button123" value="התחבר" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </article>
+
+            <article id="contact" class="panel" style="padding-right:5px; padding-left:5px;">
+                <div class="container" dir="rtl" style="height:450px ; ">
+                    <h1 style="text-align:center">הודעות</h1>
+                    <br />
+                    <ul class="feature-icons" style="font-size:22px;padding-left:5px;">
+                        <li class="icon solid fa-envelope-open" style="margin:0px;line-height:15px;height:50px;padding-top:5px;display:flex; padding-bottom:10px;">
+                            <span style="line-height:1;padding-right:5px;"> 20/06/2019 - פניתך למערכת נקלטה בהצלחה</span>
+                        </li>
+                        <li class="icon solid fa-envelope" style="margin:0px;line-height:15px;height:50px;padding-top:20px;">
+                            <span style="line-height:1;padding-right:5px;font-weight:bold"> 16/06/2019 - ברוך הבא למערכת</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+
+            <article id="Rules" class="panel" style="padding-right:5px; padding-left:5px;">
+                <div class="container" dir="rtl" style="height:450px ; ">
+                    <div class="container" dir="rtl" style="font-size:22px">
+                        <h1 class="H1Title">חוקים</h1>
+
+                        <table style="margin-top:20px;">
+                            <tr>
+                                <th style="text-align:right;">שם</th>
+                                <th>הפעל</th>
+                                <th>מצב</th>
+                            </tr>
+
+                            <tr>
+                                <td> <a href="#Rules2"> דגל ישראל </a></td>
+                                <td>
+                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                                </td>
+                                <td>
+                                    <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>הורד כל הוילונות</td>
+                                <td>
+                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                                </td>
+                                <td>
+                                    <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>הרם כל הוילנות</td>
+                                <td>
+                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                                </td>
+                                <td>
+                                    <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>העבר את כולם לאוטומט</td>
+                                <td>
+                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                                </td>
+                                <td>
+                                    <div class="icon solid2 fa-toggle-on BRBlind2RuletoggleOn"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>העבר את כולם למצב ידני</td>
+                                <td>
+                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOn"></div>
+                                </td>
+                                <td>
+                                    <div class="icon solid2 fa-toggle-on BRBlind2RuletoggleOn"></div>
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="Rules2" class="panel" style="padding-right:5px; padding-left:5px;">
+                <div class="container" dir="rtl" style="height:450px ; font-size:20px; ">
+                    <h1 class="H1Title">פרטי חוק</h1>
+
+                    <table>
+                        <tr>
+                            <th style="text-align:right;">שם</th>
+                            <th>הפעל</th>
+                            <th>מצב</th>
+                        </tr>
+
+                        <tr>
+                            <td>דגל ישראל</td>
+                            <td style="text-align:center">
+                                <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                            </td>
+                            <td style="text-align:center">
+                                <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <h1 class="H1Title">שעות</h1>
+                    <table>
+                        <tr>
+                            <th style="text-align:right;">שעות</th>
+                            <th style="text-align:right;">א</th>
+                            <th style="text-align:right;">ב</th>
+                            <th style="text-align:right;">ג</th>
+                            <th style="text-align:right;">ד</th>
+                            <th style="text-align:right;">ה</th>
+                            <th style="text-align:right;">ו</th>
+                            <th style="text-align:right;">ש</th>
+                        </tr>
+
+                        <tr>
+                            <td>06:00 - 20:00</td>
+                            <td> V</td>
+                            <td> V</td>
+                            <td> V</td>
+                            <td> V</td>
+                            <td> V</td>
+                            <td> _</td>
+                            <td> _</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </article>            <!-- Contact -->
+            <article id="contactMe" class="panel">
+                <header>
+                    <h2>דיווח על תקלה</h2>
+                </header>
+                <form action="#" method="post">
+                    <div>
+                        <div class="row">
+                            <div class="col-6 col-12-medium">
+                                <input type="text" name="name" placeholder="שם: פריאל חקק" />
+                            </div>
+                            <div class="col-6 col-12-medium">
+                                <input type="text" name="email" placeholder="טלפון: 0524618476" />
+                            </div>
+                            <div class="col-12">
+                                <input type="text" name="subject" placeholder="נושא: תקלה בוילון F11" />
+                            </div>
+                            <div class="col-12">
+                                <textarea name="message" placeholder="פרטים" rows="6"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" value="שלח" class="button123" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </article>
+
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" style="font-size:15px; padding-top:30px;">
+            <ul class="copyright">
+                <li>כל הזכויות שמורות: <a href="http://www.arbicom.co.il">ארביקום בע"מ </a></li>
+                <li>&copy;.</li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+    <script>
+        //Make the DIV element draggagle:
+        dragElement(document.getElementById("mydiv"));
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                 
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+            
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+
+                var BorderTop = 70;// offset(document.getElementById("DivMaxHeight")).top;
+                var BorderHeight = document.getElementById("DivMaxHeight").style.height.replace('px', '');
+                var CurHeight = elmnt.offsetTop - pos2;
+                if (CurHeight < BorderTop)
+                    CurHeight = BorderTop;
+
+                var MaxHeight = 235;//Number(Number(BorderTop) + (Number(BorderTop)))
+                if (CurHeight > MaxHeight)
+                    CurHeight = MaxHeight;
+
+                // set the element's new position:
+                elmnt.style.top = (CurHeight) + "px";
+                var CurPer = Math.round((((CurHeight - 70) * 100) / 165));
+                PresentBigBlindPosition(CurPer);
+                selectedPosition = CurPer;
+            }
+
+            function offset(el) {
+                var rect = el.getBoundingClientRect(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+            }
+
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+                debugger;
+                ActivateDevice(3, 4, selectedCardVersion, selectedCardId, ';FldBlindPositionUser,' + selectedPosition);
+
+            }
+        }
+
+
+
+        window.onload = function () {
+            // find the element that you want to drag.
+            var box = document.getElementById('mydiv');
+
+            /* listen to the touchMove event,
+            every time it fires, grab the location
+            of touch and assign it to box */
+
+            box.addEventListener('touchmove', function (e) {
+                // grab the location of touch
+                var touchLocation = e.targetTouches[0];
+                var pos2 = touchLocation.pageY;
+
+                // assign box new coordinates based on the touch.
+                //box.style.left = touchLocation.pageX + 'px';
+                var BorderTop = 70;// offset(document.getElementById("DivMaxHeight")).top;
+                var BorderHeight = document.getElementById("DivMaxHeight").style.height.replace('px', '');
+                var CurHeight = pos2 - BorderTop;
+
+                if (CurHeight < BorderTop)
+                    CurHeight = BorderTop;
+
+                var MaxHeight = 235;//Number(Number(BorderTop) + (Number(BorderTop)))
+                if (CurHeight > MaxHeight)
+                    CurHeight = MaxHeight;
+
+                // set the element's new position:
+                box.style.top = (CurHeight) + "px";
+
+
+                var CurPer = Math.round((((CurHeight - 70) * 100) / 165));
+                PresentBigBlindPosition(CurPer);
+                selectedPosition = CurPer;
+
+                // box.style.top = touchLocation.pageY + 'px';
+            })
+
+            /* record the position of the touch
+            when released using touchend event.
+            This will be the drop position. */
+
+            box.addEventListener('touchend', function (e) {
+                //alert(1);
+                ActivateDevice(3, 4, selectedCardVersion, selectedCardId, ';FldBlindPositionUser,' + selectedPosition);
+
+                /*// current box position.
+                var x = parseInt(box.style.left);
+                var y = parseInt(box.style.top);
+                */
+            })
+
+        }
+    </script>
+</body>
+</html>

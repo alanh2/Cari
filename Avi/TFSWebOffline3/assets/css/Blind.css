@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.BlindFilterAll{
+
+}
+
+.BlindFilterTitle {
+ 
+}
+.BlindFilterBigBox {
+    
+    border-width: 1px;
+    padding: 7px;
+}
+
+.BlindFilterBoxes {
+    display: inline;
+    width: 100%
+}
+
+.BlindFilterBox {
+    display: inline-block;
+    border: solid;
+    border-width: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: lightskyblue;
+    cursor:pointer;
+}

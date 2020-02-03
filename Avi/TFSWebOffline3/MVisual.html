@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link href="css/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/dx.common.css">
+    <link href="css/GlobalCSS.css" rel="stylesheet" />
+    <link href="css/classicLive.css" rel="stylesheet" />
+    <link href="css/PageDetails.css" rel="stylesheet" />
+
+    <script src="Js/GlobalFunc.js"></script>
+    <script src="Js/jquery-3.4.1.min.js"></script>
+    <script src="Js/config.js"></script>
+    <script type="text/javascript" src="Scripts/dx.all.js"></script>
+    <link href="css/NewDeisgn.css" rel="stylesheet" />
+    <link  href="css/alan.css" rel="stylesheet" />
+    <script>
+
+        var OrgTypeId = 1;
+        var LastSelectedId = 0;
+        var Tbl1DataSource;
+        var TblBoxes;
+        var TblOrgFuncSendFields;
+        var TblZOrgTypeStatus;
+
+        var TableName1 = 'Groups';
+        var DBType;
+        var SelectedOrgId = 1;
+        var SelectedVersionId = 1;
+        var SelectedSourceFldId = 1;
+
+        var SelectedGroupId = -1;
+
+        $(document).ready(function () {
+            GetTBL1();
+            //AddNewRecButton('InsertDiv', 'ShowPup(\'GroupDetails\', -1); ');
+        });
+
+        function GetTBL1() {
+
+            
+            Tbl1DataSource = [{ "FldId": 1, "FldMainName": "חזית", "FldSecName": "דרומית", "FldDisplayName": "חזית דרומית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 6, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 1, "FldDisplayName2": "חזית דרומית", "FldIsVisual": true, "FldVisualOrder": 4 }, { "FldId": 2, "FldMainName": "חזית", "FldSecName": "מזרחית", "FldDisplayName": "חזית מזרחית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 6, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "חזית מזרחית", "FldIsVisual": true, "FldVisualOrder": 3 }, { "FldId": 4, "FldMainName": "חזית", "FldSecName": "מערבית", "FldDisplayName": "חזית מערבית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 6, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "חזית מערבית", "FldIsVisual": true, "FldVisualOrder": 1 }, { "FldId": 3, "FldMainName": "חזית", "FldSecName": "צפונית", "FldDisplayName": "חזית צפונית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 6, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "חזית צפונית", "FldIsVisual": true, "FldVisualOrder": 2 }, { "FldId": 17, "FldMainName": "כל", "FldSecName": "הארגון", "FldDisplayName": "כל הארגון", "FldCreationDate": "\/Date(1572976223547)\/", "FldLastUpdateDate": null, "TotalGroupToOrg": 1, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "כל הארגון", "FldIsVisual": null, "FldVisualOrder": null }];
+            LoadDDGrid();
+            SetEsp(Tbl1DataSource[0].FldId, Tbl1DataSource[0].FldDisplayName);
+
+            return;
+
+            var Name = TableName1 + 'Select';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': ''
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    Tbl1DataSource = JSON.parse(data.d).result_name;
+                    LoadDDGrid();
+
+                    // If First time load first record
+                    if (SelectedGroupId == -1)
+                    {
+                        SetEsp(Tbl1DataSource[0].FldId, Tbl1DataSource[0].FldDisplayName);
+                    }
+
+                    //GetAllEsp();
+                    //setTimeout(GetTBL1, getCookie("UpdatePageInterval"));
+
+
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+        function LoadDDGrid() {
+            var dataGrid = $("#gridContainer").dxDataGrid({
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: false,
+                    width: 240,
+                    placeholder: "",
+                    alignment: "right",
+
+                },
+
+                dataSource: Tbl1DataSource,
+                keyExpr: "FldId",
+                showBorders: true,
+                paging: {
+                    enabled: true,
+                    pageSize: 10
+
+                },
+                editing: {
+                    mode: "popup",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false,
+                    popup: {
+                        title: "Employee Info",
+                        showTitle: true,
+                        width: 700,
+                        height: 525,
+                        position: {
+                            my: "top",
+                            at: "top",
+                            of: window
+                        },
+                        useIcons: true
+                    },
+                    form: {
+                        items: [{
+                            itemType: "group",
+                            colCount: 2,
+                            colSpan: 2,
+                            items: ["FldOrder", "FldFuncId", "FldDisplayName"]
+                        }]
+                    }
+                },
+
+                columns: [
+                    {
+                        dataField: "FldDisplayName", caption: "שם", alignment: "right", cellTemplate:
+                        function (container, options) {
+                            $('<a class="dx-list-group-header" onclick="SetEsp(' + options.key + ',\'' + options.row.data.FldDisplayName + '\');" ">'  + options.value + '</a>')
+                                .attr('target', '_blank')
+                                .appendTo(container);
+                        }
+                    },
+
+                ],
+
+            });
+        }
+
+        
+
+        function SetEsp(GroupId, GroupName) {
+            document.getElementById('TdSelect').innerHTML = 'תצוגת חלונות - ' + GroupName;
+            SelectedGroupId = GroupId;
+            GetAllEsp();
+            //GetAllEspNoTimeout();
+
+        }
+        function GetAllEsp() {
+            
+            //TblBoxes = [{ "FldId": 2044, "FldDisplayName": "", "FldShutterEngale": 0, "FldESPCurrentPosition": null, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2072, "FldDisplayName": "3G12", "FldShutterEngale": 0, "FldESPCurrentPosition": 10, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2091, "FldDisplayName": "4G6", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2095, "FldDisplayName": "4G2", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2213, "FldDisplayName": "3G9", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2263, "FldDisplayName": "6G11- NoWire", "FldShutterEngale": 32, "FldESPCurrentPosition": 0, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2294, "FldDisplayName": "6G5- NOFlow", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2306, "FldDisplayName": "6G2", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2324, "FldDisplayName": "6G1", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2335, "FldDisplayName": "2G2", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2341, "FldDisplayName": "6G9- NoFlow", "FldShutterEngale": 0, "FldESPCurrentPosition": 0, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": null, "OrgFullPath": null }, { "FldId": 2183, "FldDisplayName": "1A9", "FldShutterEngale": 50, "FldESPCurrentPosition": 1, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": "וילון 1A9", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eוילון 1A9-\u003eחזית מערבית" }, { "FldId": 2068, "FldDisplayName": "1c5", "FldShutterEngale": 50, "FldESPCurrentPosition": 3, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": "וילון 1C5", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eוילון 1C5-\u003eחזית צפונית" }, { "FldId": 2208, "FldDisplayName": "1D6", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": "וילון 1D6", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eוילון 1D6-\u003eחזית מזרחית" }, { "FldId": 2053, "FldDisplayName": "1f12", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": "וילון 1F12", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eוילון 1F12-\u003eחזית דרומית" }, { "FldId": 2184, "FldDisplayName": "1E1", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": "וילון 1E1", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eחזית דרומית-\u003eוילון 1E1" }, { "FldId": 2195, "FldDisplayName": "1E2", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": "וילון 1E2", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eחזית דרומית-\u003eוילון 1E2" }, { "FldId": 2252, "FldDisplayName": "1E3", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": "וילון 1E3", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eחזית דרומית-\u003eוילון 1E3" }, { "FldId": 2182, "FldDisplayName": "1E4", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 2, "StatusDisplay": "פעיל", "OrgDisplayName": "וילון 1E4", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eחזית דרומית-\u003eוילון 1E4" }, { "FldId": 2212, "FldDisplayName": "1f10", "FldShutterEngale": 0, "FldESPCurrentPosition": 1, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "OrgDisplayName": "וילון 1F10", "OrgFullPath": "בנק לאומי-\u003eקומה 1-\u003eחזית דרומית-\u003eוילון 1F10" }];
+
+            TblBoxes = [{ "FldId": 2184, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2184, "FldDisplayName": "L1E1", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": "" }, { "FldId": 2195, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2195, "FldDisplayName": "L1E2", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2252, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2252, "FldDisplayName": "L1E3", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2182, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2182, "FldDisplayName": "L1E4", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2335, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2335, "FldDisplayName": "L1F1", "FldShutterEngale": 0, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 4, "DeviceErrorStatus": "4-Motor Not Moving", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2212, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2212, "FldDisplayName": "L1F10", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2046, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2046, "FldDisplayName": "L1F11", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2053, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2053, "FldDisplayName": "L1F12", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2048, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2048, "FldDisplayName": "L1F2", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2054, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2054, "FldDisplayName": "L1F3", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": "" }, { "FldId": 2050, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2050, "FldDisplayName": "L1F4", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2056, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2056, "FldDisplayName": "L1F5", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2052, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2052, "FldDisplayName": "L1F6", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2055, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2055, "FldDisplayName": "L1F7", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2051, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2051, "FldDisplayName": "L1F8", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2049, "FldOrgId": 6870, "FldGroupId": 1, "EspId": 2049, "FldDisplayName": "L1F9", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2045, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2045, "FldDisplayName": "L2E1", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2057, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2057, "FldDisplayName": "L2E2", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2047, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2047, "FldDisplayName": "L2E3", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2058, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2058, "FldDisplayName": "L2E4", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2084, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2084, "FldDisplayName": "L2F1", "FldShutterEngale": 14, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 4, "DeviceErrorStatus": "4-Motor Not Moving", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2077, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2077, "FldDisplayName": "L2F10", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2086, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2086, "FldDisplayName": "L2F11", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2072, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2072, "FldDisplayName": "L2F12", "FldShutterEngale": 14, "FldESPCurrentPosition": 0, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": "מנוע תקול" }, { "FldId": 2213, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2213, "FldDisplayName": "L2F2", "FldShutterEngale": 20, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2083, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2083, "FldDisplayName": "L2F3", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2081, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2081, "FldDisplayName": "L2F4", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }, { "FldId": 2073, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2073, "FldDisplayName": "L2F5", "FldShutterEngale": 14, "FldESPCurrentPosition": 100, "FldStatusId": 1, "StatusDisplay": "לא מקושר", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": "צריך  לכייל וילון -כתובת MAC שונתה" }, { "FldId": 2076, "FldOrgId": 6865, "FldGroupId": 1, "EspId": 2076, "FldDisplayName": "L2F6", "FldShutterEngale": 15, "FldESPCurrentPosition": 100, "FldStatusId": 2, "StatusDisplay": "פעיל", "FldDriverErrorStatusId": 0, "DeviceErrorStatus": "0-None", "FldDeviceActionStatusId": 0, "DeviceState": "0-Done", "MotorStateId": 1, "MotorState": "1-Online", "FldDisplayText": null }];
+            DrawBoxes();
+            return;
+            
+
+
+            var Name = 'XMTblZOrgType3Select';
+            var param = '';
+
+            if (SelectedGroupId == -1)
+                param = 'null';
+            else
+                param = SelectedGroupId;
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'GroupId,' + param
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    TblBoxes = JSON.parse(data.d).result_name;
+                    debugger;
+                    DrawBoxes();
+                    setTimeout(GetAllEsp, getCookie("UpdatePageInterval"));
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+
+
+        function DrawBoxes() {
+
+            var DivAllBoxes = document.getElementById('DivAllBoxes');
+            DivAllBoxes.innerHTML = '';
+
+            var filter = document.getElementById('TxtFilter').value;
+            //debugger;
+            for (var i = 0; i < TblBoxes.length; i++) {
+                // Text Filter
+                if (TblBoxes[i].FldDisplayName.toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+                    {
+                            GetBox(TblBoxes[i].EspId, TblBoxes[i].FldDisplayName, TblBoxes[i].FldESPCurrentPosition, TblBoxes[i].FldShutterEngale,
+                                TblBoxes[i].FldPosX, TblBoxes[i].FldPosY, TblBoxes[i].FldHeight, TblBoxes[i].FldWidth,
+                                TblBoxes[i].FldStatusId, TblBoxes[i].StatusDisplay,
+                                TblBoxes[i].FldDriverErrorStatusId, TblBoxes[i].DeviceErrorStatus,
+                                TblBoxes[i].FldDeviceActionStatusId, TblBoxes[i].DeviceState,
+                                TblBoxes[i].MotorStateId, TblBoxes[i].MotorState,
+                                TblBoxes[i].FldDisplayText,
+                                TblBoxes[i].FldGroupId);
+                        
+                    }
+                }
+            }
+
+        }
+
+        function GetBox(Id, Name, Position, Angle,
+            PosX, PosY, Height, Width,
+            StatusId, StatusName,
+            DriverStatusId, DriverStatusName,
+            FldDeviceActionStatusId, DeviceState,
+            MotorStateId, MotorState,
+            FldDisplayText,
+            GroupId) {
+
+            var ChkActive = document.getElementById('ChkActive').checked;
+            var ChkError = document.getElementById('ChkError').checked;
+
+            var ErrorStr = GetErrorStr(StatusId, StatusName, DriverStatusId, DriverStatusName, FldDeviceActionStatusId, DeviceState, MotorStateId, MotorState);
+            var InfoStr = GetInfoStr(StatusId, StatusName, DriverStatusId, DriverStatusName, FldDeviceActionStatusId, DeviceState, MotorStateId, MotorState, FldDisplayText);
+
+            //debugger;
+            if ((ErrorStr != '' || InfoStr != '') && (ChkError != true))
+                return;
+
+            if ((InfoStr == '' || InfoStr == '') && (ChkActive != true)  )
+                return;
+            
+
+            var DivName = "Box" + Id;
+            AddDiv('DivAllBoxes', DivName, 'DivAllBoxes_Box', '', '', 'ShowPup(\'MOrgType3Details\',' + Id + ');', '');
+            AddDiv(DivName, DivName + 'Title', 'DivAllBoxes_Title', '', Name, '', '');
+            AddDiv(DivName, DivName + 'Blind', 'DivAllBoxes_blind DivAllBoxes_blind' + Position, '', '', '');
+            AddDiv(DivName, DivName + 'Position', 'DivAllBoxes_Position', '', 'ג:' + Position, '');
+            AddDiv(DivName, DivName + 'Angle', 'DivAllBoxes_Angle', '', 'ז:' + Angle, '');
+            
+
+            if (ErrorStr != '')
+                AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', ' X ', '', ErrorStr, '');
+
+            if (InfoStr != '')
+                AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', ' ! ', '', InfoStr, '');
+            
+
+/*            if (StatusId !== 2) {
+
+                AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', 'X', '',  StatusName);
+            }
+
+            if (DriverStatusId !== 0) {
+                AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', '!', '', DriverStatusName);
+            }
+            */
+
+        }
+
+
+
+
+        function GetErrorStr(StatusId, StatusName,
+            DriverStatusId, DriverStatusName,
+            FldDeviceActionStatusId, DeviceState
+            , MotorStateId, MotorState,
+            FldDisplayText) {
+
+            var x = getCookie("IsShowErrors");
+            if (x == 0)
+                return '';
+
+
+            var Errorstr = '';
+
+            if (
+                StatusId == 1 || // לא מקושר 
+                StatusId == 3 || // תקלה
+                StatusId == 4  // מחוק
+            ) {
+                Errorstr = StatusName;
+            }
+
+            if (
+                DriverStatusId == 2 || // Moving To Much 
+                DriverStatusId == 3 || // Low Voltage
+                DriverStatusId == 4 || // Motor Not Moving
+                DriverStatusId == 5  // Not in Position
+            ) {
+                if (Errorstr == '')
+                    Errorstr = DriverStatusName;
+                else
+                    Errorstr = Errorstr + DriverStatusName;
+            }
+
+
+
+            if (FldDeviceActionStatusId == 5  // Error)
+            ) {
+                if (Errorstr == '')
+                    Errorstr = DeviceState;
+                else
+                    Errorstr = Errorstr + DeviceState;
+            }
+
+            if (
+                MotorStateId == 0 || // WakeUp 
+                MotorStateId == 2 || // Offline 
+                MotorStateId == 4 || // Error
+                MotorStateId == 6  // ERROR - ESP no response)
+            ) {
+                if (Errorstr == '')
+                    Errorstr = MotorState;
+                else
+                    Errorstr = Errorstr + MotorState;
+            }
+            //debugger;
+
+
+
+
+            return Errorstr;
+        }
+
+
+
+        function GetInfoStr(StatusId, StatusName,
+            DriverStatusId, DriverStatusName,
+            FldDeviceActionStatusId, DeviceState
+            , MotorStateId, MotorState,
+            FldDisplayText) {
+
+            var x = getCookie("IsShowErrors");
+            if (x == 0)
+                return '';
+
+            var Errorstr = '';
+
+            if (
+                StatusId == 5  // העלאת גרסה
+            ) {
+                Errorstr = StatusName;
+            }
+
+            if (
+                DriverStatusId == 1  // Homing 
+            ) {
+                if (Errorstr == '')
+                    Errorstr = DriverStatusName;
+                else
+                    Errorstr = Errorstr + DriverStatusName;
+            }
+
+
+            if (FldDeviceActionStatusId == 1 || //Motion Speed
+                FldDeviceActionStatusId == 2 || //Motion Position
+                FldDeviceActionStatusId == 3 || //Wait Motion Position
+                FldDeviceActionStatusId == 4 || //Homing
+                FldDeviceActionStatusId == 6  //Motion Angle
+                // Error)
+            ) {
+                if (Errorstr == '')
+                    Errorstr = DeviceState;
+                else
+                    Errorstr = Errorstr + DeviceState;
+            }
+
+
+            if (MotorStateId == 5  // OTA 
+            ) {
+                if (Errorstr == '')
+                    Errorstr = MotorState;
+                else
+                    Errorstr = Errorstr + MotorState;
+            }
+
+
+            if (FldDisplayText != null)
+
+                if (FldDisplayText != '') {
+                    if (Errorstr == '')
+                        Errorstr = FldDisplayText;
+                    else
+                        Errorstr = Errorstr + FldDisplayText;
+                }
+            return Errorstr;
+        }
+
+
+
+        function AddDiv(OldDivId, NewDivId, className, style, Text, onclicks, Tooltip) {
+            var NewDiv = document.createElement("div");
+
+            if (NewDivId != '')
+                NewDiv.setAttribute("Id", NewDivId);
+
+            if (className != '')
+                NewDiv.setAttribute("class", className);
+
+            if (style != '')
+                NewDiv.setAttribute("style", style);
+
+            if (Text != '')
+                NewDiv.innerText = Text;
+
+            if (onclicks != '')
+                NewDiv.setAttribute("onclick", onclicks);
+
+            if (Tooltip != '')
+                NewDiv.setAttribute("title", Tooltip);
+            else
+                NewDiv.setAttribute("title", Text);
+
+            document.getElementById(OldDivId).appendChild(NewDiv);
+        }
+
+
+
+        function UpdateMultuple() {
+            var r = confirm("האם אתה בטוח שאתה מועניין לעדכן?");
+            if (r != true) {
+                return;
+            }
+                
+            var Name = 'XMTblZOrgType3ChangeMultiplePosition';
+            var param = '';
+            if (SelectedGroupId == -1)
+                param = param + 'GroupId,null';
+            else
+                param = param + 'GroupId,' + SelectedGroupId;
+
+
+            param = param + ';Filter,' + document.getElementById('TxtFilter').value;
+
+
+            if (document.getElementById('TxtPosition').value != '') {
+                param = param + ';Position,' + document.getElementById('TxtPosition').value;
+            }
+
+            if (document.getElementById('TxtAngle').value != '') {
+                param = param + ';Angle,' + document.getElementById('TxtAngle').value;
+            }
+            
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': param
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפעולה בוצעה בהצלחה');
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+        
+
+        function StopMultuple() {
+         
+            var Name = 'XMTblZOrgType3StopMultiplePosition';
+            var param = '';
+            if (SelectedGroupId == -1)
+                param = param + 'GroupId,null';
+            else
+                param = param + 'GroupId,' + SelectedGroupId;
+
+
+            param = param + ';Filter,' + document.getElementById('TxtFilter').value;
+
+
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': param
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפעולה בוצעה בהצלחה');
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+        function HomingMultuple() {
+            var r = confirm("האם אתה בטוח שאתה מועניין לכייל?");
+            if (r != true) {
+                return;
+            }
+            var Name = 'XMTblZOrgType3HomingMultiplePosition';
+            var param = '';
+            if (SelectedGroupId == -1)
+                param = param + 'GroupId,null';
+            else
+                param = param + 'GroupId,' + SelectedGroupId;
+
+
+            param = param + ';Filter,' + document.getElementById('TxtFilter').value;
+
+
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': param
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפעולה בוצעה בהצלחה');
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+    </script>
+</head>
+<body dir="rtl" class="bodyCss">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
+
+    <table>
+        <tr>
+            <td conspan="2" id="TdSelect" class="DivTableTitle">תצוגת מבנה</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top; width: 20%;">
+                <div class="demo-container">
+                    <div id="InsertDiv"></div>
+                    <div id="gridContainer"></div>
+                    <div id="gridContainer2"></div>
+                </div>
+            </td>
+            <td style="vertical-align: baseline;">
+                <div class="buttonsBar">
+                    סינון: <input type="text" id="TxtFilter" oninput="DrawBoxes();" />
+                    <input type="checkbox" id="ChkActive" checked="checked"  oninput="DrawBoxes();" />
+                    <label for="ChkActive"><span></span>פעיל</label>
+                    <input type="checkbox" id="ChkError" checked="checked"  oninput="DrawBoxes();"/>
+                    <label for="ChkError"><span></span>תקלה</label>
+                    <br />
+                    גובה: <input type="text" id="TxtPosition"  value="100"/>
+                    זוית: <input type="text" id="TxtAngle" value="0"/>
+                        <input type="button" value="עדכן" onclick="UpdateMultuple()" class="containerControlsInternalButtonControl" />
+                        <input type="button" value="עצור" onclick="StopMultuple()" class="containerControlsInternalButtonControl" />
+                        <input type="button" value="כיול" onclick="HomingMultuple()" class="containerControlsInternalButtonControl" />
+                </div>
+                <div id="DivAllBoxes">
+                  
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

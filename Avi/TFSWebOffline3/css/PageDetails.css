@@ -1,0 +1,85 @@
+﻿.MainContainerControls {
+    display: block;
+    border: solid;
+    padding-top: 20px;
+    width: 98%;
+    padding-right:10px;
+    padding-bottom:10px;
+}
+
+
+.containerControls {
+    display: inline-block;
+    border: solid;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 95%;
+    border-width: 0.5px;
+}
+
+.containerControlsInternal {
+    /* border: solid;*/
+    height: 25px;
+    margin: 10px;
+    float: right;
+    width: 30%;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #d0d0d0;
+    padding-bottom:3px;
+}
+
+.containerControlsInternalButton {
+    height: 35px;
+    float: right;
+    width: 90%;
+}
+
+.containerControlsInternalButtonControl {
+    margin-right: 10px;
+    display: flex;
+    float: right;
+    background: #9C27B0;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.containerControlsInternalLableControl {
+    margin: 5px;
+    font-size: 15px;
+    float: right;
+    padding-top: 3px;
+}
+
+.containerControlsInternalTextControl {
+    margin: 5px;
+    width: 100px;
+    float: left;
+}
+
+.DivMainLable {
+    width: 500px;
+    text-align: center;
+    background: bottom;
+    border: none;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+
+.containerControlsDivLableCaption {
+    position: absolute;
+    right: 0px;
+    margin-right: 50px;
+    margin-top: -30px;
+    margin-top: -10px;
+    background: #777777;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #FFF;
+}

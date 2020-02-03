@@ -1,0 +1,91 @@
+﻿       #loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.7;
+            background-color: #fff;
+            z-index: 99;
+            text-align: center;
+        }
+
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 100px;
+            height: 100px;
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+
+  body {
+            font: 11px/1.4em Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            color: #99CC00;
+            margin: 0px 0px 5px;
+            padding: 0px 0px 3px;
+            font: bold 18px Verdana, Arial, Helvetica, sans-serif;
+            border-bottom: 1px dashed #E6E8ED;
+        }
+
+        #container1 {
+            background-color: transparent;
+            background-size: 650px 750px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .centered-form {
+            margin-top: 20px;
+            /*margin-bottom: 120px;*/
+        }
+
+            .centered-form .panel {
+                background: rgba(255, 255, 255, 0.8);
+                box-shadow: rgba(0, 0, 0, 0.3) 1px 4px 9px;
+            }
+
+        .form-group {
+            margin: 7px;
+            font-size: 12px;
+        }
+
+
+        .checkboxDiv {
+            margin-left: 7px;
+            margin-right: 7px;
+            display:flex;
+            align-items:center;
+        }
+
+        .Icheckbox {
+            width: 30px;
+            display: inline;
+            margin-left: 7px;
+            margin-bottom: 7px;
+        }
+
+        .checkboxLbl {
+            display: flex;
+            align-items: center;
+            height: 35px;
+            margin-left: 17px;
+        }
+
+.lblLink {
+    color:blue;
+    text-underline-position:auto;
+}

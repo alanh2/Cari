@@ -1,0 +1,233 @@
+﻿
+.BRLine {
+    padding-right: 15px;
+    padding-bottom: 5px;
+    border:1px  solid;
+    margin:3px;
+    border-radius:10px;
+}
+
+.BRUnderLine1 {
+    border-bottom: 0.5px solid;
+    margin-bottom: 5px;
+}
+
+.BRExpende {
+    display: inline-block;
+    background: url(/images/plusminus.png) center -18px;
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+}
+
+.BRCollapse {
+    display: inline-block;
+    width: 25px;
+    height: 30px;
+    vertical-align: top;
+}
+
+.BRTitle {
+    display: inline-block;
+    font-size: 22px;
+    height: 0px;
+    vertical-align: top;
+    height: 85px;
+
+    
+}
+
+.BRTitlePos {
+    display: inline-grid;
+    font-size: 15px;
+    height: 0px;
+    color: blue;
+    font-weight: 900;
+    text-align: center;
+
+}
+
+
+.BRBlind2 {
+    display: inline-block;
+    font-size: 20px;
+    height: 0px;
+    padding-right: 15px;
+    /*float: left;*/
+    left:0px;
+    padding-left: 5px;
+}
+
+.Blind2Up {
+    display: inline-block;
+    background: url(/images/Blind2Up.png);
+    width: 18px;
+    height: 18px;
+}
+
+.Blind2Show {
+    display: inline-block;
+    font-size: 18px;
+    color: black;
+    border: solid;
+}
+
+.Blind2Down {
+    display: inline-block;
+    background: url(/images/Blind2Down.png);
+    width: 18px;
+    height: 18px;
+}
+
+.BRBlind2Icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    padding-top:5px;
+}
+
+.BRBlind2Details {
+    display: inline-block;
+}
+
+.BRBlind2DetailsIconMiddle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+
+    background: #000;
+    color: #EEE;
+    font-size: 20px;
+    border-radius: 100%;
+    
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top:1px;
+    top: 56px
+}
+
+.BRBlind2DetailsIconUp {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    padding-right: 6px;
+    background: #000000;
+    border-radius: 100%;
+    color:#EEEEEE;
+    top: 140px;
+}
+
+
+.Blind2SmallShow {
+    display: inline-block;
+    font-size: 18px;
+    color: black;
+    border: 2px solid;
+    width: 50px;
+    height: 50px;
+}
+
+.BRBlind2SmallDetailsIconUp {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    height:85px;
+    top:55px;
+}
+
+
+.BRBlind2SmallDetailsIconDown {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    padding-right: 8px;
+    background: #b488d8;
+    border-radius: 100%;
+    border:0.5px solid;
+}
+
+
+.Blind2DetailsShow {
+    display: inline-block;
+    font-size: 18px;
+    color: black;
+    border: solid;
+    font-size: 25px;
+    text-align: center;
+}
+
+
+
+.BRBlind2exclamation {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    padding-right: 7px;
+    padding-top: 5px;
+    background: #f5ec28;
+    border-radius: 100%;
+}
+
+
+.BRBlind2RulePowerOff {
+    font-size: 18px;
+    color: orangered;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-right: 6px;
+    padding-top: 2px;
+    background: slategrey;
+    border-radius: 100%;
+}
+
+
+
+.BRBlind2RulePowerOn {
+    color: lawngreen;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-right: 6px;
+    padding-top: 2px;
+    background: slategrey;
+    border-radius: 100%;
+}
+
+.BRBlind2RuletoggleOn {
+    color: lawngreen;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-right: 6px;
+    padding-top: 2px;
+    background: slategrey;
+    border-radius: 100%;
+}
+
+.BRBlind2RuletoggleOff {
+    color: red;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-right: 6px;
+    padding-top: 2px;
+    background: slategrey;
+    border-radius: 100%;
+}
+
+.button123 {
+    border-radius: 10px;
+    background-color: #222;
+    color: #eee;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-size: 22px;
+}
+
+.H1Title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom:20px;
+}

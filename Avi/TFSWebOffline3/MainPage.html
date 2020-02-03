@@ -1,0 +1,188 @@
+﻿<!doctype html>
+<html lang=''>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="Js/jquery-3.4.1.min.js"></script>
+    <link href="css/MainPageStyles.css" rel="stylesheet" />
+
+    <title>מערכת בקרת וילונות</title>
+    <script src="Js/GlobalFunc.js"></script>
+    <link href="css/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link href="css/GlobalCSS.css" rel="stylesheet" />
+    <link  href="css/NewDeisgn.css" rel="stylesheet" />
+    <link  href="css/alan.css" rel="stylesheet" />
+    <script>
+
+        $(document).ready(function () {
+		return;
+            HideManager();
+            var x = getCookie("ProjectId");
+
+            if (x == null) {
+                window.location.href = "Login.html";
+            }
+            LoadIsShowError();
+            setCookie("UpdatePageInterval", 3000, 3650);
+
+           // SetProject();
+            /*LoadIsShowMacVal();
+            LoadIsAutoUpdatel();
+            LoadTxtAutoFilter('TxtTboxExtraFilter');
+            LoadTxtAutoFilter('TxtEspExtraFilter');
+            */
+        });
+        var UpdatePageInterval = 3000;
+
+
+        function SetProject() {
+
+            // If First time Set Default
+            if (getCookie("ProjectId") == null)
+            {
+                setCookie("ProjectId", 2, 3650);
+            }
+            else
+            {
+                var x = getCookie("ProjectId");
+                var cmb = document.getElementById('CmbProject');
+                cmb.value = x;
+
+                SetProjectValues(x)
+            }
+        }
+
+        function ChangeProject() {
+
+            var cmb = document.getElementById('CmbProject').value;
+            setCookie("ProjectId", cmb, 3650);
+            SetProjectValues(cmb);
+            location.reload();
+
+        }
+
+        function SetProjectValues(cmb) {
+            if (cmb== 2) {
+                TboxTypeId = 1;
+                EspTypeId = 3;
+            }
+            else {
+                TboxTypeId = 4;
+                EspTypeId = 2;
+            }
+        }
+
+        var TboxTypeId = 1;
+        var EspTypeId = 3;
+        var Perm = 0;
+        function ChangePerm() {
+            if (document.getElementById('chkIsManager').checked == true)
+            {
+
+                var r = confirm("האם להיכנס למצב מנהל?");
+                if (r == true) {
+                    Perm = 1;
+                    ShowManager();
+                        alert('מצב עבודה השתנה למנהל');
+                    }
+                
+            }
+            else
+            {
+                Perm = 0;
+                HideManager();
+                alert('מצב מנהל בוטל');
+            }
+
+        }
+
+        function ShowManager() {
+            document.getElementById('LiRules').style.display = 'Block';
+            document.getElementById('LiGroups').style.display = 'Block';
+            setCookie('IsAdmin', 1, 3650);
+            }
+
+        function HideManager() {
+            document.getElementById('LiRules').style.display = 'none';
+            document.getElementById('LiGroups').style.display = 'none';
+            setCookie('IsAdmin', 0, 3650);
+        }
+
+        function ShowErrors() {
+            if (document.getElementById('chkIsShowErrors').checked == true)
+                setCookie('IsShowErrors', 1, 3650);
+            else
+                setCookie('IsShowErrors', 0, 3650);
+        }
+        
+        function LoadIsShowError() {
+            var x = getCookie("IsShowErrors");
+
+            if (x == null) {
+                setCookie('IsShowErrors', 0, 3650);
+            }
+            else
+            {
+                if (x == 1)
+                    document.getElementById('chkIsShowErrors').checked = true;
+            }
+
+        }
+
+    </script>
+</head>
+<body class="bodyCss">
+    <div id="header"></div>
+    <div class="global">
+    <div class="logoLeumi">
+        <img src="Logo/Logo2.jpg" height="40px" />
+    </div>
+    <div class="MainPageTitle">מערכת בקרת וילנות</div>
+
+
+    <div id='cssmenu' class="header dx-toolbar dx-widget dx-visibility-change-handler dx-collection">
+        <ul>
+
+            <li onclick="UpdateFrame('MVisual',this);"><a href='#' class="active"><span>תצוגת ריבועים</span></a></li>
+            <li onclick="UpdateFrame('MVisualOneSide',this);"><a href='#'><span>תצוגת מבנה לפי חזית</span></a></li>
+            <li onclick="UpdateFrame('MVisualAllSides',this);"><a href='#'><span>תצוגת מבנה כל החזיתות</span></a></li>
+            <li onclick="UpdateFrame('MVisual3D',this);"><a href='#'><span>3D מבנה</span></a></li>
+            <li onclick="UpdateFrame('MOrgType3ErrorHistory',this);"><a href='#'><span>תקלות</span></a></li>
+            <li onclick="UpdateFrame('MGroups',this);" id="LiGroups"><a href='#'><span>קבוצות</span></a></li>
+            <li onclick="UpdateFrame('MRules',this);" id="LiRules"><a href='#'><span>חוקים</span></a></li>
+            <li>
+                <a>
+                    <input type="checkbox" id="chkIsManager" onclick="ChangePerm();" />
+                    <label for="chkIsManager"><span></span>מצב מנהל</label>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <input type="checkbox" id="chkIsShowErrors" onclick="ShowErrors();" />
+                    <label for="chkIsShowErrors"><span></span>הצג שגיאות</label>
+                </a>
+            </li>
+
+            <!--<li onclick="UpdateFrame('MGroups',this);"><a href='#'><span>ניהול מבנה</span></a></li>
+    <li onclick="UpdateFrame('MErrors',this);"><a href='#'><span>תקלות</span></a></li>
+
+        -->
+        </ul>
+    </div>
+
+    <iframe id="Ifrm" src="MVisual.html" width="100%" height="770px" style="border:none;"> </iframe>
+    </div>
+    <div id="footer">
+        <div class="global">
+            <div class="logoArbicom"> <img src="images/logo.png"/></div>
+            <div class="logoSkycon"><img src="images/skycon.png"/></div>
+            <div class="logoOfek"><img src="images/ofek.png"/></div>
+            <div class="copy">ioioioioioi ioioioioi ioioioioi iooi<br/>© 2020 Arbicom all rights reserved</div>
+            <!--כל הזכויות שמורות-->
+        </div>
+    </div>
+</body>
+</html>

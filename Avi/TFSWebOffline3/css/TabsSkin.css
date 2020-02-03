@@ -1,0 +1,783 @@
+﻿
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400);
+
+html, body {
+    margin: 0;
+    padding: 0;
+    /*background: #E8ECEF;*/
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font: 400 30px roboto, "Open Sans", Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+h2 {
+    font: 300 22px roboto, "Open Sans", Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+.switcher-box {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: 40px 0;
+    text-align: center;
+}
+
+    .switcher-box a {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        padding: 3px;
+        cursor: pointer;
+        background: #FFF;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+        .switcher-box a span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            -webkit-box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15) inset, 0 5px 20px rgba(255, 255, 255, 0.4) inset;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15) inset, 0 5px 20px rgba(255, 255, 255, 0.4) inset;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .switcher-box a.active {
+            background: #000;
+            -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) inset;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) inset;
+        }
+
+            .switcher-box a.active span {
+                border-color: #BBB;
+            }
+
+        .switcher-box a.skin-turquoise span {
+            background: #1ABC9C;
+        }
+
+        .switcher-box a.skin-emerald span {
+            background: #2ECC71;
+        }
+
+        .switcher-box a.skin-peter-river span {
+            background: #3498DB;
+        }
+
+        .switcher-box a.skin-amethyst span {
+            background: #9B59B6;
+        }
+
+        .switcher-box a.skin-wet-asphalt span {
+            background: #34495E;
+        }
+
+        .switcher-box a.skin-sun-flower span {
+            background: #F1C40F;
+        }
+
+        .switcher-box a.skin-carrot span {
+            background: #E67E22;
+        }
+
+        .switcher-box a.skin-alizarin span {
+            background: #E74C3C;
+        }
+
+        .switcher-box a.skin-graphite span {
+            background: #454545;
+        }
+
+        .switcher-box a.skin-concrete span {
+            background: #95A5A6;
+        }
+
+        .switcher-box a.skin-green-sea span {
+            background: #16A085;
+        }
+
+        .switcher-box a.skin-nephritis span {
+            background: #27AE60;
+        }
+
+        .switcher-box a.skin-belize-hole span {
+            background: #2980B9;
+        }
+
+        .switcher-box a.skin-wisteria span {
+            background: #8E44AD;
+        }
+
+        .switcher-box a.skin-midnight-blue span {
+            background: #2C3E50;
+        }
+
+        .switcher-box a.skin-orange span {
+            background: #F39C12;
+        }
+
+        .switcher-box a.skin-pumpkin span {
+            background: #D35400;
+        }
+
+        .switcher-box a.skin-pomegranate span {
+            background: #C0392B;
+        }
+
+        .switcher-box a.skin-silver span {
+            background: #BDC3C7;
+        }
+
+        .switcher-box a.skin-asbestos span {
+            background: #7F8C8D;
+        }
+
+        .switcher-box a.skin-dodgerblue span {
+            background: dodgerblue;
+        }
+
+        .switcher-box a.skin-gray-black span {
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2I1YmRjOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyODM0M2IiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        }
+
+        .switcher-box a.skin-black-glass span {
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2FlYmNiZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzZlNzc3NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzBhMGUwYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTA4MDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        }
+
+
+/* tabb2Skin Styles */
+.tabb2Skin {
+    
+    min-width: 400px;
+    margin: 0 auto;
+    
+    overflow: hidden;
+    transition: border 250ms ease;
+}
+
+    .tabb2Skin ul {
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        float: right;
+        padding-left: 48px;
+        list-style-type: none;
+    }
+
+        .tabb2Skin ul * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .tabb2Skin ul li {
+            display: block;
+            float: right;
+            padding: 10px 24px 8px;
+            background-color: #777777;
+            margin-right: 46px;
+            z-index: 1;
+            position: relative;
+            cursor: pointer;
+            color: #FFF;
+            text-transform: uppercase;
+            font: 600 13px/20px roboto, "Open Sans", Helvetica, sans-serif;
+            transition: all 250ms ease;
+        }
+
+            .tabb2Skin ul li:before,
+            .tabb2Skin ul li:after {
+                display: block;
+                content: " ";
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 44px;
+                background-color: #777777;
+                transition: all 250ms ease;
+            }
+
+            .tabb2Skin ul li:before {
+                right: -24px;
+                transform: skew(30deg, 0deg);
+                box-shadow: rgba(0,0,0,.1) 3px 2px 5px, inset rgba(255,255,255,.09) -1px 0;
+            }
+
+            .tabb2Skin ul li:after {
+                left: -24px;
+                transform: skew(-30deg, 0deg);
+                box-shadow: rgba(0,0,0,.1) -3px 2px 5px, inset rgba(255,255,255,.09) 1px 0;
+            }
+
+            .tabb2Skin ul li:hover,
+            .tabb2Skin ul li:hover:before,
+            .tabb2Skin ul li:hover:after {
+                background-color: #F4F7F9;
+                color: #444;
+            }
+
+            .tabb2Skin ul li.active {
+                z-index: 3;
+            }
+
+                .tabb2Skin ul li.active,
+                .tabb2Skin ul li.active:before,
+                .tabb2Skin ul li.active:after {
+                    background-color: #000;
+                    color: #fff;
+                }
+
+    /* Round Tabs */
+    .tabb2Skin.round ul li {
+        border-radius: 8px 8px 0 0;
+    }
+
+        .tabb2Skin.round ul li:before {
+            border-radius: 0 8px 0 0;
+        }
+
+        .tabb2Skin.round ul li:after {
+            border-radius: 8px 0 0 0;
+        }
+
+    /* Skins */
+    .tabb2Skin[class*="skin-"] ul li {
+        color: #FFF;
+        text-shadow: rgba(0,0,0,.1) 0 1px;
+    }
+
+    .tabb2Skin.skin-turquoise {
+        border-bottom-color: #1ABC9C;
+    }
+
+        .tabb2Skin.skin-turquoise ul li,
+        .tabb2Skin.skin-turquoise ul li:before,
+        .tabb2Skin.skin-turquoise ul li:after {
+            background-color: #34D6B6;
+        }
+
+            .tabb2Skin.skin-turquoise ul li:hover,
+            .tabb2Skin.skin-turquoise ul li:hover:before,
+            .tabb2Skin.skin-turquoise ul li:hover:after {
+                background-color: #40E2C2;
+            }
+
+            .tabb2Skin.skin-turquoise ul li.active,
+            .tabb2Skin.skin-turquoise ul li.active:before,
+            .tabb2Skin.skin-turquoise ul li.active:after {
+                background-color: #1ABC9C;
+            }
+
+    .tabb2Skin.skin-emerald {
+        border-bottom-color: #2ECC71;
+    }
+
+        .tabb2Skin.skin-emerald ul li,
+        .tabb2Skin.skin-emerald ul li:before,
+        .tabb2Skin.skin-emerald ul li:after {
+            background-color: #48E68B;
+        }
+
+            .tabb2Skin.skin-emerald ul li:hover,
+            .tabb2Skin.skin-emerald ul li:hover:before,
+            .tabb2Skin.skin-emerald ul li:hover:after {
+                background-color: #54F297;
+            }
+
+            .tabb2Skin.skin-emerald ul li.active,
+            .tabb2Skin.skin-emerald ul li.active:before,
+            .tabb2Skin.skin-emerald ul li.active:after {
+                background-color: #2ECC71;
+            }
+
+    .tabb2Skin.skin-peter-river {
+        border-bottom-color: #3498DB;
+    }
+
+        .tabb2Skin.skin-peter-river ul li,
+        .tabb2Skin.skin-peter-river ul li:before,
+        .tabb2Skin.skin-peter-river ul li:after {
+            background-color: #4EB2F5;
+        }
+
+            .tabb2Skin.skin-peter-river ul li:hover,
+            .tabb2Skin.skin-peter-river ul li:hover:before,
+            .tabb2Skin.skin-peter-river ul li:hover:after {
+                background-color: #5ABEFF;
+            }
+
+            .tabb2Skin.skin-peter-river ul li.active,
+            .tabb2Skin.skin-peter-river ul li.active:before,
+            .tabb2Skin.skin-peter-river ul li.active:after {
+                background-color: #3498DB;
+            }
+
+    .tabb2Skin.skin-amethyst {
+        border-bottom-color: #9B59B6;
+    }
+
+        .tabb2Skin.skin-amethyst ul li,
+        .tabb2Skin.skin-amethyst ul li:before,
+        .tabb2Skin.skin-amethyst ul li:after {
+            background-color: #B573D0;
+        }
+
+            .tabb2Skin.skin-amethyst ul li:hover,
+            .tabb2Skin.skin-amethyst ul li:hover:before,
+            .tabb2Skin.skin-amethyst ul li:hover:after {
+                background-color: #C17FDC;
+            }
+
+            .tabb2Skin.skin-amethyst ul li.active,
+            .tabb2Skin.skin-amethyst ul li.active:before,
+            .tabb2Skin.skin-amethyst ul li.active:after {
+                background-color: #9B59B6;
+            }
+
+    .tabb2Skin.skin-wet-asphalt {
+        border-bottom-color: #34495E;
+    }
+
+        .tabb2Skin.skin-wet-asphalt ul li,
+        .tabb2Skin.skin-wet-asphalt ul li:before,
+        .tabb2Skin.skin-wet-asphalt ul li:after {
+            background-color: #4E6378;
+        }
+
+            .tabb2Skin.skin-wet-asphalt ul li:hover,
+            .tabb2Skin.skin-wet-asphalt ul li:hover:before,
+            .tabb2Skin.skin-wet-asphalt ul li:hover:after {
+                background-color: #5A6F84;
+            }
+
+            .tabb2Skin.skin-wet-asphalt ul li.active,
+            .tabb2Skin.skin-wet-asphalt ul li.active:before,
+            .tabb2Skin.skin-wet-asphalt ul li.active:after {
+                background-color: #34495E;
+            }
+
+    .tabb2Skin.skin-sun-flower {
+        border-bottom-color: #F1C40F;
+    }
+
+        .tabb2Skin.skin-sun-flower ul li,
+        .tabb2Skin.skin-sun-flower ul li:before,
+        .tabb2Skin.skin-sun-flower ul li:after {
+            background-color: #FFDE29;
+            color: #0A0;
+        }
+
+            .tabb2Skin.skin-sun-flower ul li:hover,
+            .tabb2Skin.skin-sun-flower ul li:hover:before,
+            .tabb2Skin.skin-sun-flower ul li:hover:after {
+                background-color: #FFEA35;
+            }
+
+            .tabb2Skin.skin-sun-flower ul li.active,
+            .tabb2Skin.skin-sun-flower ul li.active:before,
+            .tabb2Skin.skin-sun-flower ul li.active:after {
+                background-color: #F1C40F;
+                color: #FFF;
+            }
+
+    .tabb2Skin.skin-carrot {
+        border-bottom-color: #E67E22;
+    }
+
+        .tabb2Skin.skin-carrot ul li,
+        .tabb2Skin.skin-carrot ul li:before,
+        .tabb2Skin.skin-carrot ul li:after {
+            background-color: #FF983C;
+        }
+
+            .tabb2Skin.skin-carrot ul li:hover,
+            .tabb2Skin.skin-carrot ul li:hover:before,
+            .tabb2Skin.skin-carrot ul li:hover:after {
+                background-color: #FFA448;
+            }
+
+            .tabb2Skin.skin-carrot ul li.active,
+            .tabb2Skin.skin-carrot ul li.active:before,
+            .tabb2Skin.skin-carrot ul li.active:after {
+                background-color: #E67E22;
+            }
+
+    .tabb2Skin.skin-alizarin {
+        border-bottom-color: #E74C3C;
+    }
+
+        .tabb2Skin.skin-alizarin ul li,
+        .tabb2Skin.skin-alizarin ul li:before,
+        .tabb2Skin.skin-alizarin ul li:after {
+            background-color: #FF6656;
+        }
+
+            .tabb2Skin.skin-alizarin ul li:hover,
+            .tabb2Skin.skin-alizarin ul li:hover:before,
+            .tabb2Skin.skin-alizarin ul li:hover:after {
+                background-color: #FF7262;
+            }
+
+            .tabb2Skin.skin-alizarin ul li.active,
+            .tabb2Skin.skin-alizarin ul li.active:before,
+            .tabb2Skin.skin-alizarin ul li.active:after {
+                background-color: #E74C3C;
+            }
+
+    .tabb2Skin.skin-graphite {
+        border-bottom-color: #454545;
+    }
+
+        .tabb2Skin.skin-graphite ul li,
+        .tabb2Skin.skin-graphite ul li:before,
+        .tabb2Skin.skin-graphite ul li:after {
+            background-color: #5F5F5F;
+        }
+
+            .tabb2Skin.skin-graphite ul li:hover,
+            .tabb2Skin.skin-graphite ul li:hover:before,
+            .tabb2Skin.skin-graphite ul li:hover:after {
+                background-color: #6B6B6B;
+            }
+
+            .tabb2Skin.skin-graphite ul li.active,
+            .tabb2Skin.skin-graphite ul li.active:before,
+            .tabb2Skin.skin-graphite ul li.active:after {
+                background-color: #454545;
+            }
+
+    .tabb2Skin.skin-concrete {
+        border-bottom-color: #95A5A6;
+    }
+
+        .tabb2Skin.skin-concrete ul li,
+        .tabb2Skin.skin-concrete ul li:before,
+        .tabb2Skin.skin-concrete ul li:after {
+            background-color: #AFBFC0;
+        }
+
+            .tabb2Skin.skin-concrete ul li:hover,
+            .tabb2Skin.skin-concrete ul li:hover:before,
+            .tabb2Skin.skin-concrete ul li:hover:after {
+                background-color: #BBCBCC;
+            }
+
+            .tabb2Skin.skin-concrete ul li.active,
+            .tabb2Skin.skin-concrete ul li.active:before,
+            .tabb2Skin.skin-concrete ul li.active:after {
+                background-color: #95A5A6;
+            }
+
+    .tabb2Skin.skin-green-sea {
+        border-bottom-color: #16A085;
+    }
+
+        .tabb2Skin.skin-green-sea ul li,
+        .tabb2Skin.skin-green-sea ul li:before,
+        .tabb2Skin.skin-green-sea ul li:after {
+            background-color: #30BA9F;
+        }
+
+            .tabb2Skin.skin-green-sea ul li:hover,
+            .tabb2Skin.skin-green-sea ul li:hover:before,
+            .tabb2Skin.skin-green-sea ul li:hover:after {
+                background-color: #3CC6AB;
+            }
+
+            .tabb2Skin.skin-green-sea ul li.active,
+            .tabb2Skin.skin-green-sea ul li.active:before,
+            .tabb2Skin.skin-green-sea ul li.active:after {
+                background-color: #16A085;
+            }
+
+    .tabb2Skin.skin-nephritis {
+        border-bottom-color: #27AE60;
+    }
+
+        .tabb2Skin.skin-nephritis ul li,
+        .tabb2Skin.skin-nephritis ul li:before,
+        .tabb2Skin.skin-nephritis ul li:after {
+            background-color: #41C87A;
+        }
+
+            .tabb2Skin.skin-nephritis ul li:hover,
+            .tabb2Skin.skin-nephritis ul li:hover:before,
+            .tabb2Skin.skin-nephritis ul li:hover:after {
+                background-color: #4DD486;
+            }
+
+            .tabb2Skin.skin-nephritis ul li.active,
+            .tabb2Skin.skin-nephritis ul li.active:before,
+            .tabb2Skin.skin-nephritis ul li.active:after {
+                background-color: #27AE60;
+            }
+
+    .tabb2Skin.skin-belize-hole {
+        border-bottom-color: #2980B9;
+    }
+
+        .tabb2Skin.skin-belize-hole ul li,
+        .tabb2Skin.skin-belize-hole ul li:before,
+        .tabb2Skin.skin-belize-hole ul li:after {
+            background-color: #439AD3;
+        }
+
+            .tabb2Skin.skin-belize-hole ul li:hover,
+            .tabb2Skin.skin-belize-hole ul li:hover:before,
+            .tabb2Skin.skin-belize-hole ul li:hover:after {
+                background-color: #4FA6DF;
+            }
+
+            .tabb2Skin.skin-belize-hole ul li.active,
+            .tabb2Skin.skin-belize-hole ul li.active:before,
+            .tabb2Skin.skin-belize-hole ul li.active:after {
+                background-color: #2980B9;
+            }
+
+    .tabb2Skin.skin-wisteria {
+        border-bottom-color: #8E44AD;
+    }
+
+        .tabb2Skin.skin-wisteria ul li,
+        .tabb2Skin.skin-wisteria ul li:before,
+        .tabb2Skin.skin-wisteria ul li:after {
+            background-color: #A85EC7;
+        }
+
+            .tabb2Skin.skin-wisteria ul li:hover,
+            .tabb2Skin.skin-wisteria ul li:hover:before,
+            .tabb2Skin.skin-wisteria ul li:hover:after {
+                background-color: #B46AD3;
+            }
+
+            .tabb2Skin.skin-wisteria ul li.active,
+            .tabb2Skin.skin-wisteria ul li.active:before,
+            .tabb2Skin.skin-wisteria ul li.active:after {
+                background-color: #8E44AD;
+            }
+
+    .tabb2Skin.skin-midnight-blue {
+        border-bottom-color: #2C3E50;
+    }
+
+        .tabb2Skin.skin-midnight-blue ul li,
+        .tabb2Skin.skin-midnight-blue ul li:before,
+        .tabb2Skin.skin-midnight-blue ul li:after {
+            background-color: #46586A;
+        }
+
+            .tabb2Skin.skin-midnight-blue ul li:hover,
+            .tabb2Skin.skin-midnight-blue ul li:hover:before,
+            .tabb2Skin.skin-midnight-blue ul li:hover:after {
+                background-color: #526476;
+            }
+
+            .tabb2Skin.skin-midnight-blue ul li.active,
+            .tabb2Skin.skin-midnight-blue ul li.active:before,
+            .tabb2Skin.skin-midnight-blue ul li.active:after {
+                background-color: #2C3E50;
+            }
+
+    .tabb2Skin.skin-orange {
+        border-bottom-color: #F39C12;
+    }
+
+        .tabb2Skin.skin-orange ul li,
+        .tabb2Skin.skin-orange ul li:before,
+        .tabb2Skin.skin-orange ul li:after {
+            background-color: #FFB62C;
+        }
+
+            .tabb2Skin.skin-orange ul li:hover,
+            .tabb2Skin.skin-orange ul li:hover:before,
+            .tabb2Skin.skin-orange ul li:hover:after {
+                background-color: #FFC238;
+            }
+
+            .tabb2Skin.skin-orange ul li.active,
+            .tabb2Skin.skin-orange ul li.active:before,
+            .tabb2Skin.skin-orange ul li.active:after {
+                background-color: #F39C12;
+            }
+
+    .tabb2Skin.skin-pumpkin {
+        border-bottom-color: #D35400;
+    }
+
+        .tabb2Skin.skin-pumpkin ul li,
+        .tabb2Skin.skin-pumpkin ul li:before,
+        .tabb2Skin.skin-pumpkin ul li:after {
+            background-color: #ED6E1A;
+        }
+
+            .tabb2Skin.skin-pumpkin ul li:hover,
+            .tabb2Skin.skin-pumpkin ul li:hover:before,
+            .tabb2Skin.skin-pumpkin ul li:hover:after {
+                background-color: #F97A26;
+            }
+
+            .tabb2Skin.skin-pumpkin ul li.active,
+            .tabb2Skin.skin-pumpkin ul li.active:before,
+            .tabb2Skin.skin-pumpkin ul li.active:after {
+                background-color: #D35400;
+            }
+
+    .tabb2Skin.skin-pomegranate {
+        border-bottom-color: #C0392B;
+    }
+
+        .tabb2Skin.skin-pomegranate ul li,
+        .tabb2Skin.skin-pomegranate ul li:before,
+        .tabb2Skin.skin-pomegranate ul li:after {
+            background-color: #DA5345;
+        }
+
+            .tabb2Skin.skin-pomegranate ul li:hover,
+            .tabb2Skin.skin-pomegranate ul li:hover:before,
+            .tabb2Skin.skin-pomegranate ul li:hover:after {
+                background-color: #E65F51;
+            }
+
+            .tabb2Skin.skin-pomegranate ul li.active,
+            .tabb2Skin.skin-pomegranate ul li.active:before,
+            .tabb2Skin.skin-pomegranate ul li.active:after {
+                background-color: #C0392B;
+            }
+
+    .tabb2Skin.skin-silver {
+        border-bottom-color: #BDC3C7;
+    }
+
+        .tabb2Skin.skin-silver ul li,
+        .tabb2Skin.skin-silver ul li:before,
+        .tabb2Skin.skin-silver ul li:after {
+            background-color: #D7DDE1;
+            color: #666;
+        }
+
+            .tabb2Skin.skin-silver ul li:hover,
+            .tabb2Skin.skin-silver ul li:hover:before,
+            .tabb2Skin.skin-silver ul li:hover:after {
+                background-color: #E3E9ED;
+            }
+
+            .tabb2Skin.skin-silver ul li.active,
+            .tabb2Skin.skin-silver ul li.active:before,
+            .tabb2Skin.skin-silver ul li.active:after {
+                background-color: #BDC3C7;
+                color: #FFF;
+            }
+
+    .tabb2Skin.skin-asbestos {
+        border-bottom-color: #7F8C8D;
+    }
+
+        .tabb2Skin.skin-asbestos ul li,
+        .tabb2Skin.skin-asbestos ul li:before,
+        .tabb2Skin.skin-asbestos ul li:after {
+            background-color: #99A6A7;
+        }
+
+            .tabb2Skin.skin-asbestos ul li:hover,
+            .tabb2Skin.skin-asbestos ul li:hover:before,
+            .tabb2Skin.skin-asbestos ul li:hover:after {
+                background-color: #A5B2B3;
+            }
+
+            .tabb2Skin.skin-asbestos ul li.active,
+            .tabb2Skin.skin-asbestos ul li.active:before,
+            .tabb2Skin.skin-asbestos ul li.active:after {
+                background-color: #7F8C8D;
+            }
+
+    .tabb2Skin.skin-dodgerblue {
+        border-bottom-color: dodgerblue;
+    }
+
+        .tabb2Skin.skin-dodgerblue ul li,
+        .tabb2Skin.skin-dodgerblue ul li:before,
+        .tabb2Skin.skin-dodgerblue ul li:after {
+            background-color: deepskyblue;
+        }
+
+            .tabb2Skin.skin-dodgerblue ul li:hover,
+            .tabb2Skin.skin-dodgerblue ul li:hover:before,
+            .tabb2Skin.skin-dodgerblue ul li:hover:after {
+                background-color: #33ccff;
+            }
+
+            .tabb2Skin.skin-dodgerblue ul li.active,
+            .tabb2Skin.skin-dodgerblue ul li.active:before,
+            .tabb2Skin.skin-dodgerblue ul li.active:after {
+                background-color: dodgerblue;
+            }
+
+    .tabb2Skin.skin-gray-black {
+        border-bottom-color: #28343b;
+    }
+
+        .tabb2Skin.skin-gray-black,
+        .tabb2Skin.skin-gray-black ul li,
+        .tabb2Skin.skin-gray-black ul li:before,
+        .tabb2Skin.skin-gray-black ul li:after {
+            transition: none;
+        }
+
+            .tabb2Skin.skin-gray-black ul li,
+            .tabb2Skin.skin-gray-black ul li:before,
+            .tabb2Skin.skin-gray-black ul li:after {
+                background-color: #68737B;
+            }
+
+                .tabb2Skin.skin-gray-black ul li:hover,
+                .tabb2Skin.skin-gray-black ul li:hover:before,
+                .tabb2Skin.skin-gray-black ul li:hover:after {
+                    background-color: #707A83;
+                }
+
+                .tabb2Skin.skin-gray-black ul li.active,
+                .tabb2Skin.skin-gray-black ul li.active:before,
+                .tabb2Skin.skin-gray-black ul li.active:after {
+                    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2I1YmRjOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyODM0M2IiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+                }
+
+    .tabb2Skin.skin-black-glass {
+        border-bottom-color: #0a0809;
+    }
+
+        .tabb2Skin.skin-black-glass,
+        .tabb2Skin.skin-black-glass ul li,
+        .tabb2Skin.skin-black-glass ul li:before,
+        .tabb2Skin.skin-black-glass ul li:after {
+            transition: none;
+        }
+
+            .tabb2Skin.skin-black-glass ul li,
+            .tabb2Skin.skin-black-glass ul li:before,
+            .tabb2Skin.skin-black-glass ul li:after {
+                background-color: #333;
+            }
+
+                .tabb2Skin.skin-black-glass ul li:hover,
+                .tabb2Skin.skin-black-glass ul li:hover:before,
+                .tabb2Skin.skin-black-glass ul li:hover:after {
+                    background-color: #444;
+                }
+
+                .tabb2Skin.skin-black-glass ul li.active,
+                .tabb2Skin.skin-black-glass ul li.active:before,
+                .tabb2Skin.skin-black-glass ul li.active:after {
+                    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2FlYmNiZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzZlNzc3NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzBhMGUwYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYTA4MDkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+                }
