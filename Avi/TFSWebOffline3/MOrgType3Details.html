@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link href="css/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/dx.common.css">
+    <link href="css/GlobalCSS.css" rel="stylesheet" />
+    <link href="css/classicLive.css" rel="stylesheet" />
+
+    <script src="Js/GlobalFunc.js"></script>
+    <script src="Js/jquery-3.4.1.min.js"></script>
+    <script src="Js/config.js"></script>
+    <script type="text/javascript" src="Scripts/dx.all.js"></script>
+
+    <script>
+
+        var GlobalParams = '';
+
+        var OrgTypeId = 2;
+       // var LastSelectedId = 0; // this var is shared with OrgSearchModal.html
+        var Tbl1DataSource;
+        var TblOrgFuncSendFields;
+        var TblZOrgTypeStatus;
+
+        var DBType;
+        var SelectedOrgId = 1;
+        var SelectedVersionId = 1;
+        var SelectedSourceFldId = 1;
+
+        $(document).ready(function () {
+
+            GetTBL1();
+        });
+
+
+
+        function LoadDDGrid() {
+            var dataGrid = $("#gridContainer").dxDataGrid({
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: "Search..."
+                },
+
+                dataSource: Tbl1DataSource,
+                keyExpr: "FldId",
+                showBorders: true,
+                paging: {
+                    enabled: true,
+                    pageSize: 30
+
+                },
+                editing: {
+                    mode: "popup",
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: false,
+                    popup: {
+                        title: "Employee Info",
+                        showTitle: true,
+                        width: 700,
+                        height: 525,
+                        position: {
+                            my: "top",
+                            at: "top",
+                            of: window
+                        },
+                        useIcons: true
+                    },
+                    form: {
+                        items: [{
+                            itemType: "group",
+                            colCount: 2,
+                            colSpan: 2,
+                            items: ["FldOrder", "FldFuncId", "FldDisplayName"]
+                        }]
+                    }
+                },
+                columns: [
+                    
+                    { dataField: "StatusDisplay", caption: "סטטוס", width: 120 },
+
+                   
+                    { dataField: "MotorState", caption: "MotorState", width: 100 },
+                    { dataField: "DeviceState", caption: "DeviceState", width: 100 },
+                    
+                    {
+                        dataField: 'FldCreationDate',
+                        caption: "ת. יצירה", width: 150,
+                        dataType: 'datetime',
+                        customizeText: function (options) {
+                            return !options.value ? "" : GetDateFormat(options); //moment(options.value).format("MMM/DD/YYYY").replace(".", "");
+                        }
+                    },
+
+                ],
+                onRowInserting: function (e) {
+                    var myParam = 'FldOrgTypeId,' + SelectedOrgId + ';' + 'FldVersion,' + SelectedVersionId + ';';
+                    InsertData1(myParam, e);
+                },
+
+                onRowUpdating: function (e) {
+                    UpdateData1(e);
+                },
+
+                onRowRemoving: function (e) {
+                    DeleteData1(e);
+
+                }
+            });
+        }
+
+        function GetAbgleObj(Angle, CssClass, e) {
+            var Color1 = 'blue';
+            var Color2 = '#FFFFFF';
+            //DivAngleButton
+            //ActivateDevice(5, , , '');
+            //debugger;
+            var xxx = ' <div id="DivAngleMain" class="DivAngleMain" >' +
+                '<div class="DivAngleMask" style="background-image: repeating-linear-gradient(' + (90-(Angle*1.8)) + 'deg, ' + Color1 + ' 3px, ' + Color1 + ' 6px, ' + Color2 + ' 3px, ' + Color2 + ' 14px) "> </div >' +
+                '<div onclick="ActivateDevice(OrgTypeId, 4, ' + e.row.data.FldVersion + ',' + e.row.key + ', \';FldBlindAngleUser,' + Angle + '\');' +
+                'ActivateDevice(1        , 13, ' + e.row.data.ParentVersion + ', ' + e.row.data.ParentFldId + ', \'\');"' +
+                ' class="' + CssClass + '" > ' + Angle + '</div >' +
+                '</svg>' +
+                '</div > ';
+
+            return xxx;
+
+        }
+
+        function GetHeightObj(Angle, CssClass, e){
+
+            // The ESP Angle is oposite
+            // 100 is up
+            // 0 is down
+            Angle = 100 - Angle ;
+            var xxx = ' <div id="DivHeightMain" class="DivHeightMain" >' +
+                '<div class="DivHeightMask" style="height: ' + (Angle / 100) * 30 + 'px;"> </div >' +
+                //'<div class="' + CssClass + '" > ' + Angle + '</div >' +
+                '<div onclick="ActivateDevice(OrgTypeId, 4 , ' + e.row.data.FldVersion + ',' + e.row.key + ', \';FldBlindPositionUser,' + Angle + '\');' + 
+                'ActivateDevice(1        , 13, ' + e.row.data.ParentVersion + ', ' + e.row.data.ParentFldId + ', \'\');"' +
+                ' class="' + CssClass + '" > ' + Angle + '</div >' +
+
+                '</div > ';
+
+            return xxx;
+
+        }
+
+        function type2OrgToOrgRemoveVal(OrgTypeFldId) {
+
+            var Name = 'TblZOrgtype'+OrgTypeId+'RemoveToOrg';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'FldId,' + OrgTypeFldId
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפעולה בוצעה בהצלחה');
+                    ClosePopup();
+                    //GetTBL1();
+
+                },
+                error: function (x, y, z) {
+
+                    ClosePopup();
+
+                }
+            });
+
+        }
+
+        function OrgSearchModalReturnVal(val) {
+
+            var Name = 'OrgToOrgAdd';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'OrgTypeId,' + OrgTypeId + ';OrgTypeFldId,' + LastSelectedId + ';OrgId ,' + val
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפעולה בוצעה בהצלחה');
+                    ClosePopup();
+                    //GetTBL1();
+
+                },
+                error: function (x, y, z) {
+
+                    ClosePopup();
+
+                }
+            });
+
+        }
+
+
+
+        function GetTBL1() {
+
+
+
+            Tbl1DataSource = [{ "FldId": 2, "FldDeviceActionStatusId": 0, "FldSubVersion": 5, "FldHomingMode": 0, "FldTboxSlotDelete": 0, "FldLastActionRuleId": null, "FldMovePosition": null, "FldESPRemoteControlData3": 0, "FldESPRemoteControlData4": 0, "FldESPRemoteControlData5": 0, "FldOrgParentId": null, "FldMessageCounter": 165, "FldSpeedError": 0, "FldShutterEngale": 0, "FldProjectId": null, "FldTboxSlot": 1, "FldESPRemoteControlData0": 0, "FldESPRemoteControlData1": 0, "FldESPRemoteControlData2": 0, "FldWindowWidth": 0, "FldErrorCount2Fault": 0, "FldPosition": null, "FldShutter_Engale": null, "FldDevice_Volt": 0, "FldDriverErrorStatusId": 0, "FldStartDelay": 2000, "FldStatusId": 2, "FldTimeZone": 0, "FldVersion": 1, "FldWindowLenght": 1200, "FldWindowTopLevel": 0, "FldPsaEN": 0, "FldRunTime": 20, "FldSpeedDelay": 5000, "FldSpeedErrorDB": 100, "FldSpeedRun": 50, "FldSpeedStart": 30, "FldESPVersion": null, "FldFloorToWindowDistance": 0, "FldHeatCoolMode": 0, "FldMaxPulses": 10000, "FldPaermanentShading": 0, "FldPositionDB": 1, "FldESPLogicDebugInformation": 0, "FldESPLogicState": 0, "FldESPMeasuredCurrent": null, "FldESPRemoteControlData": null, "FldESPRemoteControlId": null, "FldESPTargetPosition": 0, "FldTimeToCalcSPA": 0, "FldBlindPositionUser": null, "FldDataValid": 0, "FldESPCurrentPosition": 0, "FldESPCurrentSpeed": 0, "FldESPIOBitmap": 0, "FldVersionIdCurr": null, "FldVersionIdNext": null, "FldStopModeCurrent": null, "FldStartingModeCurrent": null, "FldStopFastModeCurrent": null, "FldBlindAngleUser": null, "FldWorkingModeId": null, "FldMotorMode": null, "FldTimeAngleOpen": null, "FldTimeAngleClose": null, "FldTimeUp": null, "FldTimeDown": null, "FldDisplayLocation": null, "FldCreationDate": "\/Date(1575988492953)\/", "FldLastUpdateDate": "\/Date(1576062029740)\/", "FldDisplayName": null, "FldMacAddress": [4, 0, 0, 0, 0, 0], "FldParentMacId": [0, 0, 0, 0, 0, 0], "FldUnixTime": null, "FldIsLEDWorkingManual": null, "FldIsLEDRedOn": null, "FldIsLEDGreenOn": null, "FldIsLEDRedSend": null, "FldIsLEDGreenSend": null, "FldIsSendTboxSlotIdDelete": false, "FldIsBlindHoming": null, "FldIsChangeBlindPosition": null, "FldIsGetStatus": null, "FldIsMoveBlindSpeedDir": null, "FldIsMoveBlindStopMoving": null, "FldIsSendEspData": true, "FldIsBlindAngleUp": null, "FldIsBlindAngleDown": null, "FldIsBlindLocationUp": null, "FldIsBlindLocationdown": null, "FldIsSendTboxSlotId": false, "FldIsUploadVersionId": null, "FldLatitude": 99.0000000, "FldLongitude": 99.0000000, "FldAzimuth": 99.00, "FldAzimuthDB": 99.00, "FldSunZenith": 0.00, "FldSunAzimuth": 0.00, "FldFullPathName": null, "FldOrgDisplayName": null, "FldParentDisplayName": null, "FldDisplayLocation1": null, "FldIsUploadVersionId1": null, "StatusDisplay": "פעיל", "MotorState": "0-WakeUp", "DeviceState": "0-Done", "DeviceErrorStatus": "0-None", "DisplayVersion": "1.5", "ParentVersion": null, "ParentFldId": null, "CurVersion": null, "NextVersion": null, "MacStr": "040000000000", "TboxMacStr": null }, { "FldId": 3, "FldDeviceActionStatusId": null, "FldSubVersion": 1, "FldHomingMode": null, "FldTboxSlotDelete": null, "FldLastActionRuleId": null, "FldMovePosition": null, "FldESPRemoteControlData3": null, "FldESPRemoteControlData4": null, "FldESPRemoteControlData5": null, "FldOrgParentId": null, "FldMessageCounter": null, "FldSpeedError": null, "FldShutterEngale": null, "FldProjectId": 3, "FldTboxSlot": 0, "FldESPRemoteControlData0": null, "FldESPRemoteControlData1": null, "FldESPRemoteControlData2": null, "FldWindowWidth": null, "FldErrorCount2Fault": null, "FldPosition": null, "FldShutter_Engale": null, "FldDevice_Volt": null, "FldDriverErrorStatusId": null, "FldStartDelay": 2000, "FldStatusId": 1, "FldTimeZone": null, "FldVersion": 1, "FldWindowLenght": 1200, "FldWindowTopLevel": null, "FldPsaEN": null, "FldRunTime": 20, "FldSpeedDelay": 5000, "FldSpeedErrorDB": 100, "FldSpeedRun": 50, "FldSpeedStart": 30, "FldESPVersion": null, "FldFloorToWindowDistance": null, "FldHeatCoolMode": 0, "FldMaxPulses": 10000, "FldPaermanentShading": null, "FldPositionDB": 1, "FldESPLogicDebugInformation": null, "FldESPLogicState": null, "FldESPMeasuredCurrent": null, "FldESPRemoteControlData": null, "FldESPRemoteControlId": null, "FldESPTargetPosition": null, "FldTimeToCalcSPA": null, "FldBlindPositionUser": null, "FldDataValid": null, "FldESPCurrentPosition": null, "FldESPCurrentSpeed": null, "FldESPIOBitmap": null, "FldVersionIdCurr": null, "FldVersionIdNext": null, "FldStopModeCurrent": null, "FldStartingModeCurrent": null, "FldStopFastModeCurrent": null, "FldBlindAngleUser": null, "FldWorkingModeId": null, "FldMotorMode": null, "FldTimeAngleOpen": null, "FldTimeAngleClose": null, "FldTimeUp": null, "FldTimeDown": null, "FldDisplayLocation": "", "FldCreationDate": "\/Date(1575992798837)\/", "FldLastUpdateDate": "\/Date(1575999877163)\/", "FldDisplayName": "ffff", "FldMacAddress": [0, 0, 0, 0, 0, 0], "FldParentMacId": [0, 0, 0, 0, 0, 0], "FldUnixTime": null, "FldIsLEDWorkingManual": null, "FldIsLEDRedOn": null, "FldIsLEDGreenOn": null, "FldIsLEDRedSend": null, "FldIsLEDGreenSend": null, "FldIsSendTboxSlotIdDelete": null, "FldIsBlindHoming": null, "FldIsChangeBlindPosition": null, "FldIsGetStatus": null, "FldIsMoveBlindSpeedDir": null, "FldIsMoveBlindStopMoving": null, "FldIsSendEspData": true, "FldIsBlindAngleUp": null, "FldIsBlindAngleDown": null, "FldIsBlindLocationUp": null, "FldIsBlindLocationdown": null, "FldIsSendTboxSlotId": null, "FldIsUploadVersionId": null, "FldLatitude": null, "FldLongitude": null, "FldAzimuth": null, "FldAzimuthDB": null, "FldSunZenith": null, "FldSunAzimuth": null, "FldFullPathName": null, "FldOrgDisplayName": null, "FldParentDisplayName": null, "FldDisplayLocation1": "", "FldIsUploadVersionId1": null, "StatusDisplay": "לא מקושר", "MotorState": null, "DeviceState": null, "DeviceErrorStatus": null, "DisplayVersion": "1.1", "ParentVersion": null, "ParentFldId": null, "CurVersion": null, "NextVersion": null, "MacStr": "000000000000", "TboxMacStr": null }, { "FldId": 4, "FldDeviceActionStatusId": null, "FldSubVersion": 1, "FldHomingMode": null, "FldTboxSlotDelete": null, "FldLastActionRuleId": null, "FldMovePosition": null, "FldESPRemoteControlData3": null, "FldESPRemoteControlData4": null, "FldESPRemoteControlData5": null, "FldOrgParentId": null, "FldMessageCounter": null, "FldSpeedError": null, "FldShutterEngale": null, "FldProjectId": null, "FldTboxSlot": 0, "FldESPRemoteControlData0": null, "FldESPRemoteControlData1": null, "FldESPRemoteControlData2": null, "FldWindowWidth": null, "FldErrorCount2Fault": null, "FldPosition": null, "FldShutter_Engale": null, "FldDevice_Volt": null, "FldDriverErrorStatusId": null, "FldStartDelay": 2000, "FldStatusId": 1, "FldTimeZone": null, "FldVersion": 1, "FldWindowLenght": 1200, "FldWindowTopLevel": null, "FldPsaEN": null, "FldRunTime": 20, "FldSpeedDelay": 5000, "FldSpeedErrorDB": 100, "FldSpeedRun": 50, "FldSpeedStart": 30, "FldESPVersion": null, "FldFloorToWindowDistance": null, "FldHeatCoolMode": 0, "FldMaxPulses": 10000, "FldPaermanentShading": null, "FldPositionDB": 1, "FldESPLogicDebugInformation": null, "FldESPLogicState": null, "FldESPMeasuredCurrent": null, "FldESPRemoteControlData": null, "FldESPRemoteControlId": null, "FldESPTargetPosition": null, "FldTimeToCalcSPA": null, "FldBlindPositionUser": null, "FldDataValid": null, "FldESPCurrentPosition": null, "FldESPCurrentSpeed": null, "FldESPIOBitmap": null, "FldVersionIdCurr": null, "FldVersionIdNext": null, "FldStopModeCurrent": null, "FldStartingModeCurrent": null, "FldStopFastModeCurrent": null, "FldBlindAngleUser": null, "FldWorkingModeId": null, "FldMotorMode": null, "FldTimeAngleOpen": null, "FldTimeAngleClose": null, "FldTimeUp": null, "FldTimeDown": null, "FldDisplayLocation": null, "FldCreationDate": "\/Date(1575992895837)\/", "FldLastUpdateDate": "\/Date(1575992896547)\/", "FldDisplayName": null, "FldMacAddress": [0, 0, 0, 0, 241, 255], "FldParentMacId": [0, 0, 0, 0, 24, 83], "FldUnixTime": null, "FldIsLEDWorkingManual": null, "FldIsLEDRedOn": null, "FldIsLEDGreenOn": null, "FldIsLEDRedSend": null, "FldIsLEDGreenSend": null, "FldIsSendTboxSlotIdDelete": null, "FldIsBlindHoming": null, "FldIsChangeBlindPosition": null, "FldIsGetStatus": null, "FldIsMoveBlindSpeedDir": null, "FldIsMoveBlindStopMoving": null, "FldIsSendEspData": false, "FldIsBlindAngleUp": null, "FldIsBlindAngleDown": null, "FldIsBlindLocationUp": null, "FldIsBlindLocationdown": null, "FldIsSendTboxSlotId": null, "FldIsUploadVersionId": null, "FldLatitude": null, "FldLongitude": null, "FldAzimuth": null, "FldAzimuthDB": null, "FldSunZenith": null, "FldSunAzimuth": null, "FldFullPathName": null, "FldOrgDisplayName": null, "FldParentDisplayName": "אבי", "FldDisplayLocation1": null, "FldIsUploadVersionId1": null, "StatusDisplay": "לא מקושר", "MotorState": null, "DeviceState": null, "DeviceErrorStatus": null, "DisplayVersion": "1.1", "ParentVersion": 1, "ParentFldId": 3, "CurVersion": null, "NextVersion": null, "MacStr": "00000000F1FF", "TboxMacStr": "000000001853" }, { "FldId": 5, "FldDeviceActionStatusId": null, "FldSubVersion": 1, "FldHomingMode": null, "FldTboxSlotDelete": null, "FldLastActionRuleId": null, "FldMovePosition": null, "FldESPRemoteControlData3": null, "FldESPRemoteControlData4": null, "FldESPRemoteControlData5": null, "FldOrgParentId": null, "FldMessageCounter": null, "FldSpeedError": null, "FldShutterEngale": null, "FldProjectId": null, "FldTboxSlot": 0, "FldESPRemoteControlData0": null, "FldESPRemoteControlData1": null, "FldESPRemoteControlData2": null, "FldWindowWidth": null, "FldErrorCount2Fault": null, "FldPosition": null, "FldShutter_Engale": null, "FldDevice_Volt": null, "FldDriverErrorStatusId": null, "FldStartDelay": 2000, "FldStatusId": 1, "FldTimeZone": null, "FldVersion": 1, "FldWindowLenght": 1200, "FldWindowTopLevel": null, "FldPsaEN": null, "FldRunTime": 20, "FldSpeedDelay": 5000, "FldSpeedErrorDB": 100, "FldSpeedRun": 50, "FldSpeedStart": 30, "FldESPVersion": null, "FldFloorToWindowDistance": null, "FldHeatCoolMode": 0, "FldMaxPulses": 10000, "FldPaermanentShading": null, "FldPositionDB": 1, "FldESPLogicDebugInformation": null, "FldESPLogicState": null, "FldESPMeasuredCurrent": null, "FldESPRemoteControlData": null, "FldESPRemoteControlId": null, "FldESPTargetPosition": null, "FldTimeToCalcSPA": null, "FldBlindPositionUser": null, "FldDataValid": null, "FldESPCurrentPosition": null, "FldESPCurrentSpeed": null, "FldESPIOBitmap": null, "FldVersionIdCurr": null, "FldVersionIdNext": null, "FldStopModeCurrent": null, "FldStartingModeCurrent": null, "FldStopFastModeCurrent": null, "FldBlindAngleUser": null, "FldWorkingModeId": null, "FldMotorMode": null, "FldTimeAngleOpen": null, "FldTimeAngleClose": null, "FldTimeUp": null, "FldTimeDown": null, "FldDisplayLocation": null, "FldCreationDate": "\/Date(1575992928917)\/", "FldLastUpdateDate": "\/Date(1575992929450)\/", "FldDisplayName": null, "FldMacAddress": [0, 0, 0, 0, 242, 255], "FldParentMacId": [0, 0, 0, 0, 24, 83], "FldUnixTime": null, "FldIsLEDWorkingManual": null, "FldIsLEDRedOn": null, "FldIsLEDGreenOn": null, "FldIsLEDRedSend": null, "FldIsLEDGreenSend": null, "FldIsSendTboxSlotIdDelete": null, "FldIsBlindHoming": null, "FldIsChangeBlindPosition": null, "FldIsGetStatus": null, "FldIsMoveBlindSpeedDir": null, "FldIsMoveBlindStopMoving": null, "FldIsSendEspData": false, "FldIsBlindAngleUp": null, "FldIsBlindAngleDown": null, "FldIsBlindLocationUp": null, "FldIsBlindLocationdown": null, "FldIsSendTboxSlotId": null, "FldIsUploadVersionId": null, "FldLatitude": null, "FldLongitude": null, "FldAzimuth": null, "FldAzimuthDB": null, "FldSunZenith": null, "FldSunAzimuth": null, "FldFullPathName": null, "FldOrgDisplayName": null, "FldParentDisplayName": "אבי", "FldDisplayLocation1": null, "FldIsUploadVersionId1": null, "StatusDisplay": "לא מקושר", "MotorState": null, "DeviceState": null, "DeviceErrorStatus": null, "DisplayVersion": "1.1", "ParentVersion": 1, "ParentFldId": 3, "CurVersion": null, "NextVersion": null, "MacStr": "00000000F2FF", "TboxMacStr": "000000001853" }] ;
+                    LoadDDGrid();
+
+                    return;
+
+            // Do not auto refresh when modal is open
+            if (document.getElementById('myModal').style.display == 'block')
+                return;
+
+
+            var Name = 'TblZOrgType' +OrgTypeId + 'Select';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'FldTboxExtraFilter,' + GetTxtAutoFilter('TxtTboxExtraFilter') + ';FldEspExtraFilter,' + GetTxtAutoFilter('TxtEspExtraFilter')
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    Tbl1DataSource = JSON.parse(data.d).result_name;
+                    LoadDDGrid();
+                    debugger;
+                   // setTimeout(GetTBL1, parent.UpdatePageInterval);
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+
+
+
+    </script>
+</head>
+<body dir="rtl">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
+    <table border="1">
+       
+        <tr>
+            <td>
+                Window Display + scrolls that changes the position + angle
+
+            </td>
+            <td style="display:grid">
+                Actions
+                <input type="button" value="Up" />
+                <input type="button" value="Stop" />
+                <input type="button" value="Down" />
+                <input type="button" value="Setup" />
+                <input type="button" value="Change status to Error" />
+                <input type="button" value="Change status to Online" />
+
+            </td>
+            <td>
+                <div style="border:solid;width:200px;height:200px;">
+                    24 hours chart
+                </div>
+                <br />
+                <div class="demo-container" style="width:600px;">
+                    <div id="gridContainer"></div>
+                    <div id="gridContainer2"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
