@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Myriad Hebrew';
+    src: url('MyriadHebrew-Regular.eot');
+    src: url('MyriadHebrew-Regular.eot?#iefix') format('embedded-opentype'),
+        url('MyriadHebrew-Regular.woff2') format('woff2'),
+        url('MyriadHebrew-Regular.woff') format('woff'),
+        url('MyriadHebrew-Regular.ttf') format('truetype'),
+        url('MyriadHebrew-Regular.svg#MyriadHebrew-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

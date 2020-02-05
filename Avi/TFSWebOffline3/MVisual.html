@@ -245,13 +245,28 @@
             
 
             var DivName = "Box" + Id;
+            var titleError = "";
+            if (ErrorStr != '')
+                titleError += ErrorStr;
+
+            if (InfoStr != '')
+                titleError += InfoStr;
+
+            if (StatusId !== 2) {
+                titleError += StatusName
+            }
+
+            if (DriverStatusId !== 0) {
+                titleError += DriverStatusName
+            }
+
             AddDiv('DivAllBoxes', DivName, 'DivAllBoxes_Box', '', '', 'ShowPup(\'MOrgType3Details\',' + Id + ');', '');
-            AddDiv(DivName, DivName + 'Title', 'DivAllBoxes_Title', '', Name, '', '');
+            AddDiv(DivName, DivName + 'Title', 'DivAllBoxes_Title' + (titleError!=""? ' Error': ""), '', Name, '', '');
             AddDiv(DivName, DivName + 'Blind', 'DivAllBoxes_blind DivAllBoxes_blind' + Position, '', '', '');
             AddDiv(DivName, DivName + 'Position', 'DivAllBoxes_Position', '', 'ג:' + Position, '');
-            AddDiv(DivName, DivName + 'Angle', 'DivAllBoxes_Angle', '', 'ז:' + Angle, '');
-            
-
+            AddDiv(DivName, DivName + 'Angle', 'DivAllBoxes_Angle', '', 'ז:' + Angle, '');         
+        
+        /*
             if (ErrorStr != '')
                 AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', ' X ', '', ErrorStr, '');
 
@@ -259,7 +274,7 @@
                 AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', ' ! ', '', InfoStr, '');
             
 
-/*            if (StatusId !== 2) {
+            if (StatusId !== 2) {
 
                 AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', 'X', '',  StatusName);
             }
@@ -267,8 +282,9 @@
             if (DriverStatusId !== 0) {
                 AddDiv(DivName + 'Title', DivName + 'TitleError', 'DivAllBoxes_TitleError', '', '!', '', DriverStatusName);
             }
-            */
-
+        */
+        
+        
         }
 
 
@@ -556,7 +572,7 @@
         </tr>
         <tr>
             <td style="vertical-align:top; width: 20%;">
-                <div class="demo-container">
+                <div class="demo-container menu">
                     <div id="InsertDiv"></div>
                     <div id="gridContainer"></div>
                     <div id="gridContainer2"></div>
