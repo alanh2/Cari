@@ -15,6 +15,55 @@
     <script type="text/javascript" src="Scripts/dx.all.js"></script>
     <link  href="css/alan.css" rel="stylesheet" />
     <script>
+        var position = 70;
+        var isMoving = false;
+        var direction = "up"
+        window.onload = function() {
+            changeClass(position);
+        };
+        
+
+        function changeClass(otherClass = "") {
+            var element = document.getElementById("blindDetailContent");
+            element.className = "blindPosition" + position + " " + otherClass;
+        } 
+        function up(){
+            direction ="up"
+            if (!isMoving){
+                isMoving = true
+                doMove()
+            }
+        }
+        function down(){
+            direction = "down"
+            if (!isMoving){
+                isMoving = true
+                doMove()
+            }
+        }
+        function stop(){
+            isMoving = false
+        }
+
+        function error(){
+            var element = document.getElementById("blindDetailTitle");
+            element.className = "Error";
+        }
+
+        function doMove(){
+            if (!isMoving && position > 0 && position <= 100){
+                return;
+            }
+            if (direction == "up"){
+                position--;
+            }else{
+                position++;
+            }
+            changeClass(position);
+            setTimeout(doMove, 100);
+        }
+    </script>
+    <script>
 
         var GlobalParams = '';
 
@@ -259,27 +308,168 @@
 <body dir="rtl">
     <!-- The Modal -->
     <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
-    <table border="1">
+    <table>
        
         <tr>
             <td>
-                Window Display + scrolls that changes the position + angle
+                <div class="blindDetail">
+                    <div id="blindDetailTitle">1F10</div>
+                    <div id="blindDetailContent"></div>
+                </div>
 
             </td>
             <td style="display:grid">
-                Actions
-                <input type="button" value="Up" />
-                <input type="button" value="Stop" />
-                <input type="button" value="Down" />
-                <input type="button" value="Setup" />
-                <input type="button" value="Change status to Error" />
-                <input type="button" value="Change status to Online" />
-
+                <div class="actionButtonsContent">
+                    <input type="button" value="Up" onclick="up()" />
+                    <input type="button" value="Stop" onclick="stop()"/>
+                    <input type="button" value="Down" onclick="down()" />
+                    <input type="button" value="Setup" />
+                    <input type="button" value="Change status to Error" onclick="error()" />
+                    <input type="button" value="Change status to Online" />
+                </div>
             </td>
             <td>
-                <div style="border:solid;width:200px;height:200px;">
-                    24 hours chart
+                <style>
+
+                </style>
+                <div class="chart-content">
+                    <div id="chart">
+                
+                    </div>
                 </div>
+                
+                
+                    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+                
+                    <script>
+                        var options = {
+                            chart: {
+                                height: 270,
+                                type: 'area',
+                                toolbar: {
+                                  show: false
+                                }
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            stroke: {
+                                curve: 'straight'
+                            },
+                            series: [{
+                                name: 'open percent',
+                                data: [
+                                {
+                                  x: 0,
+                                  y: [100]
+                                },
+                                {
+                                  x: 1,
+                                  y: [80]
+                                },
+                                {
+                                  x: 2,
+                                  y: [85]
+                                },
+                                {
+                                  x: 3,
+                                  y: [85]
+                                },
+                                {
+                                  x: 4,
+                                  y: [70]
+                                },
+                                {
+                                  x: 5,
+                                  y: [70]
+                                },
+                                {
+                                  x: 6,
+                                  y: [70]
+                                },
+                                {
+                                  x: 7,
+                                  y: [50]
+                                },
+                                {
+                                  x: 8,
+                                  y: [10]
+                                },
+                                {
+                                  x: 9,
+                                  y: [10]
+                                },
+                                {
+                                  x: 10,
+                                  y: [10]
+                                },
+                                {
+                                  x: 11,
+                                  y: [10]
+                                },
+                                {
+                                  x: 12,
+                                  y: [30]
+                                },
+                                {
+                                  x: 13,
+                                  y: [30]
+                                },
+                                {
+                                  x: 14,
+                                  y: [30]
+                                },
+                                {
+                                  x: 15,
+                                  y: [30]
+                                },
+                                {
+                                  x: 16,
+                                  y: [30]
+                                },
+                                {
+                                  x: 17,
+                                  y: [30]
+                                },
+                                {
+                                  x: 18,
+                                  y: [30]
+                                },
+                                {
+                                  x: 19,
+                                  y: [50]
+                                },
+                                {
+                                  x: 20,
+                                  y: [50]
+                                },
+                                {
+                                  x: 21,
+                                  y: [50]
+                                },
+                                {
+                                  x: 22,
+                                  y: [50]
+                                },
+                                {
+                                  x: 23,
+                                  y: [60]
+                                }
+                                ]
+                            }],
+                            xaxis: {
+                                type: 'number',
+                            },
+                            
+                        }
+                
+                        var chart = new ApexCharts(
+                            document.querySelector("#chart"),
+                            options
+                        );
+                
+                        chart.render();
+                    </script>
                 <br />
                 <div class="demo-container table" style="width:600px;">
                     <div id="gridContainer"></div>
