@@ -588,10 +588,10 @@ input[type="checkbox"]:checked + label span {
 #blindDetailTitle.Error {
     /*background-color: var(--red);*/
 }
-#DivAllBoxes_Title.Error, #blindDetailTitle.Error {
+.DivAllBoxes_Title.Error, #blindDetailTitle.Error {
     background-color: var(--red);
 }
-#DivAllBoxes_Title.Error:after, #blindDetailTitle.Error::after{
+.DivAllBoxes_Title.Error:after, #blindDetailTitle.Error::after{
     font-family: 'fontello';
     content: '\e894';
     color: #fff;
