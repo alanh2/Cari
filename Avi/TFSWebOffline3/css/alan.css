@@ -220,6 +220,7 @@ input[type='checkbox']:checked:after {
     border: none;
     background-color: transparent;
     float: left;
+    width: 620px;
 }
 .demo-container.table .dx-widget, .demo-container.table .dx-widget::before, .demo-container.table .dx-widget::after, .demo-container.table .dx-widget *, .demo-container.table .dx-widget ::before, .demo-container.table .dx-widget ::after,
 .demo-container.table .dx-datagrid.dx-datagrid-borders > .dx-datagrid-header-panel{
@@ -473,15 +474,18 @@ input[type="checkbox"]:checked + label span {
 }
 
 .IfrmL2{
-    height: 650px;
+    height: 560px;
     margin-top: 0;
     margin-left: 0;
     width: 100%;
 }
 .modal-content {
     border-top: 17px solid var(--blue);
-    padding: 35px 20px 0;
+    padding: 35px 0 0;
     box-sizing: border-box;
+}
+.iframeBody{
+    padding: 0 20px;
 }
 .close {
     position: absolute;
@@ -492,7 +496,10 @@ input[type="checkbox"]:checked + label span {
     font-family: 'Montserrat', sans-serif;
 }
 #chart {
-    width: 470px;  
+    width: 470px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+
 }
 .chart-content{
     width: 440px;
@@ -503,6 +510,7 @@ input[type="checkbox"]:checked + label span {
     -moz-box-shadow: 0px 0px 5px var(--shadow);
     -webkit-box-shadow: 0px 0px 5px var(--shadow);
     box-shadow: 0 0 5px var(--shadow);
+    overflow: hidden;
 }
 
 .actionButtonsContent{
@@ -511,9 +519,12 @@ input[type="checkbox"]:checked + label span {
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
     height: auto;
-    width: 240px;
+    /*width: 240px;*/
+    width: 158px;
     background-color: var(--menuwhite);
-    padding: 8px 0 11px;
+    padding: 8px 0 10px;
+    float: left;
+    margin-left: 22px;
 }
 .actionButtonsContent input{
     text-align: right;
@@ -536,11 +547,12 @@ input[type="checkbox"]:checked + label span {
 }
 .blindDetail{
     width: 440px;
-    height: 550px;
+    height: 541px;
     background-color: var(--menuwhite);
     -moz-box-shadow: -1px 2px 5px var(--shadow);
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
+    position: absolute;
 }
 #blindDetailTitle{
     text-align: left;
