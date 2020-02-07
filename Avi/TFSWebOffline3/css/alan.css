@@ -119,9 +119,13 @@ input[type='checkbox']:checked:after {
 .buttonsBar{
     color: var(--blue) !important;
     font-size: 18px;
-    padding-right: 15px;
+    padding-right: 20px;
     width: 100%;  
     box-sizing: border-box;
+    line-height: 40px;
+}
+.buttonsBar label{
+    margin-left: 6px;
 }
 .buttonsBar input[type=text]{
     border: none;
@@ -131,7 +135,7 @@ input[type='checkbox']:checked:after {
     box-shadow: 0px 2px 5px var(--shadow);
     height: 23px;
     font-size: 13px;
-    width: 95px;
+    width: 80px;
     margin: 0 10px;
     padding-right: 5px;
 }
@@ -190,8 +194,8 @@ input[type='checkbox']:checked:after {
     border-top: none !important;
     border-bottom: none !important;
     background-color: white !important;
-    -moz-box-shadow:  1px 1px 6px var(--shadow);
-    -webkit-box-shadow:  1px 1px 6px var(--shadow);
+    -moz-box-shadow:  1px 1px 6px var(--shadow)!important;
+    -webkit-box-shadow:  1px 1px 6px var(--shadow)!important;
     box-shadow: 1px 1px 6px var(--shadow) !important;
     padding: 10px 0;
 }
@@ -226,6 +230,7 @@ input[type='checkbox']:checked:after {
 .demo-container.table .dx-datagrid.dx-datagrid-borders > .dx-datagrid-header-panel{
     background: transparent;
     overflow: visible;
+    border-radius: 5px;
 }
 .demo-container.table .dx-texteditor.dx-state-focused:before,
 .demo-container.table .dx-texteditor.dx-state-active:before {
@@ -285,13 +290,15 @@ input[type='checkbox']:checked:after {
     font-size: 14px;
     cursor: pointer;
 }
-.menu #gridContainer .dx-row-lines td a.dx-list-group-header.active, .menu #gridContainer .dx-row-lines td a.dx-list-group-header:hover{
+.menu #gridContainer .dx-row-lines td a.dx-list-group-header.active, 
+.menu #gridContainer .dx-row-lines td a.dx-list-group-header:active,
+.menu #gridContainer .dx-row-lines td a.dx-list-group-header:hover{
     color: var(--blue) !important;
     font-weight: 700;
 }
 .containerControlsInternalButtonControl {
-    margin: 10px;
-    float: none;
+    margin: 2px 8px 0;
+    float: left;
     background: var(--buttonBack);
     color: var(--buttonColor);
     font-size: 15px;
@@ -306,8 +313,9 @@ input[type='checkbox']:checked:after {
     -webkit-box-shadow: 0px 2px 5px var(--shadow);
     box-shadow: 0px 2px 5px var(--shadow);
 }
-.DivAllBoxes{
-	width: 100% !important;
+#DivAllBoxes{
+    width: 100% !important;
+    float: left;
 }
 .DivAllBoxes_Title{
 	background: var(--blue);
@@ -328,8 +336,8 @@ input[type='checkbox']:checked:after {
     display: inline-block !important;
     border: none;
 	color: var(--grey);
-    margin: 13px;
-    width: 130px;
+    margin: 13px 20px 13px 0;
+    width: 135px;
     height: 140px;
 	-moz-box-shadow: 1px 0 5px var(--shadow);
     -webkit-box-shadow: 1px 0 5px var(--shadow);
@@ -464,7 +472,7 @@ input[type="checkbox"] + label span {
     display:inline-block;
     width:17px;
     height:17px;
-    margin:-1px 3px 0 5px;
+    margin:-1px 3px 0 7px;
     vertical-align:middle;
     background:url("../images/checkboxes.png") left top no-repeat;
     cursor:pointer;
@@ -472,7 +480,10 @@ input[type="checkbox"] + label span {
 input[type="checkbox"]:checked + label span {
     background:url("../images/checkboxes.png") -17px top no-repeat;
 }
-
+#Ifrm{
+    border: none;
+    margin-top: 30px;
+}
 .IfrmL2{
     height: 560px;
     margin-top: 0;
@@ -525,20 +536,22 @@ input[type="checkbox"]:checked + label span {
     padding: 8px 0 10px;
     float: left;
     margin-left: 22px;
+    font-family: 'Montserrat', sans-serif;
 }
 .actionButtonsContent input{
-    text-align: right;
     width: 80%;
     margin: 5px 0 5px 10%;
     float: left;
     border: 1px solid var(--menuGrey);
     background-color: var(--lightGrey);
-    padding: 8px 20px 5px 0;
+    text-align: left;
+    padding: 0px 5px 0px 9px;
+    font-size: 12px;
+    line-height: 30px;
     -moz-box-shadow: -1px 2px 5px var(--shadow);
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
     color: var(--buttonBack) !important;
-    font-size: 14px;
     cursor: pointer;
 }
 .actionButtonsContent input:hover{
@@ -564,7 +577,7 @@ input[type="checkbox"]:checked + label span {
     font-size: 27px;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
-    padding: 40px;
+    padding: 40px 40px 0 30px;
 }
 #blindDetailContent{
     width: 90%;

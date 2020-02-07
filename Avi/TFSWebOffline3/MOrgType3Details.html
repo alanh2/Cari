@@ -52,7 +52,8 @@
         }
 
         function doMove(){
-            if (!isMoving && position > 0 && position <= 100){
+            if (!isMoving || (position == 0 && direction == "up") || (position == 100 && direction == "down")){
+                isMoving = false
                 return;
             }
             if (direction == "up"){
