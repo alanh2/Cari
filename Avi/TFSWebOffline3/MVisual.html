@@ -151,7 +151,7 @@
             SelectedGroupId = GroupId;
             GetAllEsp();
             //GetAllEspNoTimeout();
-            
+
         }
         function GetAllEsp() {
             
@@ -566,12 +566,12 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
 
-    <table>
+    <table width="100%">
         <tr style="display: none;">
             <td conspan="2" id="TdSelect" class="DivTableTitle">תצוגת מבנה</td>
         </tr>
         <tr>
-            <td style="vertical-align:top; width: 20%; position: fixed; z-index: 1;">
+            <td style="vertical-align:top; width: 20%; position: fixed; z-index: 1; margin-top: -5px;">
                 <div class="demo-container menu">
                     <div id="InsertDiv"></div>
                     <div id="gridContainer"></div>
@@ -587,7 +587,7 @@
                     <label for="ChkError"><span></span>תקלה</label>
                     <br />
                     גובה: <input type="text" id="TxtPosition"  value="100"/>
-                    זוית: <input type="text" id="TxtAngle" value="0"/>
+                    זוית: <input type="text" id="TxtAngle" value="0" style="width: 88px"/>
                         <input type="button" value="עדכן" onclick="UpdateMultuple()" class="containerControlsInternalButtonControl" />
                         <input type="button" value="עצור" onclick="StopMultuple()" class="containerControlsInternalButtonControl" />
                         <input type="button" value="כיול" onclick="HomingMultuple()" class="containerControlsInternalButtonControl" />

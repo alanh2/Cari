@@ -163,6 +163,7 @@ input[type='checkbox']:checked:after {
     -webkit-box-shadow: 0px 2px 5px var(--shadow);
     box-shadow: 0px 2px 5px var(--shadow);
     padding: 20px 0;
+    border-radius: 5px;
 }
 .table #gridContainer{
     padding: 0;
@@ -243,6 +244,7 @@ input[type='checkbox']:checked:after {
     -moz-box-shadow: -1px 2px 5px var(--shadow);
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
+    border-radius: 5px;
 }
 .demo-container.table .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer,
 .demo-container.table .dx-texteditor.dx-editor-underlined.dx-state-hover::after,
@@ -380,7 +382,7 @@ input[type='checkbox']:checked:after {
     cursor: pointer;
     display: inline;
     border-radius: 4px;
-    padding: 3px 25px 7px;
+    padding: 3px 28px 7px;
     box-sizing: border-box;
     -moz-box-shadow: 0px 2px 5px var(--shadow);
     -webkit-box-shadow: 0px 2px 5px var(--shadow);
@@ -627,6 +629,7 @@ input[type="checkbox"]:checked + label span {
     box-shadow: -1px 2px 5px var(--shadow);
     color: var(--buttonBack) !important;
     cursor: pointer;
+    font-family: "Montserrat", sans-serif;
 }
 .actionButtonsContent input:hover{
     color: var(--blue) !important;

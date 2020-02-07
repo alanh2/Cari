@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link href="css/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/dx.common.css">
+    <link href="css/GlobalCSS.css" rel="stylesheet" />
+    <link href="css/classicLive.css" rel="stylesheet" />
+
+    <script src="Js/GlobalFunc.js"></script>
+    <script src="Js/jquery-3.4.1.min.js"></script>
+    <script src="Js/config.js"></script>
+    <script type="text/javascript" src="Scripts/dx.all.js"></script>
+    <link href="css/NewDeisgn.css" rel="stylesheet" />
+    <link  href="css/alan.css" rel="stylesheet" />
+    <script>
+
+        var OrgTypeId = 1;
+        var LastSelectedId = 0;
+        var Tbl1DataSource;
+        var TblBoxes;
+        var TblOrgFuncSendFields;
+        var TblZOrgTypeStatus;
+
+        var TableName1 = 'Groups';
+        var DBType;
+        var SelectedOrgId = 1;
+        var SelectedVersionId = 1;
+        var SelectedSourceFldId = 1;
+
+        $(document).ready(function () {
+            GetTBL1();
+            GetAllEsp();
+            //AddNewRecButton('InsertDiv', 'ShowPup(\'GroupDetails\', -1); ');
+        });
+
+        function GetTBL1() {
+            Tbl1DataSource = [{ "FldId": 2, "FldMainName": "חזית", "FldSecName": "מזרחית", "FldDisplayName": "חזית מזרחית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 6, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "חזית מזרחית" }, { "FldId": 4, "FldMainName": "חזית", "FldSecName": "מערבית", "FldDisplayName": "חזית מערבית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 0, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "חזית מערבית" }, { "FldId": 1, "FldMainName": "חזית", "FldSecName": "מערבית3", "FldDisplayName": "חזית מערבית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 0, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 1, "FldDisplayName2": "חזית מערבית" }, { "FldId": 3, "FldMainName": "חזית", "FldSecName": "צפונית", "FldDisplayName": "חזית צפונית", "FldCreationDate": "\/Date(1568557274057)\/", "FldLastUpdateDate": "\/Date(1568557279113)\/", "TotalGroupToOrg": 0, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "חזית צפונית" }, { "FldId": 17, "FldMainName": "כל", "FldSecName": "הארגון", "FldDisplayName": "כל הארגון", "FldCreationDate": "\/Date(1572976223547)\/", "FldLastUpdateDate": null, "TotalGroupToOrg": 0, "TotalRuleActionsToOrg": 0, "TotalUsersToGroups": 0, "FldDisplayName2": "כל הארגון" }];
+            LoadDDGrid();
+            return;
+
+            var Name = TableName1 + 'Select';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': ''
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    Tbl1DataSource = JSON.parse(data.d).result_name;
+                    LoadDDGrid();
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+        function LoadDDGrid() {
+            var dataGrid = $("#gridContainer").dxDataGrid({
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: false,
+                    width: 240,
+                    placeholder: "",
+                    alignment: "right",
+
+                },
+
+                dataSource: Tbl1DataSource,
+                keyExpr: "FldId",
+                showBorders: true,
+                paging: {
+                    enabled: true,
+                    pageSize: 10
+
+                },
+                editing: {
+                    mode: "popup",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false,
+                    popup: {
+                        title: "Employee Info",
+                        showTitle: true,
+                        width: 700,
+                        height: 525,
+                        position: {
+                            my: "top",
+                            at: "top",
+                            of: window
+                        },
+                        useIcons: true
+                    },
+                    form: {
+                        items: [{
+                            itemType: "group",
+                            colCount: 2,
+                            colSpan: 2,
+                            items: ["FldOrder", "FldFuncId", "FldDisplayName"]
+                        }]
+                    }
+                },
+
+                columns: [
+                    {
+                        dataField: "FldDisplayName", caption: "שם", alignment: "right", width: 220, cellTemplate:
+                        function (container, options) {
+                            $('<a class="dx-list-group-header" onclick="ShowPup(\'GroupDetails\',' + options.key + ');" ">' + options.value + '</a>')
+                                .attr('target', '_blank')
+                                .appendTo(container);
+                        }
+                    },
+
+                ],
+
+            });
+        }
+
+
+        function GetAllEsp(OrgId) {
+
+            TblBoxes = [{"FldId":222,"FldOrgId":6377,"FldGroupId":2,"FldPosX":210,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2046,"FldDisplayName":"1f11","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":223,"FldOrgId":6368,"FldGroupId":2,"FldPosX":480,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2048,"FldDisplayName":"1f2","FldShutterEngale":0,"FldESPCurrentPosition":0,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":224,"FldOrgId":6375,"FldGroupId":2,"FldPosX":270,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2049,"FldDisplayName":"1f9","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":225,"FldOrgId":6370,"FldGroupId":2,"FldPosX":420,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2050,"FldDisplayName":"1f4","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":226,"FldOrgId":6374,"FldGroupId":2,"FldPosX":300,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2051,"FldDisplayName":"1f8","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":227,"FldOrgId":6372,"FldGroupId":2,"FldPosX":360,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2052,"FldDisplayName":"1f6","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":228,"FldOrgId":6378,"FldGroupId":2,"FldPosX":180,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2053,"FldDisplayName":"1f12","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":229,"FldOrgId":6369,"FldGroupId":2,"FldPosX":450,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2054,"FldDisplayName":"1f3","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":230,"FldOrgId":6373,"FldGroupId":2,"FldPosX":330,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2055,"FldDisplayName":"1f7","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":231,"FldOrgId":6371,"FldGroupId":2,"FldPosX":390,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2056,"FldDisplayName":"1f5","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":232,"FldOrgId":6652,"FldGroupId":2,"FldPosX":390,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2073,"FldDisplayName":"2F5","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":233,"FldOrgId":6653,"FldGroupId":2,"FldPosX":360,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2076,"FldDisplayName":"2F6","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":234,"FldOrgId":6657,"FldGroupId":2,"FldPosX":240,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2077,"FldDisplayName":"2F10","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":235,"FldOrgId":6654,"FldGroupId":2,"FldPosX":330,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2078,"FldDisplayName":"2F7","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":236,"FldOrgId":6655,"FldGroupId":2,"FldPosX":300,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2079,"FldDisplayName":"2F8","FldShutterEngale":0,"FldESPCurrentPosition":0,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":237,"FldOrgId":6656,"FldGroupId":2,"FldPosX":270,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2080,"FldDisplayName":"2F9","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":238,"FldOrgId":6651,"FldGroupId":2,"FldPosX":420,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2081,"FldDisplayName":"2F4","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":239,"FldOrgId":6650,"FldGroupId":2,"FldPosX":450,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2083,"FldDisplayName":"2F3","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":240,"FldOrgId":6648,"FldGroupId":2,"FldPosX":510,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2084,"FldDisplayName":"2F1","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":241,"FldOrgId":6658,"FldGroupId":2,"FldPosX":210,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2086,"FldDisplayName":"2F11","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":242,"FldOrgId":6694,"FldGroupId":2,"FldPosX":510,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2115,"FldDisplayName":"3F1","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":243,"FldOrgId":6700,"FldGroupId":2,"FldPosX":330,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2116,"FldDisplayName":"3F7","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":244,"FldOrgId":6696,"FldGroupId":2,"FldPosX":450,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2117,"FldDisplayName":"3F3","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":245,"FldOrgId":6697,"FldGroupId":2,"FldPosX":420,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2121,"FldDisplayName":"3F4","FldShutterEngale":35,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":246,"FldOrgId":6698,"FldGroupId":2,"FldPosX":390,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2123,"FldDisplayName":"3F5","FldShutterEngale":0,"FldESPCurrentPosition":0,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":247,"FldOrgId":6705,"FldGroupId":2,"FldPosX":180,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2124,"FldDisplayName":"3F12","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":248,"FldOrgId":6701,"FldGroupId":2,"FldPosX":300,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2125,"FldDisplayName":"3F8","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":249,"FldOrgId":6699,"FldGroupId":2,"FldPosX":360,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2126,"FldDisplayName":"3F6","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":250,"FldOrgId":6704,"FldGroupId":2,"FldPosX":210,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2127,"FldDisplayName":"3F11","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":251,"FldOrgId":6702,"FldGroupId":2,"FldPosX":270,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2128,"FldDisplayName":"3F9","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"}];
+            DrawBoxes();
+
+            return;
+            
+            // Do not auto refresh when modal is open
+            if (document.getElementById('myModal').style.display == 'block')
+                return;
+
+
+            var Name = 'XMTblZOrgType3SelectVisual';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': 'GroupId,null'
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+
+                    TblBoxes = JSON.parse(data.d).result_name;
+                    DrawBoxes();
+                    debugger;
+                    //                    setTimeout(GetTBL1, UpdatePageInterval);
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+
+        function DrawBoxes() {
+
+            var DivAllBoxes = document.getElementById('DivAllBoxes');
+            DivAllBoxes.innerHTML = '';
+
+            for (var i = 0; i < TblBoxes.length; i++) {
+                GetBox(TblBoxes[i].FldId, TblBoxes[i].FldDisplayName, TblBoxes[i].FldESPCurrentPosition, TblBoxes[i].FldShutterEngale,
+                    TblBoxes[i].FldPosX, TblBoxes[i].FldPosY, TblBoxes[i].FldHeight, TblBoxes[i].FldWidth
+                );
+            }
+
+        }
+
+        function GetBox(Id, Name, Positoin, Angle, PosX, PosY, Height, Width) {
+            //debugger;
+            var DivName = "Box" + Id;
+            AddDiv('DivAllBoxes', DivName, 'DivAllBoxesVisual2_Box', ' width: ' + Width + 'px;  height: ' + Height + 'px; left: ' + PosX + 'px; top:' + PosY + 'px ', '', '');
+            AddDiv(DivName, DivName + 'Title', 'DivAllBoxesVisual2_Title', '', Name, '');
+            AddDiv(DivName, DivName + 'Position', '', '', '' + Positoin, '');
+            AddDiv(DivName, DivName + 'Angle', '', '', '' + Angle, '');
+
+            //            return str;
+        }
+
+
+
+        function AddDiv(OldDivId, NewDivId, className, style, Title, onclicks) {
+            var NewDiv = document.createElement("div");
+
+            if (NewDivId != '')
+                NewDiv.setAttribute("Id", NewDivId);
+
+            if (className != '')
+                NewDiv.setAttribute("class", className);
+
+            if (style != '')
+                NewDiv.setAttribute("style", style);
+
+            if (Title != '')
+                NewDiv.innerText = Title;
+
+            if (onclicks != '')
+                NewDiv.setAttribute("onclick", onclicks);
+
+
+
+            document.getElementById(OldDivId).appendChild(NewDiv);
+        }
+
+    </script>
+</head>
+<body dir="rtl" class="bodyCss">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
+
+    <table>
+        <tr>
+            <td id="TdSelect" class="DivTableTitle">תצוגת מבנה</td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;">
+                <div class="demo-container menu">
+                    <div id="InsertDiv"></div>
+                    <div id="gridContainer"></div>
+                    <div id="gridContainer2"></div>
+                </div>
+            </td>
+            <td>
+                <div id="DivAllBoxes" style="width:800px">
+                  
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
