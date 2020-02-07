@@ -96,7 +96,7 @@
                 searchPanel: {
                     visible: true,
                     width: '100%',
-                    placeholder: "Search..."
+                    placeholder: "Search"
                 },
 
                 dataSource: Tbl1DataSource,
@@ -134,17 +134,15 @@
                     }
                 },
                 columns: [
-                    
-                    { dataField: "StatusDisplay", caption: "סטטוס", width: 120 },
-
-                   
-                    { dataField: "MotorState", caption: "MotorState", width: 100 },
-                    { dataField: "DeviceState", caption: "DeviceState", width: 100 },
+                    { dataField: "StatusDisplay", caption: "סטטוס", width: 110, alignment:'right',},
+                    { dataField: "MotorState", caption: "MotorState", width: 120, alignment:'left',},
+                    { dataField: "DeviceState", caption: "DeviceState", width: 120, alignment:'left',},
                     
                     {
                         dataField: 'FldCreationDate',
-                        caption: "ת. יצירה", width: 150,
+                        caption: "ת. יצירה", width: 160,
                         dataType: 'datetime',
+                        alignment:'center',
                         customizeText: function (options) {
                             return !options.value ? "" : GetDateFormat(options); //moment(options.value).format("MMM/DD/YYYY").replace(".", "");
                         }
