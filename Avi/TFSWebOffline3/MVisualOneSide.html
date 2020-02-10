@@ -130,7 +130,498 @@
 
         function GetAllEsp(OrgId) {
 
-            TblBoxes = [{"FldId":222,"FldOrgId":6377,"FldGroupId":2,"FldPosX":210,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2046,"FldDisplayName":"1f11","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":223,"FldOrgId":6368,"FldGroupId":2,"FldPosX":480,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2048,"FldDisplayName":"1f2","FldShutterEngale":0,"FldESPCurrentPosition":0,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":224,"FldOrgId":6375,"FldGroupId":2,"FldPosX":270,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2049,"FldDisplayName":"1f9","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":225,"FldOrgId":6370,"FldGroupId":2,"FldPosX":420,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2050,"FldDisplayName":"1f4","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":226,"FldOrgId":6374,"FldGroupId":2,"FldPosX":300,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2051,"FldDisplayName":"1f8","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":227,"FldOrgId":6372,"FldGroupId":2,"FldPosX":360,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2052,"FldDisplayName":"1f6","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":228,"FldOrgId":6378,"FldGroupId":2,"FldPosX":180,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2053,"FldDisplayName":"1f12","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":229,"FldOrgId":6369,"FldGroupId":2,"FldPosX":450,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2054,"FldDisplayName":"1f3","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":230,"FldOrgId":6373,"FldGroupId":2,"FldPosX":330,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2055,"FldDisplayName":"1f7","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":231,"FldOrgId":6371,"FldGroupId":2,"FldPosX":390,"FldPosY":480,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2056,"FldDisplayName":"1f5","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":232,"FldOrgId":6652,"FldGroupId":2,"FldPosX":390,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2073,"FldDisplayName":"2F5","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":233,"FldOrgId":6653,"FldGroupId":2,"FldPosX":360,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2076,"FldDisplayName":"2F6","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":234,"FldOrgId":6657,"FldGroupId":2,"FldPosX":240,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2077,"FldDisplayName":"2F10","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":235,"FldOrgId":6654,"FldGroupId":2,"FldPosX":330,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2078,"FldDisplayName":"2F7","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":236,"FldOrgId":6655,"FldGroupId":2,"FldPosX":300,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2079,"FldDisplayName":"2F8","FldShutterEngale":0,"FldESPCurrentPosition":0,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":237,"FldOrgId":6656,"FldGroupId":2,"FldPosX":270,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2080,"FldDisplayName":"2F9","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":238,"FldOrgId":6651,"FldGroupId":2,"FldPosX":420,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2081,"FldDisplayName":"2F4","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":239,"FldOrgId":6650,"FldGroupId":2,"FldPosX":450,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2083,"FldDisplayName":"2F3","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":240,"FldOrgId":6648,"FldGroupId":2,"FldPosX":510,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2084,"FldDisplayName":"2F1","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":241,"FldOrgId":6658,"FldGroupId":2,"FldPosX":210,"FldPosY":400,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2086,"FldDisplayName":"2F11","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":242,"FldOrgId":6694,"FldGroupId":2,"FldPosX":510,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2115,"FldDisplayName":"3F1","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":243,"FldOrgId":6700,"FldGroupId":2,"FldPosX":330,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2116,"FldDisplayName":"3F7","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":244,"FldOrgId":6696,"FldGroupId":2,"FldPosX":450,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2117,"FldDisplayName":"3F3","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":2,"StatusDisplay":"פעיל"},{"FldId":245,"FldOrgId":6697,"FldGroupId":2,"FldPosX":420,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2121,"FldDisplayName":"3F4","FldShutterEngale":35,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":246,"FldOrgId":6698,"FldGroupId":2,"FldPosX":390,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2123,"FldDisplayName":"3F5","FldShutterEngale":0,"FldESPCurrentPosition":0,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":247,"FldOrgId":6705,"FldGroupId":2,"FldPosX":180,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2124,"FldDisplayName":"3F12","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":248,"FldOrgId":6701,"FldGroupId":2,"FldPosX":300,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2125,"FldDisplayName":"3F8","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":249,"FldOrgId":6699,"FldGroupId":2,"FldPosX":360,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2126,"FldDisplayName":"3F6","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":250,"FldOrgId":6704,"FldGroupId":2,"FldPosX":210,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2127,"FldDisplayName":"3F11","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"},{"FldId":251,"FldOrgId":6702,"FldGroupId":2,"FldPosX":270,"FldPosY":320,"FldHeight":80,"FldWidth":30,"FldTypeId":3,"EspId":2128,"FldDisplayName":"3F9","FldShutterEngale":0,"FldESPCurrentPosition":1,"FldStatusId":1,"StatusDisplay":"לא מקושר"}];
+            TblBoxes = [
+  {
+    "FldId": 222,
+    "FldOrgId": 6377,
+    "FldGroupId": 2,
+    "FldPosX": 300,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2046,
+    "FldDisplayName": "1f11",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 223,
+    "FldOrgId": 6368,
+    "FldGroupId": 2,
+    "FldPosX": 660,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2048,
+    "FldDisplayName": "1f2",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 0,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 224,
+    "FldOrgId": 6375,
+    "FldGroupId": 2,
+    "FldPosX": 360,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2049,
+    "FldDisplayName": "1f9",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 225,
+    "FldOrgId": 6370,
+    "FldGroupId": 2,
+    "FldPosX": 540,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2050,
+    "FldDisplayName": "1f4",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 226,
+    "FldOrgId": 6374,
+    "FldGroupId": 2,
+    "FldPosX": 420,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2051,
+    "FldDisplayName": "1f8",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 227,
+    "FldOrgId": 6372,
+    "FldGroupId": 2,
+    "FldPosX": 420,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2052,
+    "FldDisplayName": "1f6",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 228,
+    "FldOrgId": 6378,
+    "FldGroupId": 2,
+    "FldPosX": 180,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2053,
+    "FldDisplayName": "1f12",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 229,
+    "FldOrgId": 6369,
+    "FldGroupId": 2,
+    "FldPosX": 600,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2054,
+    "FldDisplayName": "1f3",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 230,
+    "FldOrgId": 6373,
+    "FldGroupId": 2,
+    "FldPosX": 360,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2055,
+    "FldDisplayName": "1f7",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 231,
+    "FldOrgId": 6371,
+    "FldGroupId": 2,
+    "FldPosX": 480,
+    "FldPosY": 224,
+    "FldWidth": 412,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2056,
+    "FldDisplayName": "1f5",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 232,
+    "FldOrgId": 6652,
+    "FldGroupId": 2,
+    "FldPosX": 600,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2073,
+    "FldDisplayName": "2F5",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 233,
+    "FldOrgId": 6653,
+    "FldGroupId": 2,
+    "FldPosX": 540,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2076,
+    "FldDisplayName": "2F6",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 234,
+    "FldOrgId": 6657,
+    "FldGroupId": 2,
+    "FldPosX": 300,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2077,
+    "FldDisplayName": "2F10",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 235,
+    "FldOrgId": 6654,
+    "FldGroupId": 2,
+    "FldPosX": 480,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2078,
+    "FldDisplayName": "2F7",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 236,
+    "FldOrgId": 6655,
+    "FldGroupId": 2,
+    "FldPosX": 420,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2079,
+    "FldDisplayName": "2F8",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 0,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 237,
+    "FldOrgId": 6656,
+    "FldGroupId": 2,
+    "FldPosX": 360,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2080,
+    "FldDisplayName": "2F9",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 238,
+    "FldOrgId": 6651,
+    "FldGroupId": 2,
+    "FldPosX": 660,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2081,
+    "FldDisplayName": "2F4",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 239,
+    "FldOrgId": 6650,
+    "FldGroupId": 2,
+    "FldPosX": 720,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2083,
+    "FldDisplayName": "2F3",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 240,
+    "FldOrgId": 6648,
+    "FldGroupId": 2,
+    "FldPosX": 840,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2084,
+    "FldDisplayName": "2F1",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 241,
+    "FldOrgId": 6658,
+    "FldGroupId": 2,
+    "FldPosX": 240,
+    "FldPosY": 132,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2086,
+    "FldDisplayName": "2F11",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 242,
+    "FldOrgId": 6694,
+    "FldGroupId": 2,
+    "FldPosX": 840,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2115,
+    "FldDisplayName": "3F1",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 243,
+    "FldOrgId": 6700,
+    "FldGroupId": 2,
+    "FldPosX": 480,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2116,
+    "FldDisplayName": "3F7",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 244,
+    "FldOrgId": 6696,
+    "FldGroupId": 2,
+    "FldPosX": 720,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2117,
+    "FldDisplayName": "3F3",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 2,
+    "StatusDisplay": "פעיל"
+  },
+  {
+    "FldId": 245,
+    "FldOrgId": 6697,
+    "FldGroupId": 2,
+    "FldPosX": 660,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2121,
+    "FldDisplayName": "3F4",
+    "FldShutterEngale": 35,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 246,
+    "FldOrgId": 6698,
+    "FldGroupId": 2,
+    "FldPosX": 600,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2123,
+    "FldDisplayName": "3F5",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 0,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 247,
+    "FldOrgId": 6705,
+    "FldGroupId": 2,
+    "FldPosX": 180,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2124,
+    "FldDisplayName": "3F12",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 248,
+    "FldOrgId": 6701,
+    "FldGroupId": 2,
+    "FldPosX": 420,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2125,
+    "FldDisplayName": "3F8",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 249,
+    "FldOrgId": 6699,
+    "FldGroupId": 2,
+    "FldPosX": 540,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2126,
+    "FldDisplayName": "3F6",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 250,
+    "FldOrgId": 6704,
+    "FldGroupId": 2,
+    "FldPosX": 240,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2127,
+    "FldDisplayName": "3F11",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  },
+  {
+    "FldId": 251,
+    "FldOrgId": 6702,
+    "FldGroupId": 2,
+    "FldPosX": 360,
+    "FldPosY": 40,
+    "FldHeight": 90,
+    "FldWidth": 60,
+    "FldTypeId": 3,
+    "EspId": 2128,
+    "FldDisplayName": "3F9",
+    "FldShutterEngale": 0,
+    "FldESPCurrentPosition": 1,
+    "FldStatusId": 1,
+    "StatusDisplay": "לא מקושר"
+  }
+];
             DrawBoxes();
 
             return;
@@ -183,8 +674,8 @@
             var DivName = "Box" + Id;
             AddDiv('DivAllBoxes', DivName, 'DivAllBoxesVisual2_Box', ' width: ' + Width + 'px;  height: ' + Height + 'px; left: ' + PosX + 'px; top:' + PosY + 'px ', '', '');
             AddDiv(DivName, DivName + 'Title', 'DivAllBoxesVisual2_Title', '', Name, '');
-            AddDiv(DivName, DivName + 'Position', '', '', '' + Positoin, '');
-            AddDiv(DivName, DivName + 'Angle', '', '', '' + Angle, '');
+            AddDiv(DivName, DivName + 'Position', 'DivAllBoxesVisual2_Position', '', '' + Positoin, '');
+            AddDiv(DivName, DivName + 'Angle', 'DivAllBoxesVisual2_Angle', '', '' + Angle, '');
 
             //            return str;
         }
@@ -220,20 +711,20 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
 
-    <table>
-        <tr>
+    <table width="100%">
+        <tr style="display: none;">
             <td id="TdSelect" class="DivTableTitle">תצוגת מבנה</td>
         </tr>
         <tr>
-            <td style="vertical-align:top;">
+            <td class="menu-container front">
                 <div class="demo-container menu">
                     <div id="InsertDiv"></div>
                     <div id="gridContainer"></div>
                     <div id="gridContainer2"></div>
                 </div>
             </td>
-            <td>
-                <div id="DivAllBoxes" style="width:800px">
+            <td class="central-container">
+                <div id="DivAllBoxes">
                   
                 </div>
             </td>

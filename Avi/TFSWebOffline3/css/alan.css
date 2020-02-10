@@ -20,6 +20,7 @@
     font-weight: normal;
     font-style: normal;
   }
+
 body{
     margin: 0;
     font-family: 'Myriad Hebrew', sans-serif !important;
@@ -215,7 +216,20 @@ input[type='checkbox']:checked:after {
 .dx-datagrid-headers .dx-datagrid-table .dx-row > td .dx-sort{
     color: var(--blue) !important;
 }
-
+.central-container{
+    vertical-align: baseline; 
+    width: 80%;
+}
+.menu-container{
+    vertical-align:top;
+    width: 230px;
+    position: fixed;
+    z-index: 1;
+    margin-top: -5px;
+}
+.front .menu .dx-datagrid .dx-icon-filter-operation-default::before{ 
+    left: 210px;
+}
 .demo-container.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table{
     border-collapse: separate !important;
     border-spacing: 10px 10px !important;
@@ -223,11 +237,16 @@ input[type='checkbox']:checked:after {
 .demo-container.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table td{
     border-radius: 5px;
     background-color: white;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
     -moz-box-shadow: -1px 2px 5px var(--shadow);
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
 }
-
+.demo-container.table .dx-datagrid-header-panel{
+    text-align: right;
+}
 .demo-container.table .dx-datagrid-rowsview .dx-row {
     border-top: none !important;
     border-bottom: none !important;
@@ -267,13 +286,16 @@ input[type='checkbox']:checked:after {
 .modal-content{
 	background-color: var(--lightGrey);
 }
-.demo-container.table {
+.demo-container.table{
     border: none;
     background-color: transparent;
     float: left;
+}
+.demo-container.table.modalTable {
     width: 640px;
     margin-left: -10px;
 }
+
 .demo-container.table .dx-widget, .demo-container.table .dx-widget::before, .demo-container.table .dx-widget::after, .demo-container.table .dx-widget *, .demo-container.table .dx-widget ::before, .demo-container.table .dx-widget ::after,
 .demo-container.table .dx-datagrid.dx-datagrid-borders > .dx-datagrid-header-panel{
     background: transparent;
@@ -342,7 +364,7 @@ input[type='checkbox']:checked:after {
 
 .menu .dx-datagrid .dx-icon-filter-operation-default::before{
     position: absolute;
-    left: 225px;
+    left: 220px;
     top: 0;
 }
 .menu #gridContainer .dx-row-lines td{
@@ -393,7 +415,7 @@ input[type='checkbox']:checked:after {
     margin-top: 80px;
     float: left;
 }
-.DivAllBoxes_Title{
+.DivAllBoxes_Title, .DivAllBoxesVisual2_Title{
 	background: var(--blue);
 	text-align: left;
     color: var(--white);
@@ -408,17 +430,41 @@ input[type='checkbox']:checked:after {
     font-weight: normal !important;
     font-family: 'Montserrat', sans-serif !important;
 }
-.DivAllBoxes_Box {
-    display: inline-block !important;
-    border: none;
-	color: var(--grey);
+.DivAllBoxes_Box{
     margin: 13px 20px 13px 0;
     width: 135px;
     height: 140px;
+}
+.DivAllBoxesVisual2_Box{
+    width: 60px;
+    height: 90px;
+}
+.DivAllBoxes_Box, .DivAllBoxesVisual2_Box {
+    display: inline-block !important;
+    border: none;
+	color: var(--grey);
 	-moz-box-shadow: 1px 0 5px var(--shadow);
     -webkit-box-shadow: 1px 0 5px var(--shadow);
     box-shadow: 1px 0 5px var(--shadow);
 }
+.DivAllBoxes_Position,
+.DivAllBoxes_Angle,
+.DivAllBoxesVisual2_Position,
+.DivAllBoxesVisual2_Angle{    
+    float: right;
+    margin-right: 5px;
+    height: auto;
+    font-size: 15.68px;
+}
+.DivAllBoxesVisual2_Position,
+.DivAllBoxesVisual2_Angle{
+    width: 100%;
+}
+.DivAllBoxes_Position,
+.DivAllBoxes_Angle{
+    width: 40px;
+}
+
 .DivAllBoxes_blind{
     margin-left: 10px;
     width: 75px;
@@ -498,14 +544,6 @@ input[type='checkbox']:checked:after {
 }
 .blindPosition100{
     background-image: url("../images/23.png");
-}
-.DivAllBoxes_Position,
-.DivAllBoxes_Angle{
-    float: right;
-    margin-right: 5px;
-    width: 40px;
-    height: auto;
-    font-size: 15.68px;
 }
 #header{
     background: url("../images/header.png") repeat-x;
@@ -687,6 +725,13 @@ input[type="checkbox"]:checked + label span {
     color: #fff;
     float: right;
     margin-right: -6px;
+}
+/*Mac Hacks*/
+.mac-os #cssmenu > ul li:nth-child(2) a{
+    width: 169px;
+}
+.mac-os .buttonsBar{
+    padding-left: 22px;
 }
 :root {
   --blue: #0085cf;

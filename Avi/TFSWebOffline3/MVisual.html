@@ -16,8 +16,8 @@
     <script type="text/javascript" src="Scripts/dx.all.js"></script>
     <link href="css/NewDeisgn.css" rel="stylesheet" />
     <link  href="css/alan.css" rel="stylesheet" />
+    <script src="Js/alan.js"></script>
     <script>
-
         var OrgTypeId = 1;
         var LastSelectedId = 0;
         var Tbl1DataSource;
@@ -571,14 +571,14 @@
             <td conspan="2" id="TdSelect" class="DivTableTitle">תצוגת מבנה</td>
         </tr>
         <tr>
-            <td style="vertical-align:top; width: 20%; position: fixed; z-index: 1; margin-top: -5px;">
+            <td class="menu-container">
                 <div class="demo-container menu">
                     <div id="InsertDiv"></div>
                     <div id="gridContainer"></div>
                     <div id="gridContainer2"></div>
                 </div>
             </td>
-            <td style="vertical-align: baseline; width: 80%;">
+            <td class="central-container">
                 <div class="buttonsBar">
                     סינון: <input type="text" id="TxtFilter" oninput="DrawBoxes();" />
                     <input type="checkbox" id="ChkActive" checked="checked"  oninput="DrawBoxes();" />

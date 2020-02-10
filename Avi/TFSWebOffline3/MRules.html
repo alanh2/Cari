@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link href="css/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/dx.common.css">
+    <link href="css/GlobalCSS.css" rel="stylesheet" />
+    <link href="css/classicLive.css" rel="stylesheet" />
+
+    <script src="Js/GlobalFunc.js"></script>
+    <script src="Js/jquery-3.4.1.min.js"></script>
+    <script src="Js/config.js"></script>
+    <script type="text/javascript" src="Scripts/dx.all.js"></script>
+    <link  href="css/alan.css" rel="stylesheet" />
+    <script src="Js/alan.js"></script>
+    <script>
+
+        var OrgTypeId = 1;
+        var LastSelectedId = 0;
+        var Tbl1DataSource;
+        var TblOrgFuncSendFields;
+        var TblZOrgTypeStatus;
+
+        var TableName1 = 'Rules';
+        var DBType;
+        var SelectedOrgId = 1;
+        var SelectedVersionId = 1;
+        var SelectedSourceFldId = 1;
+
+        $(document).ready(function () {
+            GetTBL1();
+            AddNewRecButton('InsertDiv', 'ShowPup(\'RuleDetails\', -1); ');
+
+        });
+
+        function GetTBL1() {
+            Tbl1DataSource = [{ "FldId": 1, "FldOrder": 1, "FldDisplayName": "דגל ישראל", "FldIsOn": false, "FldIsActivate": true, "FldRuleSubFullDisplayName": "וילון - חלונות להרמה - (3)קבוצות \u003cbr /\u003eוילון - חלונות להורדה - קומה 10", "FldTimesToRuleDisplayName": "א, ב, ג, ד, ה, ו, ש, 02:0 - 00:0\u003cBR /\u003e", "FldDisplayName2": "דגל ישראל" }, { "FldId": 2, "FldOrder": 2, "FldDisplayName": "הורד כל הוילונות", "FldIsOn": false, "FldIsActivate": false, "FldRuleSubFullDisplayName": "וילון - כל הארגון - תוצרת הארץ", "FldTimesToRuleDisplayName": "", "FldDisplayName2": "הורד כל הוילונות" }, { "FldId": 3, "FldOrder": 3, "FldDisplayName": "הרם כל הוילנות", "FldIsOn": false, "FldIsActivate": false, "FldRuleSubFullDisplayName": "וילון - כל הארגון - תוצרת הארץ", "FldTimesToRuleDisplayName": "", "FldDisplayName2": "הרם כל הוילנות" }, { "FldId": 4, "FldOrder": 4, "FldDisplayName": "כיול וילנות", "FldIsOn": true, "FldIsActivate": false, "FldRuleSubFullDisplayName": "וילון - כל הארגון - תוצרת הארץ", "FldTimesToRuleDisplayName": "", "FldDisplayName2": "כיול וילנות" }, { "FldId": 5, "FldOrder": 5, "FldDisplayName": "העבר את כולם לאוטומט", "FldIsOn": true, "FldIsActivate": false, "FldRuleSubFullDisplayName": "וילון - כל הארגון - תוצרת הארץ", "FldTimesToRuleDisplayName": "א, ב, ג, ד, ה, 08:0 - 18:0\u003cBR /\u003eו, 08:0 - 12:0\u003cBR /\u003e", "FldDisplayName2": "העבר את כולם לאוטומט" }, { "FldId": 6, "FldOrder": 6, "FldDisplayName": "העבר את כולם למצב ידני", "FldIsOn": true, "FldIsActivate": false, "FldRuleSubFullDisplayName": "וילון - כל הארגון - תוצרת הארץ", "FldTimesToRuleDisplayName": "א, ב, ג, ד, ה, 18:0 - 00:0\u003cBR /\u003eו, 12:0 - 00:0\u003cBR /\u003e", "FldDisplayName2": "העבר את כולם למצב ידני" }, { "FldId": 10, "FldOrder": 7, "FldDisplayName": "חוק חדש2", "FldIsOn": null, "FldIsActivate": null, "FldRuleSubFullDisplayName": null, "FldTimesToRuleDisplayName": null, "FldDisplayName2": "חוק חדש2" }, { "FldId": 12, "FldOrder": 9, "FldDisplayName": "ברירת מחדל - כל הארגון ידני", "FldIsOn": null, "FldIsActivate": null, "FldRuleSubFullDisplayName": null, "FldTimesToRuleDisplayName": null, "FldDisplayName2": "ברירת מחדל - כל הארגון ידני" }]
+            LoadDDGrid();
+
+            return;
+            var Name = TableName1 + 'Select';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({
+                    'Name': Name, 'Params': ''
+                }),
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    debugger;
+                    Tbl1DataSource = JSON.parse(data.d).result_name;
+                    LoadDDGrid();
+                },
+                error: function (x, y, z) {
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+        }
+        
+        function LoadDDGrid() {
+            var dataGrid = $("#gridContainer").dxDataGrid({
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: false,
+                    width: 240,
+                    placeholder: "",
+                    alignment: "right",
+
+                },
+
+                dataSource: Tbl1DataSource,
+                keyExpr: "FldId",
+                showBorders: true,
+                paging: {
+                    enabled: true,
+                    pageSize: 10
+
+                },
+                editing: {
+                    mode: "popup",
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: false,
+                    popup: {
+                        title: "Employee Info",
+                        showTitle: true,
+                        width: 700,
+                        height: 525,
+                        position: {
+                            my: "top",
+                            at: "top",
+                            of: window
+                        },
+                        useIcons: true
+                    },
+                    form: {
+                        items: [{
+                            itemType: "group",
+                            colCount: 2,
+                            colSpan: 2,
+                            items: ["FldOrder", "FldFuncId", "FldDisplayName"]
+                        }]
+                    }
+                },
+
+                columns: [
+                    { dataField: "FldId", caption: "מזהה", alignment: "right", width: 100 },
+                    { dataField: "FldIsOn", caption: "פעיל", alignment: "center", width: 100 },
+
+                    {
+                        dataField: "FldDisplayName", caption: "שם", alignment: "right", width: 220, cellTemplate:
+                        function (container, options) {
+                            $('<a class="dx-list-group-header" onclick="ShowPup(\'RuleDetails\',' + options.key + ');" ">' + options.value + '</a>')
+                                .attr('target', '_blank')
+                                .appendTo(container);
+                        }
+                    },
+
+
+                    { dataField: "FldTimesToRuleDisplayName", caption: "זמנים", alignment: "right", width: 250 },
+                    { dataField: "FldRuleSubFullDisplayName", caption: "אובייקטים משוייכים", alignment: "right", width: 250 },
+                    { dataField: "FldIsActivate", caption: "הפעל", alignment: "center", width: 100 },
+                    { dataField: "FldOrder", caption: "עדיפות", alignment: "center", width: 100 },
+                    {
+                        type: "buttons",
+                        buttons: [{
+                            hint: "מחק",
+                            icon: "trash",
+                            visible: function (e) {
+                                return !e.row.isEditing;
+                            },
+                            onClick: function (e) {
+                                var r = confirm("האם אתה בטוח שאתה מועניין למחוק?");
+                                if (r == true) {
+                                    DeleteRec( TableName1, 'FldRuleId,' + e.row.key);
+                                    GetTBL1();
+
+                                }
+                            }
+                        }
+                        ]
+                    }
+                ],
+                onRowInserting: function (e) {
+                    var myParam = 'FldOrgTypeId,' + SelectedOrgId + ';' + 'FldVersion,' + SelectedVersionId + ';';
+                    InsertData1(myParam, e);
+                },
+
+                onRowUpdating: function (e) {
+                    UpdateData1(e);
+                },
+
+                onRowRemoving: function (e) {
+                    DeleteData1(e);
+
+                }
+            });
+        }
+
+        
+    </script>
+</head>
+<body dir="rtl">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
+
+    <table width="100%">
+        <tr>
+            <td>
+                <div class="demo-container table">
+                    <div id="InsertDiv"></div>
+                    <div id="gridContainer"></div>
+                    <div id="gridContainer2"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

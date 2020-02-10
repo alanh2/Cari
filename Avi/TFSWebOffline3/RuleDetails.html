@@ -1,0 +1,487 @@
+﻿<!DOCTYPE HTML>
+<HTML>
+<head>
+    <title>Modern Tabs Design with pure CSS</title>
+    <link href="css/dx.material.custom-scheme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/dx.common.css">
+    <link href="css/GlobalCSS.css" rel="stylesheet" />
+    <link href="css/PageDetails.css" rel="stylesheet" />
+    <link href="css/TabsSkin.css" rel="stylesheet" />
+
+    <script src="Js/jquery-3.4.1.min.js"></script>
+    <script src="Js/config.js"></script>
+    <script src="Js/GlobalFunc.js"></script>
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="Scripts/dx.all.js"></script>
+    <link  href="css/alan.css" rel="stylesheet" />
+    <script src="Js/alan.js"></script>
+    <script>
+
+
+        var GlobalParams = '';
+
+        var FormDetailsFields  = ["FldDisplayName~שם"];
+        var tableName = 'Rules';
+        var Qstring = 'FldRuleId';
+        var LastModOpen = '';
+
+        $(document).ready(function () {
+            LoadGlobalParams(Qstring);
+
+            GeneratePropertiesControls('DivProperties',FormDetailsFields , 'DivProperties1', tableName, 'מאפייני חוק');
+
+            // If Existing record load data
+            if (GlobalParams.split(',')[1] != -1) {
+                LoadPageData();
+            }
+
+            OnTabClick('DivProperties');
+        }
+        );
+
+
+        function LoadGlobalGridTblZOrgType3RulesActions() {
+            var Tbl1DataSource = [{ "FldId": 1, "FldProjectId": 2, "FldRuleId": 1, "FldDisplayName": "חלונות להרמה", "FldOrder": 1, "FldFullDisplayName": "וילון - חלונות להרמה - (2)קבוצות \u003cbr /\u003e", "FldCreationDate": null, "FldLastUpdateDate": null, "FldIsActive": true, "FldOrder1": 1, "FldWorkingModeId": null, "FldCardTypeId": 3, "FldIsChangeBlindLocation": null, "FldBlindLocation": 0, "FldIsBlindLocationUp": null, "FldIsBlindLocationdown": null, "FldIsChangeBlindAngle": null, "FldBlindAngle": 0, "FldIsBlindAngleUp": null, "FldIsBlindAngleDown": null, "FldIsHoming": false, "FldWorkingModeId1": null, "FldIsUpdateWorkingModeId": null, "GroupsCount": 3, "OrgCount": 0, "WorkingModeDisplayName": null }, { "FldId": 2, "FldProjectId": 2, "FldRuleId": 1, "FldDisplayName": "חלונות להורדה", "FldOrder": 2, "FldFullDisplayName": "וילון - חלונות להורדה - קומה 10 \u003cbr /\u003e", "FldCreationDate": null, "FldLastUpdateDate": null, "FldIsActive": true, "FldOrder1": 2, "FldWorkingModeId": null, "FldCardTypeId": 3, "FldIsChangeBlindLocation": null, "FldBlindLocation": 100, "FldIsBlindLocationUp": true, "FldIsBlindLocationdown": true, "FldIsChangeBlindAngle": null, "FldBlindAngle": 100, "FldIsBlindAngleUp": true, "FldIsBlindAngleDown": true, "FldIsHoming": false, "FldWorkingModeId1": null, "FldIsUpdateWorkingModeId": null, "GroupsCount": 0, "OrgCount": 0, "WorkingModeDisplayName": null }, { "FldId": 8, "FldProjectId": 2, "FldRuleId": 1, "FldDisplayName": "מצב חדש", "FldOrder": 3, "FldFullDisplayName": "", "FldCreationDate": "\/Date(-2208996000000)\/", "FldLastUpdateDate": "\/Date(-2208996000000)\/", "FldIsActive": false, "FldOrder1": 3, "FldWorkingModeId": 1, "FldCardTypeId": 3, "FldIsChangeBlindLocation": null, "FldBlindLocation": 10, "FldIsBlindLocationUp": true, "FldIsBlindLocationdown": true, "FldIsChangeBlindAngle": null, "FldBlindAngle": 20, "FldIsBlindAngleUp": true, "FldIsBlindAngleDown": true, "FldIsHoming": true, "FldWorkingModeId1": 1, "FldIsUpdateWorkingModeId": null, "GroupsCount": 0, "OrgCount": 0, "WorkingModeDisplayName": "ידני" }];
+            TblZOrgType3RulesActionsLoadGrid(Tbl1DataSource);
+        }
+
+        function LoadGlobalGridRulesTime() {
+            var Tbl1DataSource = [{ "FldId": 13, "FldProjectId": 2, "FldRuleId": 1, "FldFromHour": "10:00", "FldToHour": "15:00", "FldIsDay1": false, "FldIsDay2": false, "FldIsDay3": false, "FldIsDay4": false, "FldIsDay5": true, "FldIsDay6": true, "FldIsDay7": true, "FldFullDisplayName": "10:00 - 15:00 ה, ו, ש, ", "FldIsSummer": true, "FldIsWinter": false, "FldFromSunsetMin": null, "FldFromSunriseMin": null }, { "FldId": 14, "FldProjectId": 2, "FldRuleId": 1, "FldFromHour": null, "FldToHour": null, "FldIsDay1": true, "FldIsDay2": true, "FldIsDay3": false, "FldIsDay4": false, "FldIsDay5": false, "FldIsDay6": false, "FldIsDay7": false, "FldFullDisplayName": "ז - 20ש 20א, ב, ", "FldIsSummer": false, "FldIsWinter": true, "FldFromSunsetMin": 20, "FldFromSunriseMin": -20 }];
+            RulesTimeLoadGrid(Tbl1DataSource);
+        }
+
+        function GetPropertiesDataLocal(FuncName, ControlArray) {
+            var Tbl1DataSource = [{"FldId":1,"FldOrder":1,"FldDisplayName":"דגל ישראל","FldIsOn":false,"FldIsActivate":true,"FldRuleSubFullDisplayName":"וילון - חלונות להרמה - (3)קבוצות \u003cbr /\u003eוילון - חלונות להורדה - קומה 10","FldTimesToRuleDisplayName":"א, ב, ג, ד, ה, ו, ש, 02:0 - 00:0\u003cBR /\u003e","FldDisplayName2":"דגל ישראל"}];
+            LoadPropertiesData(FuncName, Tbl1DataSource, ControlArray);
+        }
+
+        function LoadPageData() {
+            //GetPropertiesData(tableName, FormDetailsFields );
+            GetPropertiesDataLocal(tableName, FormDetailsFields);
+            PresentMainLable('FldDisplayName', 'FldDisplayName2', tableName);
+
+            LoadGlobalGridTblZOrgType3RulesActions();
+            LoadGlobalGridRulesTime();
+            
+
+            /*LoadGlobalGrid('TblZOrgType3RulesActions');
+            LoadGlobalGrid('RulesTime');
+            */
+
+            //AddNewRecButton('InsertDivTimes', 'LastModOpen=\'GroupsToOrg\'; ShowMod(\'OrgSearchModal.html\', \'' + GlobalParams + '&FuncName=GroupsToOrgAdd&Id=-1\'); ');
+            //AddNewRecButton('InsertDivActions', 'LastModOpen=\'UsersToGroups\'; ShowMod(\'OrgType3RuleActionDetails.html\', \'' + GlobalParams + '&FuncName=UsersToGroupAdd&Id=-1\'); ');
+           // debugger;
+            AddNewRecButton('InsertDivActions', 'ShowPup(\'OrgType3RuleActionDetails\', \'-1&' + GlobalParams.replace(',','=') + '\'); ');
+
+        }
+
+        function OnTabClick(Name) {
+            HideTabs();
+            ShowTab(Name);
+        }
+
+        function HideTabs() {
+            document.getElementById('DivProperties').style.display = 'none';
+            document.getElementById('DivRulesTime').style.display = 'none';
+            document.getElementById('TblZOrgType3RulesActions').style.display = 'none';
+
+        }
+
+        function ShowTab(Name) {
+            document.getElementById(Name).style.display = 'inline'
+        }
+
+
+
+        function RulesTimeLoadGrid(Tbl1DataSource) {
+            var dataGrid = $("#gridRulesTimeContainer").dxDataGrid({
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: false,
+                    width: 240,
+                    placeholder: "",
+                    alignment: "right",
+                },
+
+                dataSource: Tbl1DataSource,
+                keyExpr: "FldId",
+                showBorders: true,
+                paging: {
+                    enabled: true,
+                    pageSize: 10
+
+                },
+                editing: {
+                    mode: "row",
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: true,
+
+                    form: {
+                        items: [{
+                            itemType: "group",
+                            colCount: 2,
+                            colSpan: 2,
+                            items: ["FldIsDay1", "FldIsDay2", "FldIsDay3"]
+                        }]
+                    }
+                },
+                onRowInserting: function (e) {
+                    logEvent("RowInserting");
+                },
+                columns: [
+                    { dataField: "FldId", caption: "מזהה", alignment: "right", width: 50 },
+                    { dataField: "FldIsSummer", caption: "קיץ", alignment: "right", width: 50, dataType: 'boolean' },
+                    { dataField: "FldIsWinter", caption: "חורף", alignment: "right", width: 50, dataType: 'boolean' },
+
+                    {
+                        dataField: 'FldFromHour',
+                        caption: "משעה", width: 60,
+                        //dataType: 'datetime',
+                        alignment: "right",
+                        /*customizeText: function (options) {
+                            return !options.value ? "" : GetTimeFormat(options); //moment(options.value).format("MMM/DD/YYYY").replace(".", "");
+                        }*/
+                    }, {
+                        dataField: 'FldToHour',
+                        caption: "עד שעה", width: 60,
+                        //dataType: 'datetime',
+                        alignment: "right",
+                        /*customizeText: function (options) {
+                            return !options.value ? "" : GetTimeFormat(options); //moment(options.value).format("MMM/DD/YYYY").replace(".", "");
+                        }*/
+                    },
+
+                    { dataField: "FldFromSunriseMin", caption: "דקות מזריחה", alignment: "right", width: 100 },
+                    { dataField: "FldFromSunsetMin", caption: "דקות משקיעה", alignment: "right", width: 100 },
+
+                    { dataField: "FldIsDay1", caption: "א", alignment: "right", width: 50, dataType: 'boolean' },
+                    { dataField: "FldIsDay2", caption: "ב", alignment: "right", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay3", caption: "ג", alignment: "right", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay4", caption: "ד", alignment: "right", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay5", caption: "ה", alignment: "right", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay6", caption: "ו", alignment: "right", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay7", caption: "ש", alignment: "right", width: 50, dataType: 'boolean'},
+                    
+                ],
+                onRowInserting: function (e) {
+                    InsertData(e);
+                },
+                onRowUpdating: function (e) {
+                    UpdateData(e)
+                },
+                onRowRemoving: function (e) {
+                    DeleteData(e)
+                }
+
+            });
+        }
+
+
+        function InsertData(e) {
+            var myParam = GlobalParams +';';
+
+            var Name = 'RulesTimeInsert';
+            for (var key in e.data) {
+
+                var obj = e.data[key];
+                    myParam = myParam + key + "," + obj + ';';
+            }
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({ 'Name': Name, 'Params': myParam }),
+
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    //GetTBL1();
+                    // DBType = JSON.parse(data.d).result_name;
+                    alert('הפריט נוצר בהצלחה');
+                },
+                error: function (x, y, z) {
+
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+
+        }
+
+        function UpdateData(e) {
+            var myParam = '';
+
+            var Name = 'RulesTimeUpdate';
+            for (var key in e.newData) {
+                if (!e.newData.hasOwnProperty(key)) continue;
+
+                var obj = e.newData[key];
+                    myParam = myParam + key + "," + obj + ';';
+            }
+
+
+            for (var key in e.oldData) {
+                if (e.newData.hasOwnProperty(key)) continue;
+
+                var obj = e.oldData[key];
+                if (key !== 'FldProjectId' && key !== 'FldFullDisplayName')
+                    myParam = myParam + key + "," + obj + ';';
+            }
+
+            //myParam = myParam + 'FldId' + "," + e.oldData.FldId + ';';
+            //debugger;
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({ 'Name': Name, 'Params': myParam }),
+
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפריט עודכן בהצלחה');
+                    //GetTBL1();
+                    // DBType = JSON.parse(data.d).result_name;
+                },
+                error: function (x, y, z) {
+
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+
+        }
+
+        function DeleteData(e) {
+            var myParam = GlobalParams + ';';
+            myParam = myParam + 'FldId' + "," + e.key + ';';
+
+            var Name = 'RulesTimeDelete';
+
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "UIS.aspx/Getts",
+                data: JSON.stringify({ 'Name': Name, 'Params': myParam }),
+
+                async: false,
+
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert('הפריט נמחק בהצלחה');
+                },
+                error: function (x, y, z) {
+
+                    alert('GetOrgType.' + x.responseText + "  " + x.status);
+                }
+            });
+
+        }
+
+
+
+        function TblZOrgType3RulesActionsLoadGrid(Tbl1DataSource) {
+            var dataGrid = $("#gridRulesActionsContainer").dxDataGrid({
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: false,
+                    width: 240,
+                    placeholder: "",
+                    alignment: "right",
+                },
+
+                dataSource: Tbl1DataSource,
+                keyExpr: "FldId",
+                showBorders: true,
+                paging: {
+                    enabled: true,
+                    pageSize: 10
+
+                },
+                editing: {
+                    mode: "popup",
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: false,
+                    popup: {
+                        title: "Employee Info",
+                        showTitle: true,
+                        width: 700,
+                        height: 525,
+                        position: {
+                            my: "top",
+                            at: "top",
+                            of: window
+                        },
+                        useIcons: true
+                    },
+                    form: {
+                        items: [{
+                            itemType: "group",
+                            colCount: 2,
+                            colSpan: 2,
+                            items: ["FldOrder", "FldFuncId", "FldDisplayName"]
+                        }]
+                    }
+                },
+
+                columns: [
+                    { dataField: "FldId", caption: "מזהה", alignment: "right", width: 50 },
+                    {
+                        dataField: "FldDisplayName", caption: "שם", alignment: "right", width: 220, cellTemplate:
+                        function (container, options) {
+                            $('<a class="dx-list-group-header" style="border:none" onclick="ShowPup(\'OrgType3RuleActionDetails\',' + options.key + ');" ">' + options.value + '</a>')
+                                .attr('target', '_blank')
+                                .appendTo(container);
+                        }
+                    },
+                    
+                    
+                    { dataField: "FldIsUpdateWorkingModeId", caption: "עדכון מצב עבוד", alignment: "right", width: 80 , dataType: 'boolean'},
+                    { dataField: "WorkingModeDisplayName", caption: "מצב עבודה", alignment: "right", width: 80 },
+
+                    { dataField: "FldIsChangeBlindLocation", caption: "שנה גובה", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldBlindLocation", caption: "גובה וילון", alignment: "right", width: 80 },
+                    { dataField: "FldIsBlindLocationUp", caption: "אפשר להעלות", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsBlindLocationdown", caption: "אפשר להוריד", alignment: "right", width: 80, dataType: 'boolean'},
+
+                    { dataField: "FldIsChangeBlindAngle", caption: "שנה זוית", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldBlindAngle", caption: "זוית וילון", alignment: "right", width: 80 },
+                    { dataField: "FldIsBlindAngleUp", caption: "אפשר להעלות", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsBlindAngleDown", caption: "אפשר להוריד", alignment: "right", width: 80, dataType: 'boolean'},
+
+                    { dataField: "FldIsHoming", caption: "כיול", alignment: "right", width: 80, dataType: 'boolean'},
+
+                    { dataField: "OrgCount", caption: "מבנה ארגוני", alignment: "right", width: 80 },
+                    /*{ dataField: "GroupsCount", caption: "קבוצות", alignment: "right", width: 80 },*/
+
+                    { dataField: "FldOrder", caption: "עדיפות", alignment: "right", width: 80 },
+
+
+                    {
+                        type: "buttons",
+                        buttons: [{
+                            hint: "מחק",
+                            icon: "trash",
+                            visible: function (e) {
+                                return !e.row.isEditing;
+                            },
+                            onClick: function (e) {
+                                var r = confirm("האם אתה בטוח שאתה מועניין למחוק?");
+                                if (r == true) {
+                                    DeleteRec( 'RulesActions', 'FldId,' + e.row.key);
+                                    LoadGlobalGrid('RulesActions');
+
+                                }
+                            }
+                        }
+                        ]
+                    }
+                ]
+
+            });
+        }
+
+
+    </script>
+
+</head>
+<body dir="rtl" class="bodyCss">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content" style="margin-top:60px;">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2" style="height:580px;"></iframe>        </div>    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <div>
+                    <input type="text" class="DivMainLable" id="TXTRulesFldDisplayName2" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="tabb2Skin round">
+                    <ul>
+                        <li class="active" onclick="OnTabClick('DivProperties');">מאפיינים</li>
+                        <li onclick="OnTabClick('DivRulesTime');">זמנים</li>
+                        <li onclick="OnTabClick('TblZOrgType3RulesActions');">פעולות תריס</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="Div1">
+                    <div class="MainContainerControls">
+                        <div id="DivProperties" class=""></div>
+                        <div id="DivRulesTime" class="containerControls2"> <div id="InsertDivTimes"></div>  <div id="gridRulesTimeContainer"></div></div>
+                        <div id="TblZOrgType3RulesActions" class="containerControls2">  <div id="InsertDivActions"></div> <div id="gridRulesActionsContainer"></div></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="Div1">
+
+
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var tabs = document.querySelectorAll('.tabb2Skin li');
+            var switchers = document.querySelectorAll('.switcher-box a');
+            var skinable = document.getElementById('skinable');
+
+            for (var i = 0, len = tabs.length; i < len; i++) {
+                tabs[i].addEventListener("click", function () {
+                    if (this.classList.contains('active'))
+                        return;
+
+                    var parent = this.parentNode,
+                        innerTabs = parent.querySelectorAll('li');
+
+                    for (var index = 0, iLen = innerTabs.length; index < iLen; index++) {
+                        innerTabs[index].classList.remove('active');
+                    }
+
+                    this.classList.add('active');
+                });
+            }
+
+            for (var i = 0, len = switchers.length; i < len; i++) {
+                switchers[i].addEventListener("click", function () {
+                    if (this.classList.contains('active'))
+                        return;
+
+                    var parent = this.parentNode,
+                        innerSwitchers = parent.querySelectorAll('a'),
+                        skinName = this.getAttribute('skin');
+
+                    for (var index = 0, iLen = innerSwitchers.length; index < iLen; index++) {
+                        innerSwitchers[index].classList.remove('active');
+                    }
+
+                    this.classList.add('active');
+                    skinable.className = 'tabb2Skin round ' + skinName;
+                });
+            }
+        });
+    </script>
+</body>
+</HTML>
