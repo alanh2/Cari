@@ -85,10 +85,14 @@
             document.getElementById('DivRulesTime').style.display = 'none';
             document.getElementById('TblZOrgType3RulesActions').style.display = 'none';
 
+            document.getElementById('menu_DivProperties').classList.remove('active');
+            document.getElementById('menu_DivRulesTime').classList.remove('active');
+            document.getElementById('menu_TblZOrgType3RulesActions').classList.remove('active');
         }
 
         function ShowTab(Name) {
             document.getElementById(Name).style.display = 'inline'
+            document.getElementById('menu_'+Name).classList.add('active');
         }
 
 
@@ -134,8 +138,8 @@
                 },
                 columns: [
                     { dataField: "FldId", caption: "מזהה", alignment: "right", width: 50 },
-                    { dataField: "FldIsSummer", caption: "קיץ", alignment: "right", width: 50, dataType: 'boolean' },
-                    { dataField: "FldIsWinter", caption: "חורף", alignment: "right", width: 50, dataType: 'boolean' },
+                    { dataField: "FldIsSummer", caption: "קיץ", alignment: "center", width: 50, dataType: 'boolean' },
+                    { dataField: "FldIsWinter", caption: "חורף", alignment: "center", width: 50, dataType: 'boolean' },
 
                     {
                         dataField: 'FldFromHour',
@@ -158,13 +162,13 @@
                     { dataField: "FldFromSunriseMin", caption: "דקות מזריחה", alignment: "right", width: 100 },
                     { dataField: "FldFromSunsetMin", caption: "דקות משקיעה", alignment: "right", width: 100 },
 
-                    { dataField: "FldIsDay1", caption: "א", alignment: "right", width: 50, dataType: 'boolean' },
-                    { dataField: "FldIsDay2", caption: "ב", alignment: "right", width: 50, dataType: 'boolean'},
-                    { dataField: "FldIsDay3", caption: "ג", alignment: "right", width: 50, dataType: 'boolean'},
-                    { dataField: "FldIsDay4", caption: "ד", alignment: "right", width: 50, dataType: 'boolean'},
-                    { dataField: "FldIsDay5", caption: "ה", alignment: "right", width: 50, dataType: 'boolean'},
-                    { dataField: "FldIsDay6", caption: "ו", alignment: "right", width: 50, dataType: 'boolean'},
-                    { dataField: "FldIsDay7", caption: "ש", alignment: "right", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay1", caption: "א", alignment: "center", width: 50, dataType: 'boolean' },
+                    { dataField: "FldIsDay2", caption: "ב", alignment: "center", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay3", caption: "ג", alignment: "center", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay4", caption: "ד", alignment: "center", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay5", caption: "ה", alignment: "center", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay6", caption: "ו", alignment: "center", width: 50, dataType: 'boolean'},
+                    { dataField: "FldIsDay7", caption: "ש", alignment: "center", width: 50, dataType: 'boolean'},
                     
                 ],
                 onRowInserting: function (e) {
@@ -345,20 +349,20 @@
                     },
                     
                     
-                    { dataField: "FldIsUpdateWorkingModeId", caption: "עדכון מצב עבוד", alignment: "right", width: 80 , dataType: 'boolean'},
+                    { dataField: "FldIsUpdateWorkingModeId", caption: "עדכון מצב עבוד", alignment: "center", width: 80 , dataType: 'boolean'},
                     { dataField: "WorkingModeDisplayName", caption: "מצב עבודה", alignment: "right", width: 80 },
 
-                    { dataField: "FldIsChangeBlindLocation", caption: "שנה גובה", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsChangeBlindLocation", caption: "שנה גובה", alignment: "center", width: 80, dataType: 'boolean'},
                     { dataField: "FldBlindLocation", caption: "גובה וילון", alignment: "right", width: 80 },
-                    { dataField: "FldIsBlindLocationUp", caption: "אפשר להעלות", alignment: "right", width: 80, dataType: 'boolean'},
-                    { dataField: "FldIsBlindLocationdown", caption: "אפשר להוריד", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsBlindLocationUp", caption: "אפשר להעלות", alignment: "center", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsBlindLocationdown", caption: "אפשר להוריד", alignment: "center", width: 80, dataType: 'boolean'},
 
-                    { dataField: "FldIsChangeBlindAngle", caption: "שנה זוית", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsChangeBlindAngle", caption: "שנה זוית", alignment: "ricenterght", width: 80, dataType: 'boolean'},
                     { dataField: "FldBlindAngle", caption: "זוית וילון", alignment: "right", width: 80 },
-                    { dataField: "FldIsBlindAngleUp", caption: "אפשר להעלות", alignment: "right", width: 80, dataType: 'boolean'},
-                    { dataField: "FldIsBlindAngleDown", caption: "אפשר להוריד", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsBlindAngleUp", caption: "אפשר להעלות", alignment: "center", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsBlindAngleDown", caption: "אפשר להוריד", alignment: "center", width: 80, dataType: 'boolean'},
 
-                    { dataField: "FldIsHoming", caption: "כיול", alignment: "right", width: 80, dataType: 'boolean'},
+                    { dataField: "FldIsHoming", caption: "כיול", alignment: "center", width: 80, dataType: 'boolean'},
 
                     { dataField: "OrgCount", caption: "מבנה ארגוני", alignment: "right", width: 80 },
                     /*{ dataField: "GroupsCount", caption: "קבוצות", alignment: "right", width: 80 },*/
@@ -398,7 +402,7 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content" style="margin-top:60px;">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2" style="height:580px;"></iframe>        </div>    </div>
 
-    <table width="100%" cellpadding="0" cellspacing="0">
+    <table width="100%">
         <tr>
             <td>
                 <div>
@@ -408,11 +412,11 @@
         </tr>
         <tr>
             <td>
-                <div class="tabb2Skin round">
+                <div class="internalMenu">
                     <ul>
-                        <li class="active" onclick="OnTabClick('DivProperties');">מאפיינים</li>
-                        <li onclick="OnTabClick('DivRulesTime');">זמנים</li>
-                        <li onclick="OnTabClick('TblZOrgType3RulesActions');">פעולות תריס</li>
+                        <li id="menu_DivProperties" class="active" onclick="OnTabClick('DivProperties');">מאפיינים</li>
+                        <li id="menu_DivRulesTime" onclick="OnTabClick('DivRulesTime');">זמנים</li>
+                        <li id="menu_TblZOrgType3RulesActions" onclick="OnTabClick('TblZOrgType3RulesActions');">פעולות תריס</li>
                     </ul>
                 </div>
             </td>
@@ -422,8 +426,8 @@
                 <div id="Div1">
                     <div class="MainContainerControls">
                         <div id="DivProperties" class=""></div>
-                        <div id="DivRulesTime" class="containerControls2"> <div id="InsertDivTimes"></div>  <div id="gridRulesTimeContainer"></div></div>
-                        <div id="TblZOrgType3RulesActions" class="containerControls2">  <div id="InsertDivActions"></div> <div id="gridRulesActionsContainer"></div></div>
+                        <div id="DivRulesTime" class="containerControls2 table"> <div id="InsertDivTimes"></div>  <div id="gridRulesTimeContainer"></div></div>
+                        <div id="TblZOrgType3RulesActions" class="containerControls2 table">  <div id="InsertDivActions"></div> <div id="gridRulesActionsContainer"></div></div>
                     </div>
                 </div>
             </td>

@@ -204,6 +204,7 @@ input[type='checkbox']:checked:after {
 .dx-icon-edit::before{
     content: "\e895";
     font-family: 'fontello';
+    font-size: 14px;
 }
 .dx-icon-trash::before {
     content: "\e891";
@@ -215,6 +216,22 @@ input[type='checkbox']:checked:after {
 }
 .dx-datagrid-headers .dx-datagrid-table .dx-row > td .dx-sort{
     color: var(--blue) !important;
+}
+.dx-toolbar-item-content{
+    margin: 5px 0;
+    background-color: white !important;
+}
+.dx-toolbar-center, .dx-toolbar-before, .dx-toolbar-after{
+    height: auto;
+}
+.dx-toolbar .dx-toolbar-items-container{
+    height: 40px;
+    display: table;
+}
+.containerControls2.table .dx-datagrid-header-panel, 
+.demo-container.table .dx-datagrid-header-panel {
+    padding: none;
+    margin-bottom: 20px;
 }
 .central-container{
     vertical-align: baseline; 
@@ -230,13 +247,15 @@ input[type='checkbox']:checked:after {
 .front .menu .dx-datagrid .dx-icon-filter-operation-default::before{ 
     left: 210px;
 }
-.demo-container.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table{
+.demo-container.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table, 
+.containerControls2.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table{
     border-collapse: separate !important;
     border-spacing: 10px 10px !important;
 }
-.demo-container.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table td{
-    border-radius: 5px;
-    background-color: white;
+.demo-container.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table td,
+.containerControls2.table .dx-datagrid-rowsview .dx-datagrid-content .dx-datagrid-table td{
+    border-radius: 5px !important;
+    background-color: white !important;
     overflow:hidden;
     white-space:nowrap;
     text-overflow: ellipsis;
@@ -244,16 +263,19 @@ input[type='checkbox']:checked:after {
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
 }
-.demo-container.table .dx-datagrid-header-panel{
+.demo-container.table .dx-datagrid-header-panel,
+.containerControls2.table .dx-datagrid-header-panel{
     text-align: right;
 }
-.demo-container.table .dx-datagrid-rowsview .dx-row {
+.demo-container.table .dx-datagrid-rowsview .dx-row,
+.containerControls2.table .dx-datagrid-rowsview .dx-row{
     border-top: none !important;
     border-bottom: none !important;
     background-color: transparent !important;
     padding: 10px 0;
 }
-.demo-container.table .dx-datagrid .dx-link {
+.demo-container.table .dx-datagrid .dx-link,
+.containerControls2.table .dx-datagrid .dx-link {
     color: #a2a2a2;
 }
 .dx-datagrid-scroll-container{
@@ -266,8 +288,11 @@ input[type='checkbox']:checked:after {
     border-radius: 5px;
 }
 .demo-container.table .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer,
+.containerControls2.table .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer,
 .demo-container.table .dx-texteditor.dx-editor-underlined.dx-state-hover::after,
-.demo-container.table .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
+.containerControls2.table .dx-texteditor.dx-editor-underlined.dx-state-hover::after,
+.demo-container.table .dx-datagrid-headers .dx-datagrid-table .dx-row > td 
+.containerControls2.table .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
     border-bottom: none !important;
 }
 
@@ -276,7 +301,10 @@ input[type='checkbox']:checked:after {
     padding-bottom: 0;
 }
 
-.demo-container.table .dx-datagrid-borders > .dx-datagrid-headers, .dx-datagrid-borders > .dx-datagrid-rowsview, .dx-datagrid-borders > .dx-datagrid-total-footer {
+.demo-container.table .dx-datagrid-borders > .dx-datagrid-headers, 
+.containerControls2.table .dx-datagrid-borders > .dx-datagrid-headers, 
+.dx-datagrid-borders > .dx-datagrid-rowsview, 
+.dx-datagrid-borders > .dx-datagrid-total-footer {
     border-left: none !important;
     border-right: none !important;
 }
@@ -286,7 +314,8 @@ input[type='checkbox']:checked:after {
 .modal-content{
 	background-color: var(--lightGrey);
 }
-.demo-container.table{
+.demo-container.table,
+.containerControls2.table {
     border: none;
     background-color: transparent;
     float: left;
@@ -296,14 +325,24 @@ input[type='checkbox']:checked:after {
     margin-left: -10px;
 }
 
-.demo-container.table .dx-widget, .demo-container.table .dx-widget::before, .demo-container.table .dx-widget::after, .demo-container.table .dx-widget *, .demo-container.table .dx-widget ::before, .demo-container.table .dx-widget ::after,
-.demo-container.table .dx-datagrid.dx-datagrid-borders > .dx-datagrid-header-panel{
+.demo-container.table .dx-widget, 
+.demo-container.table .dx-widget::before, 
+.demo-container.table .dx-widget::after, 
+.demo-container.table .dx-widget *, 
+.demo-container.table .dx-datagrid.dx-datagrid-borders > .dx-datagrid-header-panel,
+.containerControls2.table .dx-widget, 
+.containerControls2.table .dx-widget::before, 
+.containerControls2.table .dx-widget::after, 
+.containerControls2.table .dx-widget *, 
+.containerControls2.table .dx-datagrid.dx-datagrid-borders > .dx-datagrid-header-panel{
     background: transparent;
     overflow: visible;
     border-radius: 5px;
 }
 .demo-container.table .dx-texteditor.dx-state-focused:before,
-.demo-container.table .dx-texteditor.dx-state-active:before {
+.demo-container.table .dx-texteditor.dx-state-active:before,
+.containerControls2.table .dx-texteditor.dx-state-focused:before,
+.containerControls2.table .dx-texteditor.dx-state-active:before {
   border-bottom: none;
   -webkit-transform: none;
           transform: none;
@@ -312,12 +351,19 @@ input[type='checkbox']:checked:after {
   transition: none;
   transition: none;
 }
-.demo-container.table .dx-toolbar-items-container .dx-texteditor-input {
+.containerControls2.table .dx-toolbar-items-container{
 	background-color: white !important;
+}
+.demo-container.table .dx-toolbar-items-container .dx-texteditor-input,
+.containerControls2.table .dx-toolbar-items-container .dx-texteditor-input {
+	background-color: white !important;
+    -moz-box-shadow: 1px 1px 6px var(--shadow) !important;
+    -webkit-box-shadow:1px 1px 6px var(--shadow) !important;
     box-shadow: 1px 1px 6px var(--shadow) !important;
     text-indent: 30px;
 }
-.demo-container.table .dx-toolbar-items-container .dx-texteditor-input::before {
+.demo-container.table .dx-toolbar-items-container .dx-texteditor-input::before,
+.containerControls2.table .dx-toolbar-items-container .dx-texteditor-input::before {
     content: "\f027";
     font-family: 'fontello';
 }
@@ -342,17 +388,21 @@ input[type='checkbox']:checked:after {
 .dx-toolbar .dx-toolbar-after{
     padding-left: 0;
 }
-.demo-container.table .dx-toolbar-after .dx-toolbar-item:first-child {
+.demo-container.table .dx-toolbar-after .dx-toolbar-item:first-child,
+.containerControls2.table .dx-toolbar-after .dx-toolbar-item:first-child {
     width: 100%;
     padding: 0 10px;
 }
-.demo-container.table .dx-toolbar .dx-toolbar-after {
+.demo-container.table .dx-toolbar .dx-toolbar-after,
+.containerControls2.table .dx-toolbar .dx-toolbar-after {
 	width: 100%;
 }
-.demo-container.table .dx-datagrid-header-panel {
+.demo-container.table .dx-datagrid-header-panel,
+.containerControls2.table .dx-datagrid-header-panel {
 	padding: none;
 }
-.demo-container.table .dx-texteditor.dx-editor-underlined::after {
+.demo-container.table .dx-texteditor.dx-editor-underlined::after,
+.containerControls2.table .dx-texteditor.dx-editor-underlined::after {
 	border: none;
 }
 .dx-menu-horizontal{
@@ -725,6 +775,86 @@ input[type="checkbox"]:checked + label span {
     color: #fff;
     float: right;
     margin-right: -6px;
+}
+.MainContainerControls{
+    width: 100%;
+    padding-right: 0;
+    border: none;
+}
+.containerControls {
+    display: inline-block;
+    margin-bottom: 1%;
+    width: 98%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--menuwhite);
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+    border: none;
+    margin-right: 0;
+}
+.containerControls .containerControlsInternalButtonControl{
+    float: right;
+}
+.containerControlsDivLableCaption, .containerControlsInternalLableControl{
+    display: none;
+}
+.containerControlsInternal {
+    margin: 0;
+    border: none;
+    height: auto;
+    width: 100%;
+}
+.containerControls .containerControlsInternalButtonControl {
+    margin: 10px 5px 0;
+}
+.containerControls .containerControlsInternalTextControl {
+    margin: 5px;
+    width: 375px;
+    float: right;
+    border: none;
+    height: 25px;
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+    border-radius: 5px;
+    padding-right: 5px;
+}
+#TXTRulesFldDisplayName2{
+    color: var(--blue);
+    text-shadow: #999 1px 1px;
+}
+/*Internal Menu*/
+.internalMenu{
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+    background-color: var(--menuwhite);
+    float: right;
+    margin: 0 12px 0 0;
+    border-radius: 5px;
+}
+.internalMenu ul {
+    margin: 0;
+    padding: 0;
+}
+.internalMenu li{
+    padding: 5px 15px;
+    height: 25px;
+    float: right;
+    display: inline-block;
+    box-sizing: border-box;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+    font-family: 'Myriad Hebrew', sans-serif !important;
+    color: var(--grey) !important;
+    cursor: pointer;
+}
+.internalMenu li:hover, .internalMenu li.active{
+    color: var(--menuActive) !important;
 }
 /*Mac Hacks*/
 .mac-os #cssmenu > ul li:nth-child(2) a{
