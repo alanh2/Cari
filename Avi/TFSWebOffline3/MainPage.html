@@ -147,13 +147,13 @@
     <div id='cssmenu' class="header dx-toolbar dx-widget dx-visibility-change-handler dx-collection">
         <ul>
 
-            <li onclick="UpdateFrame('MVisual',this);"><a href='#' class="active"><span>תצוגת ריבועים</span></a></li>
-            <li onclick="UpdateFrame('MVisualOneSide',this);"><a href='#'><span>תצוגת מבנה לפי חזית</span></a></li>
-            <li onclick="UpdateFrame('MVisualAllSides',this);"><a href='#'><span>תצוגת מבנה כל החזיתות</span></a></li>
-            <li onclick="UpdateFrame('MVisual3D',this);"><a href='#'><span>3D מבנה</span></a></li>
-            <li onclick="UpdateFrame('MOrgType3ErrorHistory',this);"><a href='#'><span>תקלות</span></a></li>
-            <li onclick="UpdateFrame('MGroups',this);" id="LiGroups"><a href='#'><span>קבוצות</span></a></li>
-            <li onclick="UpdateFrame('MRules',this);" id="LiRules"><a href='#'><span>חוקים</span></a></li>
+            <li onclick="UpdateFrame('MVisual',this);OnMenuClick('menu1');" id="menu1"><a href='#' class="active"><span>תצוגת ריבועים</span></a></li>
+            <li onclick="UpdateFrame('MVisualOneSide',this);OnMenuClick('menu2');" id="menu2"><a href='#'><span>תצוגת מבנה לפי חזית</span></a></li>
+            <li onclick="UpdateFrame('MVisualAllSides',this);OnMenuClick('menu3');" id="menu3"><a href='#'><span>תצוגת מבנה כל החזיתות</span></a></li>
+            <li onclick="UpdateFrame('MVisual3D',this);OnMenuClick('menu4');" id="menu4"><a href='#'><span>3D מבנה</span></a></li>
+            <li onclick="UpdateFrame('MOrgType3ErrorHistory',this);OnMenuClick('menu5');" id="menu5"><a href='#'><span>תקלות</span></a></li>
+            <li onclick="UpdateFrame('MGroups',this);OnMenuClick('LiGroups');" id="LiGroups"><a href='#'><span>קבוצות</span></a></li>
+            <li onclick="UpdateFrame('MRules',this);OnMenuClick('LiRules');" id="LiRules"><a href='#'><span>חוקים</span></a></li>
             <!--<li onclick="UpdateFrame('MGroups',this);"><a href='#'><span>ניהול מבנה</span></a></li>
     <li onclick="UpdateFrame('MErrors',this);"><a href='#'><span>תקלות</span></a></li>
 
@@ -168,7 +168,7 @@
             <div class="logoArbicom"> <img src="images/logo.png"/></div>
             <div class="logoSkycon"><img src="images/skycon.png"/></div>
             <div class="logoOfek"><img src="images/ofek.png"/></div>
-            <div class="copy">ioioioioioi ioioioioi ioioioioi iooi<br/>© 2020 Arbicom all rights reserved</div>
+            <div class="copy"> <br/>© 2020 Arbicom all rights reserved</div>
             <!--כל הזכויות שמורות-->
         </div>
     </div>
