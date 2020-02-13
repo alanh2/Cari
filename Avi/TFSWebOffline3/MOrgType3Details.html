@@ -16,17 +16,37 @@
     <link  href="css/alan.css" rel="stylesheet" />
 
     <script>
-        var position = 70;
+        //initialize 
+        var position = 80;
+        var angle = 70;
         var isMoving = false;
         var direction = "up"
         window.onload = function() {
-            changeClass(position);
+            changeClass();
+            $("#slideAngle").val(100-angle);
+            $("#slidePosition").val(100-position);
+
+            $("#slideAngle").on('input', function(){
+                angle = 100 - this.value
+                changeClass();
+            }); 
+            
+            $("#slidePosition").on('input', function(){
+                position = 100 - this.value
+                changeClass();
+            }); 
+            
         };
-        
 
         function changeClass(otherClass = "") {
             var element = document.getElementById("blindDetailContent");
-            element.className = "blindPosition" + position + " " + otherClass;
+            element.className = "position" + position + " " + "angle" + angle + " " + otherClass;
+            $("#slideAngle").val(100-angle);
+            $("#slidePosition").val(100-position);
+            window.parent.document.getElementById("TxtAngle").value = angle;
+            window.parent.document.getElementById("TxtPosition").value = position;
+            /*var miniBlindElement = parent.document.getElementById("Box2212Blind");
+            miniBlindElement.className = "DivAllBoxes_blind blindPosition" + position;*/
         } 
         function up(){
             direction ="up"
@@ -308,20 +328,53 @@
 <body dir="rtl" class="iframeBody">
     <!-- The Modal -->
     <div id="myModal" class="modal">        <!-- Modal content -->        <div class="modal-content">            <span class="close" onclick="ClosePopup();">&times;</span>            <iframe id="IfrmL2" class="IfrmL2"></iframe>        </div>    </div>
-    <div class="chart-content">
-        <div id="chart"></div>
-    </div>
-    <div class="actionButtonsContent">
-        <input type="button" value="Up" onclick="up()" />
-        <input type="button" value="Stop" onclick="stop()"/>
-        <input type="button" value="Down" onclick="down()" />
-        <input type="button" value="Setup" />
-        <input type="button" value="Status to Error" onclick="error()" />
-        <input type="button" value="Status to Online" />
+    <div class="chartAndButtons">
+        <div class="chart-content">
+            <div id="chart"></div>
+        </div>
+        <div class="actionButtonsContent">
+            <input type="button" value="Up" onclick="up()" />
+            <input type="button" value="Stop" onclick="stop()"/>
+            <input type="button" value="Down" onclick="down()" />
+            <input type="button" value="Setup" />
+            <input type="button" value="Status to Error" onclick="error()" />
+            <input type="button" value="Status to Online" />
+        </div>
     </div>
     <div class="blindDetail">
         <div id="blindDetailTitle">1F10</div>
-        <div id="blindDetailContent"></div>
+        <div id="blindDetailContent">
+            <div class="blind">
+                <div class="blindContent position70 angle5">
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                    <div class="blind-row"></div>
+                </div>
+            </div>
+            <div class="range-slider" style="position: absolute;top: 205px;left: -160px;">
+                <input id="slidePosition" class="input-range" type="range" step="1" value="0" min="1" max="100">
+            </div> 
+            <div class="range-slider" style="position: absolute;top: 205px;right: -165px;">
+                <input id="slideAngle" class="input-range" type="range" step="1" value="0" min="1" max="100">
+            </div> 
+        </div>
     </div>
 
     <div class="demo-container table modalTable">
@@ -334,7 +387,7 @@
     <script>
         var options = {
             chart: {
-                height: 270,
+                height: 267,
                 type: 'area',
                 toolbar: {
                     show: false
