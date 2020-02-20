@@ -32,7 +32,7 @@
             }); 
             
             $("#slidePosition").on('input', function(){
-                position = 100 - this.value
+                position = 100 - this.value + 1
                 changeClass();
             }); 
             
@@ -368,10 +368,10 @@
                     <div class="blind-row"></div>
                 </div>
             </div>
-            <div class="range-slider" style="position: absolute;top: 205px;left: -160px;">
-                <input id="slidePosition" class="input-range" type="range" step="1" value="0" min="1" max="100">
+            <div class="range-slider" style="position: absolute;top: 205px;left: -165px;">
+                <input id="slidePosition" class="input-range" type="range" step="1" value="0" min="1" max="101">
             </div> 
-            <div class="range-slider" style="position: absolute;top: 205px;right: -165px;">
+            <div class="range-slider" style="position: absolute;top: 205px;right: -172px;">
                 <input id="slideAngle" class="input-range" type="range" step="1" value="0" min="1" max="100">
             </div> 
         </div>

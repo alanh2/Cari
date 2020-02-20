@@ -15,6 +15,7 @@
 
     <script src="scripts/jquery-3.4.1.min.js"></script>
     <script src="scripts/config.js"></script>
+    <link rel="stylesheet" href="assets/css/alan.css" />
 
     <style>
         #mydiv {
@@ -424,18 +425,19 @@
 
 </head>
 <body class="is-preload" dir="rtl">
+    <div class="header"></div>
     <a href="#home2" id="BlindDetailsLink"></a>
 
 
     <!-- Wrapper-->
-    <div id="wrapper" style="padding-top:5px;">
+    <div id="wrapper">
 
         <!-- Nav -->
         <nav id="nav">
-            <a href="#" class="icon solid fa-home"><span>בית</span></a>
-            <a href="#contact" class="icon solid fa-envelope"><span>הודעות</span></a>.
-            <a href="#Login" class="icon solid fa-user"><span>משתמש</span></a>
-            <a href="#Rules" class="icon solid fa-list-alt"><span>משתמש</span></a>
+            <a href="#" class="icon solid fa-home"></a>
+            <a href="#contact" class="icon solid fa-envelope"></a>
+            <a href="#Login" class="icon solid fa-user-circle"></a>
+            <a href="#Rules" class="icon solid fa-list"></a>
         </nav>
 
 
@@ -553,72 +555,61 @@
             </article>
 
 
-            <article id="Rules" class="panel" style="padding-right:5px; padding-left:5px;">
-                <div class="container" dir="rtl" style="height:450px ; ">
-                    <div class="container" dir="rtl" style="font-size:22px">
-                        <h1 class="H1Title">חוקים</h1>
-
-                        <table style="margin-top:20px;">
-                            <tr>
-                                <th style="text-align:right;">שם</th>
-                                <th>הפעל</th>
-                                <th>מצב</th>
-                            </tr>
-
-                            <tr>
-                                <td> <a href="#Rules2"> דגל ישראל </a></td>
-                                <td>
-                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
-                                </td>
-                                <td>
-                                    <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>הורד כל הוילונות</td>
-                                <td>
-                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
-                                </td>
-                                <td>
-                                    <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>הרם כל הוילנות</td>
-                                <td>
-                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
-                                </td>
-                                <td>
-                                    <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>העבר את כולם לאוטומט</td>
-                                <td>
-                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
-                                </td>
-                                <td>
-                                    <div class="icon solid2 fa-toggle-on BRBlind2RuletoggleOn"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>העבר את כולם למצב ידני</td>
-                                <td>
-                                    <div class="icon solid2 fa-power-off BRBlind2RulePowerOn"></div>
-                                </td>
-                                <td>
-                                    <div class="icon solid2 fa-toggle-on BRBlind2RuletoggleOn"></div>
-                                </td>
-                            </tr>
-
-                        </table>
-
-
-                    </div>
+            <article id="Rules" class="panel">
+                <div class="container" dir="rtl">
+                    <h1 class="H1Title">חוקים</h1>
+                    <table class="rules">
+                        <tr>
+                            <th>שם</th>
+                            <th>הפעל</th>
+                            <th>מצב</th>
+                        </tr>
+                        <tr>
+                            <td> <a href="#Rules2"> דגל ישראל </a></td>
+                            <td>
+                                <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                            </td>
+                            <td>
+                                <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>הורד כל הוילונות</td>
+                            <td>
+                                <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                            </td>
+                            <td>
+                                <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>הרם כל הוילנות</td>
+                            <td>
+                                <div class="icon solid2 fa-toggle-off BRBlind2RuletoggleOff"></div>
+                            </td>
+                            <td>
+                                <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>העבר את כולם לאוטומט</td>
+                            <td>
+                                <div class="icon solid2 fa-toggle-on BRBlind2RuletoggleOn"></div>
+                            </td>
+                            <td>
+                                <div class="icon solid2 fa-power-off BRBlind2RulePowerOff"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>העבר את כולם למצב ידני</td>
+                            <td>
+                                <div class="icon solid2 fa-toggle-on BRBlind2RuletoggleOn"></div>
+                            </td>
+                            <td>
+                                <div class="icon solid2 fa-power-off BRBlind2RulePowerOn"></div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </article>
 

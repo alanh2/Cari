@@ -1,0 +1,162 @@
+@font-face {
+    font-family: 'Myriad Hebrew';
+    src: url('../fonts/MyriadHebrew-Regular.eot');
+    src: url('../fonts/MyriadHebrew-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/MyriadHebrew-Regular.woff2') format('woff2'),
+        url('../fonts/MyriadHebrew-Regular.woff') format('woff'),
+        url('../fonts/MyriadHebrew-Regular.ttf') format('truetype'),
+        url('../fonts/MyriadHebrew-Regular.svg#MyriadHebrew-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    font-family: 'Myriad Hebrew' !important;
+}
+body{
+    background-color: var(--background);
+    border-bottom: 13px solid var(--blue);
+}
+.header{
+    background-color: var(--blue);
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+    height: 13px;
+    width: 100%;
+    float: left;
+}
+#wrapper{
+    padding: 50px 8% 0;
+}
+#nav{
+    background-color: var(--grey);
+    width: 100%;
+    height: 50px;
+    /*padding: 15px 0;*/
+    box-sizing: border-box;
+    color: white;
+    border-radius: 5px;
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+    font-size: 20px;
+}
+#nav a{
+    font-size: 20px;
+    opacity: 1;
+    margin: 15px calc(10% - 10px)
+}
+#nav a::after {
+    border: none;
+    -moz-transition: height .25s ease-in-out;
+    -webkit-transition: height .25s ease-in-out;
+    transition: height .25s ease-in-out;
+    left: -50%;
+    bottom: -21px;
+    margin-left: 0;
+    background-color: var(--blue);
+    width: 200%;
+}
+#main{
+    margin-top: 20px;
+    overflow: visible;
+    background-color: transparent;
+}
+#nav a.active::after {
+    border:none;
+    height: 5px;
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+}
+
+#main > .panel {
+    padding: 6.66%;
+    background-color: var(--background);
+    border-radius: 5px;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+}
+
+.H1Title{
+    margin: 40px auto 45px;
+    font-size: 35.56px;
+    color: var(--blue);
+}
+.rules tr{
+    background-color: var(--background);
+    padding: 25px 15px 10px 12px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+    margin-top: 16px;
+    float: left;
+    width: 100%;
+    color: var(--greyText);
+}
+.rules tr a{
+    color: var(--greyText);
+    text-decoration: none;
+    -moz-transition: color .25s ease-in-out;
+    -webkit-transition: color .25s ease-in-out;
+    transition: color .25s ease-in-out;
+}
+.rules tr a:hover{
+    color: var(--blue);
+}
+.rules tr:first-child{
+    padding: 10px 15px 10px 12px;
+    color: var(--blue);
+    margin-bottom: 16px;
+}
+.rules th, .rules td{
+    float: left;
+    margin-right: 5%;
+    font-weight: bold;
+}
+.rules th{
+    font-size: 20.32px;
+}
+.rules td{
+    font-size: 15.24px;
+    width: 15.8%;
+}
+.rules th:first-child, .rules td:first-child{
+    float: right;
+    margin-right: 0;
+    width: auto;
+    text-align: center;
+}
+.BRBlind2RuletoggleOff, .BRBlind2RuletoggleOn, .BRBlind2RulePowerOff, .BRBlind2RulePowerOn{
+    background: none;;
+}
+.BRBlind2RuletoggleOff, .BRBlind2RulePowerOff{
+    color: var(--greyText);
+}
+.BRBlind2RuletoggleOn, .BRBlind2RulePowerOn{
+    color: var(--green);
+}
+/*
+
+    -moz-box-shadow: -1px 2px 5px var(--shadow);
+    -webkit-box-shadow: -1px 2px 5px var(--shadow);
+    box-shadow: -1px 2px 5px var(--shadow);
+
+*/
+
+
+:root {
+    --blue: #0085cf;
+    --white: #fefbfb;
+    --menuwhite: #f9f9f9;
+    --panelwhite: #e4e4e4;
+    --grey: #a1aab2;
+    --lightGrey: #ebebeb;
+    --menuGrey: #cfcfcf;
+    --shadow: #888;
+    --background: #eaeaea;
+    --greyText: #838383;
+    --green: #07b90f;
+  }
