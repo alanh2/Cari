@@ -120,7 +120,7 @@
                         }
 
                         if (AllOrg[i].CardId !== null) {
-                            DisplayName = AllOrg[i].FldOrgDisplayName + '(' + AllOrg[i].WorkingMode + ')';
+                            DisplayName = AllOrg[i].FldOrgDisplayName + '(' + AllOrg[i].WorkingMode + '*)';
                             BlindTitleAction = 'ShowBlind(' + AllOrg[i].CardId + ',' + AllOrg[i].FldVersion + ',' + AllOrg[i].Position +');';
                         }
                         else
@@ -303,7 +303,7 @@
             while (AllOrg[i].CardId !== Id)
                 i++;
 
-            document.getElementById('DivBlindDetailTitle').innerText = AllOrg[i].OrgFullPathName + '(' + AllOrg[i].WorkingMode + ')';
+            document.getElementById('DivBlindDetailTitle').innerText = AllOrg[i].OrgFullPathName + '(' + AllOrg[i].WorkingMode + '-)';
             PresentBigBlindPosition(AllOrg[i].Position);
             document.getElementById('BlindDetailsLink').click();
 
@@ -343,10 +343,10 @@
             for (var i = 0; i < AllOrg.length; i++)
                 if (AllOrg[i].CardId === CardId) {
 
-                    if (AllOrg[i].CardStatusId !== 2) {
+                    /*if (AllOrg[i].CardStatusId !== 2) {
                         alert('לא ניתן לבצע פעולות בוילון זה עקב תקלה.');
                         return;
-                    }
+                    }*/
 
 
                     CorrPosition = AllOrg[i].Position;
@@ -447,19 +447,15 @@
 
             <!-- home -->
             <article id="home" class="panel intro" style="height:100%">
-
-                <div class="container" style="width:100%">
-
-                    <div id="DivSearch" style="display:flex">
-                        <div style="margin-right:20px;margin-left:10px;" class="icon solid fa-sync-alt " onclick="UpdateData();"></div>
-                        <div id="DivSearchBox" style=" display:flex; padding-right:10px;   height: 30px;    border: 1px solid;    border-radius: 10px;    padding-left: 10px;    margin-left: 5px;    margin-top: 3px;    margin-right: 5px;    background-color: #F5F5F5;">
-                            <div class="icon solid fa-search "></div>
-                            <div><input id="TxtSearch" onkeyup="FilterData();" style="border: 0;background: transparent;font-size: 20px;height:22px;margin-right:10px;width:200px;" type="text" /></div>
-
-                        </div>
+                <div id="DivSearch">
+                    <div class="icon solid fa-sync-alt refresh" onclick="UpdateData();"></div>
+                    <div id="DivSearchBox">
+                        <div class="icon solid fa-search"></div>
+                        <input id="TxtSearch" onkeyup="FilterData();" type="text" />
                     </div>
+                </div>
+                <div class="container" style="width:100%">
                     <div id="DivAll"></div>
-
                 </div>
             </article>
 
@@ -523,34 +519,55 @@
 
             <!-- Login -->
             <article id="Login" class="panel">
-                <div class="container" style="height:450px ; font-size:22px; ">
-                    <h3>התחברות למערכת</h3>
+                <div class="container">
+                    <h1 class="H1Title">התחברות למערכת</h1>
                     <form method="post" action="#">
-                        <div class="row gtr-uniform" style="display:block; margin:0px;">
-                            <div class="col-12 col-12-xsmall"><input type="text" name="name" id="name" placeholder="שם משתמש" style="font-size:22px; padding-top:3px; padding-bottom:3px;" /></div>
-                            <div class="col-12 col-12-xsmall"><input type="email" name="email" id="email" placeholder="סיסמה" style="font-size:22px; padding-top:3px; padding-bottom:3px;" /></div>
-                            <div class="col-12">
-                                <ul class="actions">
-                                    <li><input type="button" class="primary button123" value="התחבר" /></li>
-                                </ul>
-                            </div>
+                        <div class="formInput"><i class="icon fa fa-user"></i><input class="col-12 col-12-xsmall user" type="text" name="name" id="name" placeholder="User"/></div>
+                        <div class="formInput"><i class="icon fa fa-user"></i><input class="col-12 col-12-xsmall password" type="password" name="email" id="email" placeholder="Password"/></div>
+                        <div class="formInput">
+                            <span>Remember me</span><input type="checkbox"/><label for="ChkActive"><span></span></label>
+                        </div>
+                        <div class="formInput"><a href="#">?Forgot your Password</a></div>
+                        <div class="formInput">
+                            <input type="button" class="primary button123" value="LOGIN" />
                         </div>
                     </form>
                 </div>
             </article>
 
-            <article id="contact" class="panel" style="padding-right:5px; padding-left:5px;">
-                <div class="container" dir="rtl" style="height:450px ; ">
-                    <h1 style="text-align:center">הודעות</h1>
-                    <br />
-                    <ul class="feature-icons" style="font-size:22px;padding-left:5px;">
-                        <li class="icon solid fa-envelope-open" style="margin:0px;line-height:15px;height:50px;padding-top:5px;display:flex; padding-bottom:10px;">
-                            <span style="line-height:1;padding-right:5px;"> 20/06/2019 - פניתך למערכת נקלטה בהצלחה</span>
-                        </li>
-                        <li class="icon solid fa-envelope" style="margin:0px;line-height:15px;height:50px;padding-top:20px;">
-                            <span style="line-height:1;padding-right:5px;font-weight:bold"> 16/06/2019 - ברוך הבא למערכת</span>
-                        </li>
-                    </ul>
+            <article id="contact" class="panel">
+                <div class="container" dir="rtl">
+                    <h1 class="H1Title">הודעות</h1>
+                    <div class="feature-icons">
+                        <div class="message open">
+                            <i class="icon solid fa-envelope-open"></i>
+                            <span>20/06/2019 - פניתך למערכת נקלטה בהצלחה</span>
+                        </div>
+                        <div class="message">
+                            <i class="icon solid fa-envelope"></i>
+                            <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                        <div class="message">
+                            <i class="icon solid fa-envelope"></i>
+                            <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                        <div class="message">
+                            <i class="icon solid fa-envelope"></i>
+                            <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                        <div class="message">
+                            <i class="icon solid fa-envelope"></i>
+                            <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                        <div class="message">
+                            <i class="icon solid fa-envelope"></i>
+                            <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                        <div class="message">
+                            <i class="icon solid fa-envelope"></i>
+                            <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                    </div>
                 </div>
             </article>
 
