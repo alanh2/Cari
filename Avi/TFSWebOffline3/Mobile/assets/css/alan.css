@@ -272,6 +272,91 @@ input[type="checkbox"]:checked + label span {
     color: var(--linkGrey)
 }
 
+.blindContent > div, .blindContent > a {
+    float: left;
+}
+.divPercent {
+    width: 17%;
+    color: var(--blue);
+    font-weight: bold;
+}
+.blindContent {
+    float: left;
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+}
+.blind.position100 {
+    width: 20%;
+    float: left;
+}
+.stateBlind {
+    width: 100%;
+    float: left;
+    background-color: var(--blue);
+}
+.blind {
+    width: 38%;
+    position: relative;
+    box-sizing: ;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+    overflow: hidden;
+
+}
+.blind.position90 .stateBlind {
+    position: absolute;
+    top: -10%;
+    height: 100%;
+}
+.divPercent {
+    width: 21%;
+}
+.blindName {
+    float: right !important;
+    color: white;
+    background-color: var(--blue);
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    width: 14%;
+    margin-top: 16px;
+}
+.blindSection {
+    float: right !important;
+}
+.blindNameSection {
+    color: var(--grey);
+}
+.blindSection {
+    width: 15%;
+    text-align: center;
+}
+.blindLetterSection {
+    font-size: 24px;
+}
+.blindSection {
+    color: var(--grey);
+}
+.blindContent {
+    padding: 5% 0 5px 5%;
+}
+.divPercent {
+    width: 18%;
+    text-align: center;
+}
+.blind {
+    width: 25%;
+    float: left;
+    height: 49px;
+    margin: 0 3%;
+}
+
 :root {
     --blue: #0085cf;
     --white: #fefbfb;
