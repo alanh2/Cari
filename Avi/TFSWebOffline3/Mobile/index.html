@@ -41,11 +41,46 @@
         var selectedCardId = -1;
         var selectedCardVersion = -1;
         var selectedPosition = -1;
-        
-        $(document).ready(function () {
-            LoadAllData();
-        });
+        var position=90;
+            function positionUp (){
+                $("#blindExample").removeClass("position"+position);
+                if (position >= 5){
+                    position = position - 5;
+                }
+                if (position < 0 ){
+                    position = 0;
+                }
+                $("#blindExample").addClass("position"+position);
+                console.log(position);
+            }
+            function positionDown (){
+                $("#blindExample").removeClass("position"+position);
+                if (position <= 95){
+                    position = position + 5;
+                }
+                if (position > 100 ){
+                    position = 100;
+                }
+                $("#blindExample").addClass("position"+position)
+                console.log(position);
+            }
+            function plusminus(id){
+                if ($("#"+id).hasClass("minus")){
+                    $("#"+id).removeClass("minus");
+                    $("#"+id).addClass("plus");
+                }else{
+                    $("#"+id).addClass("minus");
+                    $("#"+id).removeClass("plus");
+                }
+            console.log(id);
 
+            }
+            console.log(position);
+        $(document).ready(function () {
+            //LoadAllData();
+            $("#blindExample").addClass("position"+position);        
+
+        });
 
         function LoadAllData() {
 
@@ -85,7 +120,6 @@
                 }
             });
         }
-
 
         function LoadOrg(level, ParentId, MainParentId) {
             //debugger;
@@ -173,8 +207,6 @@
             }
         }
 
-
-
         function UpdateData() {
 
             var Name = 'OrgGetAll';
@@ -252,9 +284,6 @@
             document.getElementById(OldDivId).appendChild(NewDiv);
         }
 
-
-
-
         function FilterData() {
             //alert(document.getElementById('TxtSearch').value);
 
@@ -292,7 +321,6 @@
                     ShowDivsDown(MyDiv.children[i]);
             }
         }
-
 
         function ShowBlind(Id, version, Position) {
             //debugger;
@@ -332,7 +360,6 @@
             document.getElementById("DivMyHeightShow").innerText = CurPer + '%';
             document.getElementById("mydiv").style.top = 70+((CurPer*165)/100) + 'px';
         }
-
 
         function SmallBlindChangePosition(Move, CardId) {
 
@@ -381,7 +408,6 @@
             ActivateDevice(3, 4, AllOrg[LastIndexId].FldVersion, AllOrg[LastIndexId].CardId, ';FldBlindPositionUser,' + CorrPosition  );
         }
 
-
         function ActivateDevice(_OrgTypeId, FuncId, version, FldId, ExtraParam) {
             ////////debugger;
             var Name = 'TblZOrgType' + _OrgTypeId + 'F' + FuncId + 'V' + version + 'Activate';
@@ -420,7 +446,6 @@
             // Send Command
             ActivateDevice(3, 4, selectedCardVersion, selectedCardId, ';FldBlindPositionUser,' + selectedPosition);
         }
-
     </script>
 
 </head>
@@ -434,13 +459,11 @@
 
         <!-- Nav -->
         <nav id="nav">
-            <a href="#" class="icon solid fa-home"></a>
+            <a href="#" class="icon-alan icon-home"></a>
             <a href="#contact" class="icon solid fa-envelope"></a>
             <a href="#Login" class="icon solid fa-user-circle"></a>
             <a href="#Rules" class="icon solid fa-list"></a>
         </nav>
-
-
 
         <!-- Main -->
         <div id="main">
@@ -448,7 +471,7 @@
             <!-- home -->
             <article id="home" class="panel intro" style="height:100%">
                 <div id="DivSearch">
-                    <div class="icon solid fa-sync-alt refresh" onclick="UpdateData();"></div>
+                    <div class="icon solid fa-sync-alt refresh" onclick="UpdateData()"></div>
                     <div id="DivSearchBox">
                         <div class="icon solid fa-search"></div>
                         <input id="TxtSearch" onkeyup="FilterData();" type="text" />
@@ -456,14 +479,18 @@
                 </div>
                 <div class="container" style="width:100%">
                     <!--div id="DivAll"></div-->
+                    <div class="sides">
+                        <a id="sideA" class="side plus" href="#" onclick="plusminus('sideA'); return false;">קומה A</a>
+                        <a id="side2" class="side plus" href="#" onclick="plusminus('side2'); return false;">קומה 2</a>
+                    </div>
                     <div class="DivAll">
                         <div class="blindContent">
                             <div class="divPercent">90%</div>
-                            <a href="#"><</a>
-                            <div class="blind position90">
+                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
+                            <div id="blindExample" class="blind">
                                 <div class="stateBlind"></div>
                             </div>
-                            <a href="#">></a>
+                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
                             <div class="blindName">2A2</div>
                             <div class="blindSection">
                                 <div class="blindNameSection">וילון</div>
@@ -472,11 +499,26 @@
                         </div>
                         <div class="blindContent">
                             <div class="divPercent">90%</div>
-                            <a href="#"><</a>
+                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
+
                             <div class="blind position90">
                                 <div class="stateBlind"></div>
                             </div>
-                            <a href="#">></a>
+                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
+                            <div class="blindName">2A2</div>
+                            <div class="blindSection">
+                                <div class="blindNameSection">וילון</div>
+                                <div class="blindLetterSection">A</div>
+                            </div>
+                        </div>
+                        <div class="blindContent error">
+                            <div class="divPercent">90%</div>
+                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
+
+                            <div class="blind position90">
+                                <div class="stateBlind"></div>
+                            </div>
+                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
                             <div class="blindName">2A2</div>
                             <div class="blindSection">
                                 <div class="blindNameSection">וילון</div>
@@ -485,24 +527,12 @@
                         </div>
                         <div class="blindContent">
                             <div class="divPercent">90%</div>
-                            <a href="#"><</a>
+                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
+
                             <div class="blind position90">
                                 <div class="stateBlind"></div>
                             </div>
-                            <a href="#">></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent">
-                            <div class="divPercent">90%</div>
-                            <a href="#"><</a>
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a href="#">></a>
+                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
                             <div class="blindName">2A2</div>
                             <div class="blindSection">
                                 <div class="blindNameSection">וילון</div>
@@ -577,7 +607,7 @@
                     <h1 class="H1Title">התחברות למערכת</h1>
                     <form method="post" action="#">
                         <div class="formInput"><i class="icon fa fa-user"></i><input class="col-12 col-12-xsmall user" type="text" name="name" id="name" placeholder="User"/></div>
-                        <div class="formInput"><i class="icon fa fa-user"></i><input class="col-12 col-12-xsmall password" type="password" name="email" id="email" placeholder="Password"/></div>
+                        <div class="formInput"><i class="icon-alan icon-unlock"></i><input class="col-12 col-12-xsmall password" type="password" name="email" id="email" placeholder="Password"/></div>
                         <div class="formInput">
                             <span>Remember me</span><input type="checkbox"/><label for="ChkActive"><span></span></label>
                         </div>

@@ -1,14 +1,25 @@
 @font-face {
     font-family: 'Myriad Hebrew';
-    src: url('../fonts/MyriadHebrew-Regular.eot');
-    src: url('../fonts/MyriadHebrew-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/MyriadHebrew-Regular.woff2') format('woff2'),
-        url('../fonts/MyriadHebrew-Regular.woff') format('woff'),
-        url('../fonts/MyriadHebrew-Regular.ttf') format('truetype'),
-        url('../fonts/MyriadHebrew-Regular.svg#MyriadHebrew-Regular') format('svg');
+    src: url('../../../css/fonts/MyriadHebrew-Regular.eot');
+    src: url('../../../css/fonts/MyriadHebrew-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../../../css/fonts/MyriadHebrew-Regular.woff2') format('woff2'),
+        url('../../../css/fonts/MyriadHebrew-Regular.woff') format('woff'),
+        url('../../../css/fonts/MyriadHebrew-Regular.ttf') format('truetype'),
+        url('../../../css/fonts/MyriadHebrew-Regular.svg#MyriadHebrew-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'fontello';
+    src: url('../../../css/fonts/fontello.eot');
+    src: url('../../../css/fonts/fontello.eot#iefix') format('embedded-opentype'),
+         url('../../../css/fonts/fontello.woff2') format('woff2'),
+         url('../../../css/fonts/fontello.woff') format('woff'),
+         url('../../../css/fonts/fontello.ttf') format('truetype'),
+         url('../../../css/fonts/fontello.svg#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     font-family: 'Myriad Hebrew' !important;
 }
@@ -80,7 +91,21 @@ body{
     -webkit-box-shadow: 0px 1px 10px var(--shadow);
     box-shadow: 0px 1px 10px var(--shadow);
 }
-
+.DivAll{
+    border-radius: 5px;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+    width: 100%;
+    float: left;
+    padding: 10px 0 0 0;
+}
+#main > .panel.intro {
+    display: block;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 .H1Title{
     margin: 40px auto 45px;
     font-size: 35.56px;
@@ -161,7 +186,7 @@ body{
 }
 .formInput input[type="text"], .formInput input[type="password"]{
     margin-bottom: 16px;
-    padding-left: 4vh;
+    padding-left: 33px;
     box-sizing: border-box;
     color: var(--greyText);
     text-align: left;
@@ -171,7 +196,7 @@ body{
     line-height: 36px;
     margin-top: 25px;
 }
-.formInput i.icon{
+.formInput i.icon, .formInput i.icon-alan{
     font-size: 20px;
     color: var(--grey);
     width: 20px;
@@ -271,28 +296,53 @@ input[type="checkbox"]:checked + label span {
     font-size: 15px;
     color: var(--linkGrey)
 }
-
+#main > .panel.intro{
+    display: block;
+}
+.blindContent {
+    float: left;
+    width: 87.5%;
+    margin-left: 6.25%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 0 10px 2%;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+    box-sizing: border-box;
+    height: 70px;
+}
 .blindContent > div, .blindContent > a {
     float: left;
 }
 .divPercent {
-    width: 17%;
+    width: 19%;
+    text-align: center;
+    color: var(--greyText);
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 17.8px;
+    margin-top: 14px;  
+    margin-right: 3%;
+    text-align: center;
+}
+.blindContent:hover .divPercent{
     color: var(--blue);
-    font-weight: bold;
 }
-.blindContent {
-    float: left;
-    width: 80%;
-    margin-left: 10%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    -moz-box-shadow: 0px 1px 10px var(--shadow);
-    -webkit-box-shadow: 0px 1px 10px var(--shadow);
-    box-shadow: 0px 1px 10px var(--shadow);
+.blindContent.error .divPercent {
+    color: var(--error);
 }
-.blind.position100 {
-    width: 20%;
-    float: left;
+.blindContent.error .blind::before{
+    font-family: 'fontello';
+    color: var(--error);
+    font-size: 25px;
+    content: "\e894";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 8px;
+    left: calc(70% - 25px);
+    z-index: 11;
 }
 .stateBlind {
     width: 100%;
@@ -300,32 +350,54 @@ input[type="checkbox"]:checked + label span {
     background-color: var(--blue);
 }
 .blind {
-    width: 38%;
     position: relative;
-    box-sizing: ;
+    box-sizing: border-box;
     -moz-box-shadow: 0px 1px 10px var(--shadow);
     -webkit-box-shadow: 0px 1px 10px var(--shadow);
     box-shadow: 0px 1px 10px var(--shadow);
     overflow: hidden;
-
+    height: 50px;
+    width: 20%;
+    float: left;
+    margin: 0 3%;
 }
-.blind.position90 .stateBlind {
+.blind .stateBlind {
     position: absolute;
-    top: -10%;
     height: 100%;
 }
-.divPercent {
-    width: 21%;
-}
+.blind.position0 .stateBlind { top: -100%;}
+.blind.position1 .stateBlind, .blind.position2 .stateBlind, .blind.position3 .stateBlind, .blind.position4 .stateBlind, .blind.position5 .stateBlind { top: -95%;}
+.blind.position6 .stateBlind, .blind.position7 .stateBlind, .blind.position8 .stateBlind, .blind.position9 .stateBlind, .blind.position10 .stateBlind  { top: -90%;}
+.blind.position11 .stateBlind, .blind.position12 .stateBlind, .blind.position13 .stateBlind, .blind.position14 .stateBlind, .blind.position15 .stateBlind { top: -850%;}
+.blind.position16 .stateBlind, .blind.position17 .stateBlind, .blind.position18 .stateBlind, .blind.position19 .stateBlind, .blind.position20 .stateBlind { top: -80%;}
+.blind.position21 .stateBlind, .blind.position22 .stateBlind, .blind.position23 .stateBlind, .blind.position24 .stateBlind, .blind.position25 .stateBlind { top: -75%;}
+.blind.position26 .stateBlind, .blind.position27 .stateBlind, .blind.position28 .stateBlind, .blind.position29 .stateBlind, .blind.position30 .stateBlind { top: -70%;}
+.blind.position31 .stateBlind, .blind.position32 .stateBlind, .blind.position33 .stateBlind, .blind.position34 .stateBlind, .blind.position35 .stateBlind { top: -65%;}
+.blind.position36 .stateBlind, .blind.position37 .stateBlind, .blind.position38 .stateBlind, .blind.position39 .stateBlind, .blind.position40 .stateBlind { top: -60%;}
+.blind.position41 .stateBlind, .blind.position42 .stateBlind, .blind.position43 .stateBlind, .blind.position44 .stateBlind, .blind.position45 .stateBlind { top: -55%;}
+.blind.position46 .stateBlind, .blind.position47 .stateBlind, .blind.position48 .stateBlind, .blind.position49 .stateBlind, .blind.position50 .stateBlind { top: -50%;}
+.blind.position51 .stateBlind, .blind.position52 .stateBlind, .blind.position53 .stateBlind, .blind.position54 .stateBlind, .blind.position55 .stateBlind { top: -45%;}
+.blind.position56 .stateBlind, .blind.position57 .stateBlind, .blind.position58 .stateBlind, .blind.position59 .stateBlind, .blind.position60 .stateBlind { top: -40%;}
+.blind.position61 .stateBlind, .blind.position62 .stateBlind, .blind.position63 .stateBlind, .blind.position64 .stateBlind, .blind.position65 .stateBlind { top: -35%;}
+.blind.position66 .stateBlind, .blind.position67 .stateBlind, .blind.position68 .stateBlind, .blind.position69 .stateBlind, .blind.position70 .stateBlind { top: -30%;}
+.blind.position71 .stateBlind, .blind.position72 .stateBlind, .blind.position73 .stateBlind, .blind.position74 .stateBlind, .blind.position75 .stateBlind { top: -25%;}
+.blind.position76 .stateBlind, .blind.position77 .stateBlind, .blind.position78 .stateBlind, .blind.position79 .stateBlind, .blind.position80 .stateBlind { top: -20%;}
+.blind.position81 .stateBlind, .blind.position82 .stateBlind, .blind.position83 .stateBlind, .blind.position84 .stateBlind, .blind.position85 .stateBlind { top: -15%;}
+.blind.position86 .stateBlind, .blind.position87 .stateBlind, .blind.position88 .stateBlind, .blind.position89 .stateBlind, .blind.position90 .stateBlind { top: -10%;}
+.blind.position91 .stateBlind, .blind.position92 .stateBlind, .blind.position93 .stateBlind, .blind.position94 .stateBlind, .blind.position95 .stateBlind { top: -5%;}
+.blind.position96 .stateBlind, .blind.position97 .stateBlind, .blind.position99 .stateBlind, .blind.position99 .stateBlind, .blind.position100 .stateBlind { top: 0%;}
 .blindName {
     float: right !important;
     color: white;
     background-color: var(--blue);
-    height: 20px;
-    font-size: 12px;
+    font-size: 15.57px;
     line-height: 20px;
-    width: 14%;
-    margin-top: 16px;
+    height: 25px;
+    width: 19%;
+    margin-top: 13px;
+    margin-right: -2px;
+    padding: 3px 5px 0 0;
+    font-family: 'Montserrat', sans-serif !important;
 }
 .blindSection {
     float: right !important;
@@ -334,27 +406,79 @@ input[type="checkbox"]:checked + label span {
     color: var(--grey);
 }
 .blindSection {
-    width: 15%;
+    width: 18%;
     text-align: center;
 }
 .blindLetterSection {
     font-size: 24px;
+    font-family: 'Montserrat', sans-serif !important;
 }
 .blindSection {
     color: var(--grey);
 }
-.blindContent {
-    padding: 5% 0 5px 5%;
+a.blindDown, a.blindUp {
+    text-decoration: none;
+    margin-top: 14px;
+    width: 6%;
 }
-.divPercent {
-    width: 18%;
-    text-align: center;
+a.blindDown::before, a.blindUp::before {
+    font-family: 'fontello';
+    color: var(--arrows);
+    font-size: 20px;
 }
-.blind {
-    width: 25%;
+a.blindDown::before{
+    content: "\e898";
+}
+a.blindUp::before{
+    content: "\e899";
+}
+.icon-alan::before{
+    font-family: 'fontello';
+    font-style: normal;
+    font-size: 20px;
+}
+.icon-home::before {
+    content: "\e897";
+}
+.icon-unlock::before{
+    content: "\e896";
+}
+.sides {
     float: left;
-    height: 49px;
-    margin: 0 3%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 5%;
+    width: 100%;
+}
+a.side {
+    width: 44%;
+    padding-right: 28px;
+    float: left;
+    text-decoration: none;
+    position: relative;
+    color: var(--blue);
+    font-weight: bold;
+}
+.side.minus::before, .side.plus::before {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    color: var(--blue);
+    position: absolute;
+    right: 0px;
+    font-weight: 700;
+    color: var(--arrows)
+}
+.side.plus::before {
+    content: "\f0fe";
+}
+.side.minus::before{
+    content: "\f146";
 }
 
 :root {
@@ -373,4 +497,6 @@ input[type="checkbox"]:checked + label span {
     --background: #eaeaea;
     --greyText: #838383;
     --green: #07b90f;
+    --error: #c00707;
+    --arrows: #cccccc;
   }
