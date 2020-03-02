@@ -44,15 +44,18 @@
         var position=90;
             
             function plusminus(id){
-                $(".side").removeClass("minus");
-                $(".side").addClass("plus");
-                /*if ($("#"+id).hasClass("minus")){
+                //$(".side").removeClass("minus");
+                //$(".side").addClass("plus");
+                if ($("#"+id).hasClass("minus")){
                     $("#"+id).removeClass("minus");
                     $("#"+id).addClass("plus");
-                }else{*/
+                    $("#sidesASelect").hide();
+
+                }else{
                     $("#"+id).addClass("minus");
                     $("#"+id).removeClass("plus");
-                //}
+                    $("#sidesASelect").show();
+                }
             }
 
             function blindClick(id){
@@ -479,15 +482,13 @@
                     </div>
                 </div>
                 <div class="container" style="width:100%">
-                    <!--div id="DivAll"></div-->
                     <div class="sides">
-                        <a id="sideA" class="side minus" style="float: right;" href="#" onclick="plusminus('sideA'); return false;">קומה 2</a>
-                        <a id="side2" class="side plus" href="#" onclick="plusminus('side2'); return false;">קומה 1</a>
+                        <a id="sideA" class="side plus" style="float: right;" href="#" onclick="plusminus('sideA'); return false;">קומה 2</a>
                         <select name="sidesASelect" id="sidesASelect">
-                            <option value="1">קומה A</option>
-                            <option value="1">קומה B</option>
-                            <option value="1">קומה C</option>
-                            <option value="1">קומה D</option>
+                            <option value="1">Side A</option>
+                            <option value="2">Side B</option>
+                            <option value="3">Side C</option>
+                            <option value="4">Side D</option>
                         </select>
                     </div>
 
@@ -1029,7 +1030,7 @@
                 positionpop = 100 - this.value + 1
                 console.log(positionpop);
                 changeClass();
-            }); 
+            });
         };
         $("#blindExample").on('click', function(){
             blindClick("blindExample")
