@@ -42,40 +42,28 @@
         var selectedCardVersion = -1;
         var selectedPosition = -1;
         var position=90;
-            function positionUp (){
-                $("#blindExample").removeClass("position"+position);
-                if (position >= 5){
-                    position = position - 5;
-                }
-                if (position < 0 ){
-                    position = 0;
-                }
-                $("#blindExample").addClass("position"+position);
-                console.log(position);
-            }
-            function positionDown (){
-                $("#blindExample").removeClass("position"+position);
-                if (position <= 95){
-                    position = position + 5;
-                }
-                if (position > 100 ){
-                    position = 100;
-                }
-                $("#blindExample").addClass("position"+position)
-                console.log(position);
-            }
+            
             function plusminus(id){
-                if ($("#"+id).hasClass("minus")){
+                $(".side").removeClass("minus");
+                $(".side").addClass("plus");
+                /*if ($("#"+id).hasClass("minus")){
                     $("#"+id).removeClass("minus");
                     $("#"+id).addClass("plus");
-                }else{
+                }else{*/
                     $("#"+id).addClass("minus");
                     $("#"+id).removeClass("plus");
-                }
-            console.log(id);
-
+                //}
             }
-            console.log(position);
+
+            function blindClick(id){
+                if ($("#"+id).hasClass("blindSelected")){
+                    $("#"+id).removeClass("blindSelected");
+                    $(".blindDetail").hide();
+                }else{
+                    $("#"+id).addClass("blindSelected");
+                    $(".blindDetail").show();
+                }
+            }
         $(document).ready(function () {
             //LoadAllData();
             $("#blindExample").addClass("position"+position);
@@ -493,170 +481,119 @@
                 <div class="container" style="width:100%">
                     <!--div id="DivAll"></div-->
                     <div class="sides">
-                        <a id="sideA" class="side plus" style="float: right;" href="#" onclick="plusminus('sideA'); return false;">קומה A</a>
-                        <a id="side2" class="side plus" href="#" onclick="plusminus('side2'); return false;">קומה 2</a>
+                        <a id="sideA" class="side minus" style="float: right;" href="#" onclick="plusminus('sideA'); return false;">קומה 2</a>
+                        <a id="side2" class="side plus" href="#" onclick="plusminus('side2'); return false;">קומה 1</a>
+                        <select name="sidesASelect" id="sidesASelect">
+                            <option value="1">קומה A</option>
+                            <option value="1">קומה B</option>
+                            <option value="1">קומה C</option>
+                            <option value="1">קומה D</option>
+                        </select>
                     </div>
+
                     <div class="DivAll">
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-                            <div id="blindExample" class="blind">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center error">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-
+                        <div id="blindExample" class="blindContent wow fadeInUp center">
                             <div class="blind position90">
                                 <div class="stateBlind"></div>
                             </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
+                            <div class="divPercent">90%</div>
                             <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
                                 <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
+                                <div class="blindLetterSection">A2FD&934</div>
                             </div>
                         </div>
-                        <div class="blindContent wow fadeInUp center error">
-                            <div class="divPercent">10%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-
+                        <div class="blindDetail hide wow fadeInUp center">
+                            <div id="blindpopPosition">
+                                90%
+                            </div>
+                            <div id="blindDetailContent">
+                                <div class="blindpop">
+                                    <div class="blindContentpop">
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                        <div class="blind-row"></div>
+                                    </div>
+                                </div>
+                                <div class="range-slider" style="position: absolute;top: 93px;left: -76px;">
+                                    <input id="slidePosition" class="input-range" type="range" step="1" value="0" min="1" max="101">
+                                </div> 
+                                <div class="range-slider" style="position: absolute;top: 93px;right: -76px;">
+                                    <input id="slideAngle" class="input-range" type="range" step="1" value="0" min="1" max="100">
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="blindContent wow fadeInUp center">
+                            <div class="blind position70">
+                                <div class="stateBlind"></div>
+                            </div>
+                            <div class="divPercent">70%</div>
+                            <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
+                                <div class="blindNameSection">וילון</div>
+                                <div class="blindLetterSection">A2FD&934</div>
+                            </div>
+                        </div>
+                        <div class="blindContent wow fadeInUp center">
+                            <div class="blind position90">
+                                <div class="stateBlind"></div>
+                            </div>
+                            <div class="divPercent">90%</div>
+                            <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
+                                <div class="blindNameSection">וילון</div>
+                                <div class="blindLetterSection">A2FD&934</div>
+                            </div>
+                        </div>
+                        <div class="blindContent error wow fadeInUp center">
+                            <div class="blind position50">
+                                <div class="stateBlind"></div>
+                            </div>
+                            <div class="divPercent">50%</div>
+                            <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
+                                <div class="blindNameSection">וילון</div>
+                                <div class="blindLetterSection">A2FD&934</div>
+                            </div>
+                        </div>
+                        <div class="blindContent wow fadeInUp center">
+                            <div class="blind position30">
+                                <div class="stateBlind"></div>
+                            </div>
+                            <div class="divPercent">30%</div>
+                            <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
+                                <div class="blindNameSection">וילון</div>
+                                <div class="blindLetterSection">A2FD&934</div>
+                            </div>
+                        </div>
+                        <div class="blindContent error wow fadeInUp center">
+                            <div class="blind position90">
+                                <div class="stateBlind"></div>
+                            </div>
+                            <div class="divPercent">90%</div>
+                            <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
+                                <div class="blindNameSection">וילון</div>
+                                <div class="blindLetterSection">A2FD&934</div>
+                            </div>
+                        </div>
+                        <div class="blindContent error wow fadeInUp center">
                             <div class="blind position10">
                                 <div class="stateBlind"></div>
                             </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-                            <div class="blind">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center error">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center error">
                             <div class="divPercent">10%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-
-                            <div class="blind position10">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
                             <div class="blindSection">
+                                <div class="blindName">2A3 GFR 7854</div>
                                 <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-                            <div class="blind">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-                            <div class="blind">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-                            <div class="blind">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
-                            </div>
-                        </div>
-                        <div class="blindContent wow fadeInUp center">
-                            <div class="divPercent">90%</div>
-                            <a onclick="positionUp();return false;" href="#" class="blindUp" ></a>
-                            <div class="blind">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <a onclick="positionDown();return false;" href="#" class="blindDown"></a>
-                            <div class="blindName">2A2</div>
-                            <div class="blindSection">
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A</div>
+                                <div class="blindLetterSection">A2FD&934</div>
                             </div>
                         </div>
                     </div>
@@ -786,6 +723,9 @@
                         <div class="message wow fadeInUp center">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
+                        </div>
+                        <div class="contactLogo">
+                            <img src="./images/logo.png"/>
                         </div>
                     </div>
                 </div>
@@ -1073,6 +1013,37 @@
             })
 
         }
+    </script>
+    <script>
+        var positionpop = 80;
+        var angle = 70;
+        window.onload = function() {
+            changeClass();
+            $("#slideAngle").val(100-angle);
+            $("#slidePosition").val(100-positionpop);
+            $("#slideAngle").on('input', function(){
+                angle = 100 - this.value
+                changeClass();
+            }); 
+            $("#slidePosition").on('input', function(){
+                positionpop = 100 - this.value + 1
+                console.log(positionpop);
+                changeClass();
+            }); 
+        };
+        $("#blindExample").on('click', function(){
+            blindClick("blindExample")
+        });
+        function changeClass(otherClass = "") {
+            var element = document.getElementById("blindDetailContent");
+            element.className = "position" + positionpop + " " + "angle" + angle + " " + otherClass;
+            $("#slideAngle").val(100-angle);
+            $("#slidePosition").val(100-positionpop);
+            //$("#blindpopPosition").innerHTML  = positionpop + "%";
+            document.getElementById("blindpopPosition").innerHTML = positionpop + "%";
+            console.log(position);
+
+        } 
     </script>
 </body>
 </html>
