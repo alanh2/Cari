@@ -56,7 +56,6 @@ body{
     box-sizing: border-box;
     color: white;
     border-radius: 5px;
-    border-top: 4px solid var(--blue);
     -moz-box-shadow: -1px 2px 5px var(--shadow);
     -webkit-box-shadow: -1px 2px 5px var(--shadow);
     box-shadow: -1px 2px 5px var(--shadow);
@@ -514,8 +513,8 @@ a.blindUp::before{
     padding: 10px 5%;
     width: 100%;
 }
-a.side {
-    width: 44%;
+select.side {
+    width: 100%;
     padding-right: 28px;
     float: left;
     text-decoration: none;
@@ -523,17 +522,34 @@ a.side {
     color: var(--blue);
     font-weight: bold;
     font-size: 20px;
+    box-sizing: border-box;
+    border: none;
+    background-color: var(--lightGrey);
+    font-family: 'Myriad Hebrew' !important;
 }
-.side.minus::before, .side.plus::before {
+select.side option{
+    font-family: 'Myriad Hebrew' !important;
+}
+#sidesASelect {
+    width: 100%;
+    border: none;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 21px;
+    background-color: var(--lightGrey);
+    display: none;
+}
+.side.minus::before, .sidelusicon::before {
     font-family: 'Font Awesome 5 Free';
     font-style: normal;
     color: var(--blue);
     position: absolute;
-    right: 0px;
     font-weight: 700;
-    color: var(--greyText)
+    color: var(--greyText);
+    right: 5%;
+    top: 60px;
+    font-size: 20px;
 }
-.side.plus::before {
+.sidelusicon::before {
     content: "\f0fe";
 }
 .side.minus::before{
@@ -587,29 +603,29 @@ a.side {
 
   }
   [type='range']::-webkit-slider-thumb {
-    margin-top: -4px;
+    margin-top: -6px;
     border: none;
     padding: 0;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
   }
   [type='range']::-moz-range-thumb {
     border: none;
     padding: 0;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    margin-top: -13px;
+    margin-top: -6px;
   }
   [type='range']::-ms-thumb {
     margin-top: 0;
     border: none;
     padding: 0;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    margin-top: -13px;
+    margin-top: -6px;
   }
 /*blindpop2*/
 /*blinds*/
@@ -626,19 +642,20 @@ a.side {
     float: left;
     padding: 20px 0 0 9%;
     text-align: center;
-    margin-top: 90px;
+    margin-top: 63px;
     font-family: 'Montserrat', sans-serif !important;
     color: var(--greyText);
 }
 .blindDetail{
     width: 100%;
-    height: 240px;
-    -moz-box-shadow: -1px 2px 5px var(--shadow);
-    -webkit-box-shadow: -1px 2px 5px var(--shadow);
-    box-shadow: -1px 2px 5px var(--shadow);
+    height: 200px;
+    -moz-box-shadow: 0px 1px 10px var(--shadow);
+    -webkit-box-shadow: 0px 1px 10px var(--shadow);
+    box-shadow: 0px 1px 10px var(--shadow);
     float: left;
     margin-bottom: 15px;
     display: none;
+    padding-right: 20px;
 }
 #blindDetailTitle{
     text-align: left;
@@ -653,13 +670,13 @@ a.side {
     padding: 40px 40px 0 30px;
 }
 #blindDetailContent{
-    padding: 20px;
     box-sizing: border-box;
-    margin: 10px calc(5% + 10px) 10px 7%;
     position: relative;
     float: right;
-    height: 210px;
     width: 50%;
+    padding: 0 20px;
+    margin: 15px calc(5% - 10px) 10px 7%;
+    height: 170px;
 }
 
 #blindDetailTitle.Error::after {
