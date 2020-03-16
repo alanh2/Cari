@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="assets/css/mobiscroll.jquery.min.css">
+    <script src="assets/js/mobiscroll.jquery.min.js"></script>
+</head>
+<body>
+
+<div>
+    <label>
+        <select id="center">
+            <option value="1">Atlanta</option>
+            <option value="2">Berlin</option>
+            <option value="3">Boston</option>
+            <option value="4">Chicago</option>
+            <option value="5">London</option>
+            <option value="6">Los Angeles</option>
+            <option value="7">New York</option>
+            <option value="8">Paris</option>
+            <option value="9">San Francisco</option>
+        </select>
+    </label>
+</div>
+<script>
+    mobiscroll.settings = {
+        lang: 'en',      // Specify language like: lang: 'pl' or omit setting to use default
+        theme: 'ios',              // Specify theme like: theme: 'ios' or omit setting to use default
+        themeVariant: 'light'  // More info about themeVariant: https://docs.mobiscroll.com/4-10-3/select#opt-themeVariant
+    };
+    $(function () {
+        $('#center').mobiscroll().select({
+            display: 'center'
+        });
+    });
+</script>
+</body>
+</html>

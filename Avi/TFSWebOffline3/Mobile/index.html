@@ -6,17 +6,20 @@
 -->
 <html>
 <head>
-    <title>Astral by HTML5 UP</title>
+    <title>Leumi Mobile</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link href="assets/css/stylesheetMobile.css" rel="stylesheet" />
 
-    <script src="scripts/jquery-3.4.1.min.js"></script>
+    <!--script src="scripts/jquery-3.4.1.min.js"></script-->
+    <script src="assets/js/mobiscroll.jquery.min.js"></script>
     <script src="scripts/config.js"></script>
-    <link rel="stylesheet" href="assets/css/alan.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.0/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/mobiscroll.jquery.min.css">
+    <link rel="stylesheet" href="assets/css/alan.css" />
     <style>
         #mydiv {
             position: absolute;
@@ -46,10 +49,15 @@
             function blindClick(id){
                 if ($("#"+id).hasClass("blindSelected")){
                     $("#"+id).removeClass("blindSelected");
+                    $("body").removeClass("overflowHidden");
+                    $("#overdiv").addClass("hidden");
                     $(".blindDetail").hide();
                 }else{
                     $("#"+id).addClass("blindSelected");
+                    $("body").addClass("overflowHidden");
+                    $("#overdiv").removeClass("hidden");
                     $(".blindDetail").show();
+
                 }
             }
         $(document).ready(function () {
@@ -152,7 +160,7 @@
                             AddDiv('DivAll-' + NewId, 'DivAllMainActionDiv-' + NewId, 'BRBlind2', '', '', '');
 
                             // Button UP
-                            AddDiv('DivAllMainActionDiv-' + NewId, 'DivAllActionDivUp-' + NewId, 'icon solid fa-chevron-circle-up BRBlind2SmallDetailsIconUp', '', '', 'SmallBlindChangePosition(-10, ' + CardId+ ');');
+                            AddDiv('DivAllMainActionDiv-' + NewId, 'DivAllActionDivUp-' + NewId, 'icon solid fa-chevron-circle BRBlind2SmallDetailsIconUp', '', '', 'SmallBlindChangePosition(-10, ' + CardId+ ');');
 
                             // Title
                             AddDiv('DivAllMainActionDiv-' + NewId, 'DivAllMainActionDivWindow-' + NewId, 'BRTitlePos', '', '', '');
@@ -428,7 +436,7 @@
 
 </head>
 <body class="is-preload" dir="rtl">
-    <div class="header"></div>
+    <div class="header">MyBuilding</div>
     <a href="#home2" id="BlindDetailsLink"></a>
 
 
@@ -457,185 +465,1107 @@
                 </div>
                 <div class="container" style="width:100%">
                     <div class="sides">
-                        <select name="sidesASelect" class="side plus">
+                        <select name="sidesASelect" class="side" id="select-mobile">
                             <option value="1">קומה 1</option>
-                            <option value="1">קומה 2</option>
-                            <option value="1">קומה 3</option>
-                            <option value="1">קומה 4</option>
-                            <option value="1">קומה 5</option>
+                            <option value="2">קומה 2</option>
+                            <option value="3">קומה 3</option>
+                            <option value="4">קומה 4</option>
+                            <option value="5">קומה 5</option>
                         </select>
                         <i class="sidelusicon"></i>
                     </div>
 
-                    <div class="DivAll">
-                        <div id="blindExample" class="blindContent" data-aos="fade-up">
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">90%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindDetail hide">
-                            <div id="blindpopPosition">
-                                90%
-                            </div>
-                            <div id="blindDetailContent">
-                                <div class="blindpop">
-                                    <div class="blindContentpop">
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
-                                        <div class="blind-row"></div>
+                    <div mbsc-page class="DivAll">
+                        <div class="sides">
+                            <div id="sectora" class="sector">
+                                <div class="sectorTitle">מהמהמה</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div id="blindExample" class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindDetail">
+                                        <div id="blindpopPosition">
+                                            90%
+                                        </div>
+                                        <div id="blindDetailContent">
+                                            <div class="blindpop">
+                                                <div class="blindContentpop">
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                    <div class="blind-row"></div>
+                                                </div>
+                                            </div>
+                                            <div class="range-slider" style="position: absolute;top: 80px;left: -66px;">
+                                                <input id="slidePosition" class="input-range" type="range" step="1" value="0" min="1" max="101">
+                                            </div> 
+                                            <div class="range-slider" style="position: absolute;top: 80px;right: -66px;">
+                                                <input id="slideAngle" class="input-range" type="range" step="1" value="0" min="1" max="100">
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
                                     </div>
                                 </div>
-                                <div class="range-slider" style="position: absolute;top: 80px;left: -66px;">
-                                    <input id="slidePosition" class="input-range" type="range" step="1" value="0" min="1" max="101">
-                                </div> 
-                                <div class="range-slider" style="position: absolute;top: 80px;right: -66px;">
-                                    <input id="slideAngle" class="input-range" type="range" step="1" value="0" min="1" max="100">
-                                </div> 
                             </div>
                         </div>
-                        <div class="blindContent">
-                            <div class="blind position70">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">70%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
+                        <div class="sides">
+                            <div id="sectorb" class="sector">
+                                <div class="sectorTitle">מהמהמה2</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="blindContent">
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">90%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
+                        <div class="sides">
+                            <div id="sectorb" class="sector">
+                                <div class="sectorTitle">מהמהמה3</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position70">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">70%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
+                        <div class="sides">
+                            <div id="sectorb" class="sector">
+                                <div class="sectorTitle">מהמהמה4</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">90%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
+                        <div class="sides">
+                            <div id="sectorb" class="sector">
+                                <div class="sectorTitle">מהמהמה5</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position70">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">70%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
+                        <div class="sides">
+                            <div id="sectorb" class="sector">
+                                <div class="sectorTitle">מהמהמה6</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">90%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position70">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">70%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">90%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindContent error" data-aos="fade-up">
-                            <div class="blind position50">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">50%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindContent" data-aos="fade-up">
-                            <div class="blind position30">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">30%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindContent error">
-                            <div class="blind position90">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">90%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
-                            </div>
-                        </div>
-                        <div class="blindContent error">
-                            <div class="blind position10">
-                                <div class="stateBlind"></div>
-                            </div>
-                            <div class="divPercent">10%</div>
-                            <div class="blindSection">
-                                <div class="blindName">2A3 GFR 7854</div>
-                                <div class="blindNameSection">וילון</div>
-                                <div class="blindLetterSection">A2FD&934</div>
+                        <div class="sides">
+                            <div id="sectorb" class="sector">
+                                <div class="sectorTitle">מהמהמה7</div>
+                                <i class="sidelusicon"></i>
+                                <div id="blinds" class="hidden">
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position70">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">70%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error" data-aos="fade">
+                                        <div class="blind position50">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">50%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent" data-aos="fade">
+                                        <div class="blind position30">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">30%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position90">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">90%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    </div>
+                                    <div class="blindContent error">
+                                        <div class="blind position10">
+                                            <div class="stateBlind"></div>
+                                        </div>
+                                        <div class="divPercent">10%</div>
+                                        <div class="blindSection">
+                                            <div class="blindName">2A3 GFR 7854</div>
+                                            <div class="blindNameSection">וילון</div>
+                                            <div class="blindLetterSection">A2FD&934</div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -650,8 +1580,8 @@
 
                     <div id="BR0-1-" class="BRBlind2Details" style="padding-right:70px;padding-top:25px;">
 
-                        <div class="icon solid fa-angle-double-up BRBlind2DetailsIconUp" onclick="ChangeBigBlindPosition(-100); "></div>
-                        <div class="icon solid fa-angle-up BRBlind2DetailsIconUp" onclick="ChangeBigBlindPosition(-10); " ></div>
+                        <div class="icon solid fa-angle-double BRBlind2DetailsIconUp" onclick="ChangeBigBlindPosition(-100); "></div>
+                        <div class="icon solid fa-angle BRBlind2DetailsIconUp" onclick="ChangeBigBlindPosition(-10); " ></div>
 
                         <div id="DivMaxHeight" class="Blind2DetailsShow" style="width:70px; height:200px;">
                             <div id="DivMyHeightBackground" style="position:absolute;background-color:#b488d8;height:50px;width:64px;"></div>
@@ -722,47 +1652,47 @@
                 <div class="container" dir="rtl">
                     <h1 class="H1Title">הודעות</h1>
                     <div class="feature-icons">
-                        <div class="message  data-aos="fade-up"open">
+                        <div class="message"  data-aos="fade">
                             <i class="icon solid fa-envelope-open"></i>
                             <span>20/06/2019 - פניתך למערכת נקלטה בהצלחה</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
-                        <div class="message" data-aos="fade-up">
+                        <div class="message" data-aos="fade">
                             <i class="icon solid fa-envelope"></i>
                             <span>16/06/2019 - ברוך הבא למערכת</span>
                         </div>
@@ -908,7 +1838,6 @@
                     </div>
                 </form>
             </article>
-
         </div>
 
         <!-- Footer -->
@@ -921,16 +1850,16 @@
         </div-->
 
     </div>
+    <div id="footerApp"></div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>
     <script>
-         new WOW().init();
+         //new WOW().init();
 
         //Make the DIV element draggagle:
         dragElement(document.getElementById("mydiv"));
@@ -995,7 +1924,6 @@
                 /* stop moving when mouse button is released:*/
                 document.onmouseup = null;
                 document.onmousemove = null;
-                debugger;
                 ActivateDevice(3, 4, selectedCardVersion, selectedCardId, ';FldBlindPositionUser,' + selectedPosition);
 
             }
@@ -1057,35 +1985,57 @@
         }
     </script>
     <script>
-        var positionpop = 80;
-        var angle = 70;
-        window.onload = function() {
-            changeClass();
-            $("#slideAngle").val(100-angle);
-            $("#slidePosition").val(100-positionpop);
-            $("#slideAngle").on('input', function(){
-                angle = 100 - this.value
-                changeClass();
-            }); 
-            $("#slidePosition").on('input', function(){
-                positionpop = 100 - this.value + 1
-                console.log(positionpop);
-                changeClass();
-            });
-        };
-        $("#blindExample").on('click', function(){
-            blindClick("blindExample")
-        });
-        function changeClass(otherClass = "") {
-            var element = document.getElementById("blindDetailContent");
-            element.className = "position" + positionpop + " " + "angle" + angle + " " + otherClass;
-            $("#slideAngle").val(100-angle);
-            $("#slidePosition").val(100-positionpop);
-            //$("#blindpopPosition").innerHTML  = positionpop + "%";
-            document.getElementById("blindpopPosition").innerHTML = positionpop + "%";
-            console.log(position);
+    function changeClass(otherClass = "") {
+        var element = document.getElementById("blindDetailContent");
+        element.className = "position" + positionpop + " " + "angle" + angle + " " + otherClass;
+        $("#slideAngle").val(100-angle);
+        $("#slidePosition").val(100-positionpop);
+        //$("#blindpopPosition").innerHTML  = positionpop + "%";
+        document.getElementById("blindpopPosition").innerHTML = positionpop + "%";
+        console.log(position);
 
-        } 
-    </script>
+    } 
+
+    mobiscroll.settings = {
+        lang: 'en',      // Specify language like: lang: 'pl' or omit setting to use default
+        theme: 'ios',              // Specify theme like: theme: 'ios' or omit setting to use default
+        themeVariant: 'light'  // More info about themeVariant: https://docs.mobiscroll.com/4-10-3/select#opt-themeVariant
+    };
+    
+    $(function () {
+        $('#select-mobile').mobiscroll().select({
+            display: 'center'      // Specify display mode like: display: 'bottom' or omit setting to use default
+        });
+    });
+
+var positionpop = 80;
+    var angle = 70;
+    window.onload = function() {
+        changeClass();
+        $("#slideAngle").val(100-angle);
+        $("#slidePosition").val(100-positionpop);
+        $("#slideAngle").on('input', function(){
+            angle = 100 - this.value
+            changeClass();
+        }); 
+        $("#slidePosition").on('input', function(){
+            positionpop = 100 - this.value + 1
+            console.log(positionpop);
+            changeClass();
+        });
+    };
+    $("#blindExample").on('click', function(){
+        blindClick("blindExample")
+    });
+    $("#sectora .sectorTitle").on('click', function(){
+        if ($("#blinds").hasClass("hidden")){
+            $("#blinds").removeClass("hidden");
+        }else{
+            $("#blinds").addClass("hidden");
+        }
+    });
+
+</script>
+<div id= "overdiv" class="hidden"></div>
 </body>
 </html>
