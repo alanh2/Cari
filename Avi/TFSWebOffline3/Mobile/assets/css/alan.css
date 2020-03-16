@@ -532,7 +532,7 @@ a.blindUp::before{
     padding: 10px 5%;
     width: 100%;
 }
-#select-mobile_dummy, select.side, .sectorTitle {
+.mbsc-select-input.mbsc-control  {
     width: 100%;
     padding-right: 28px;
     float: left;
@@ -562,26 +562,26 @@ select.side option{
     float: right;
     width: 100%;
 }
-.content-row .sideplusicon::before {
+.content-row .sideplusicon::before,.content-row .sideminusicon::before {
     font-family: 'Font Awesome 5 Free';
     font-style: normal;
     color: var(--blue);
     position: absolute;
     font-weight: 700;
     color: var(--greyText);
-    top: 17px;
+    top: 10px;
+    right: 0px;
     font-size: 20px;
 }
-.sideplusicon{
+.sideplusicon, .sideminusicon{
     position: relative;
+    float: right;
 }
 .sideplusicon::before {
     content: "\f0fe";
 }
 .sideminusicon::before{
     content: "\f146";
-}
-.sectorTitle + .sideplusicon::before {
 }
 /*blindpop*/
 [type='range']#slideAngle::-webkit-slider-runnable-track { background: var(--slideAngle)}
