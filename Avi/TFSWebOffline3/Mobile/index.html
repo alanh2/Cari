@@ -52,12 +52,14 @@
                     $("body").removeClass("overflowHidden");
                     $("#overdiv").addClass("hidden");
                     $(".blindDetail").hide();
+                    $("#"+id).parents('#blinds').removeClass("expanded");
                 }else{
                     $("#"+id).addClass("blindSelected");
                     $("body").addClass("overflowHidden");
                     $("#overdiv").removeClass("hidden");
                     $(".blindDetail").show();
-
+                    $(".blindDetail").show();
+                    $("#"+id).parents('#blinds').addClass("expanded");
                 }
             }
         $(document).ready(function () {
@@ -486,7 +488,7 @@
                                 <option value="7">חזית דרומית</option>
                             </select>
                             <i class="sideplusicon"></i>
-                            <div id="blinds" class="hidden">
+                            <div id="blinds" class="hidden contentBlinds">
                                 <div id="blindExample" class="blindContent" data-aos="fade">
                                     <div class="blind position90">
                                         <div class="stateBlind"></div>
@@ -684,7 +686,7 @@
                                 <option value="7">חזית דרומית</option>
                             </select>
                             <i class="sideplusicon"></i>
-                            <div id="blinds2" class="hidden">
+                            <div id="blinds2" class="hidden contentBlinds">
                                 <div id="blindExample" class="blindContent" data-aos="fade">
                                     <div class="blind position90">
                                         <div class="stateBlind"></div>
@@ -854,7 +856,7 @@
                                 <option value="7">חזית דרומית</option>
                             </select>
                             <i class="sideplusicon"></i>
-                            <div id="blinds3" class="hidden">
+                            <div id="blinds3" class="hidden contentBlinds">
                                 <div id="blindExample" class="blindContent" data-aos="fade">
                                     <div class="blind position90">
                                         <div class="stateBlind"></div>
@@ -1024,7 +1026,7 @@
                                 <option value="7">חזית דרומית</option>
                             </select>
                             <i class="sideplusicon"></i>
-                            <div id="blinds5" class="hidden">
+                            <div id="blinds5" class="hidden contentBlinds">
                                 <div id="blindExample" class="blindContent" data-aos="fade">
                                     <div class="blind position90">
                                         <div class="stateBlind"></div>

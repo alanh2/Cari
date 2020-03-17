@@ -529,7 +529,8 @@ a.blindUp::before{
     box-shadow: 0px 1px 10px var(--shadow);
     border-radius: 5px;
     margin-bottom: 10px;
-    padding: 10px 5%;
+    /*padding: 10px 5%;*/
+    padding: 3px 4% 3px 5px;
     width: 100%;
 }
 .mbsc-select-input.mbsc-control  {
@@ -545,6 +546,7 @@ a.blindUp::before{
     border: none;
     background-color: var(--lightGrey);
     font-family: 'Myriad Hebrew' !important;
+    height: 35px;
 }
 select.side option{
     font-family: 'Myriad Hebrew' !important;
@@ -569,7 +571,7 @@ select.side option{
     position: absolute;
     font-weight: 700;
     color: var(--greyText);
-    top: 10px;
+    top: 4px;
     right: 0px;
     font-size: 20px;
 }
@@ -582,6 +584,14 @@ select.side option{
 }
 .sideminusicon::before{
     content: "\f146";
+}
+.contentBlinds {
+    max-height: 100px;
+    overflow-y: auto;
+    float: left;
+}
+.contentBlinds.expanded {
+    max-height: 270px;
 }
 /*blindpop*/
 [type='range']#slideAngle::-webkit-slider-runnable-track { background: var(--slideAngle)}
